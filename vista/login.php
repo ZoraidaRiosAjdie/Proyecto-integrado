@@ -10,21 +10,31 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+    <header class="row-12">
+        <a href="" class="text-rigth">Entrar sin registro</a>
+    </header>
     <section class="container-sm mt-5 mr-auto ml-auto pl-1 pr-1">
-        <article class="display-2 text-center">Iniciar seción</article>
-        <article class="col-6 p-3 ml-auto mr-auto pl-1 pr-1" >
-            <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-                Nombre: <input type="text" name="nombre"><br>
-                Contraseña: <input type="password" name="contraseña"><br>
-                <input type="submit" name="aceptar" value="aceptar">
-            </form>
+        <article>
+            <article class="display-2 text-center">Iniciar seción</article>
+            <article class="col-2 p-3 ml-auto mr-auto pl-1 pr-1" >
+                <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+                    Nombre: <input type="text" name="nombre"><br>
+                    Contraseña: <input type="password" name="contraseña"><br>
+                    <input type="submit" name="entrar" value="Entrar">
+                    <input type="submit" name="registrar" value="Registrarse">
+                </form>
+            </article>
         </article>
+        
     </section>
    <?php
-    if (isset($_POST['aceptar'])){
+    if (isset($_POST['entrar'])){
         $_SESSION["nombre"]= $_POST['nombre'];
         $_SESSION["contraseña"]= $_POST['contraseña'];
         header('location:../controlador/login.php');
+    }
+    if (isset($_POST['registrar'])){
+        header('location:../controlador/registrar.php');
     }
    ?>
 </body>

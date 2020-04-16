@@ -1,3 +1,3 @@
 <?php
-    include '../vista/registro.php';
+    include '../vista/login.php';
 ?>
