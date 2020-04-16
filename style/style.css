@@ -1,0 +1,7 @@
+.container-sm{
+    background-color: violet;
+    border-style: solid;
+    border-color: purple;
+    border-radius: 12px;
+    border-width: 6px;
+}
