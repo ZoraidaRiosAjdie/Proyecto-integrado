@@ -20,7 +20,7 @@
             // header('location:../controlador/login.php');
         }
         if(isset($_POST['registro'])){
-            
+
         }
     ?>
     <header class="container-sm mt-5">

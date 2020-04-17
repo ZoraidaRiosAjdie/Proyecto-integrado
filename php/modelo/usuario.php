@@ -15,11 +15,21 @@
             $this->admin = $admin;
         }
         public function usuario($nombre, $pws){
-            $consulta ="SELECT *
+            $consulta ="SELECT idUsuario
                         from usuario
                         WHERE nombre = '$nombre'
                         and pws = '$pws'";
             return DataBase::getConsultasPDO($consulta);
+        }
+        public function validar(){
+            $consulta ="SELECT *
+                        from usuario";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        public function insert(){
+            $insercion = "INSERT INTO usuario ($idUsuario, $nombre, $email, $pws, $admin) 
+                        VALUES (NULL, \"".$this->nombre."\", \"".$this->email."\", \"".$this->pws."\", 0)";
+            return DataBase::getConsultasPDO($insercion);
         }
     }
 ?>
