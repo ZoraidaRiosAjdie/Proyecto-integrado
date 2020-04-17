@@ -15,7 +15,7 @@
             $this->admin = $admin;
         }
         public function usuario($nombre, $pws){
-            $consulta ="SELECT idUsuario
+            $consulta ="SELECT *
                         from usuario
                         WHERE nombre = '$nombre'
                         and pws = '$pws'";

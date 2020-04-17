@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="login pl-5">
+    <?php
+        
+        if(isset($_POST['entrar'])){
+            $_SESSION['nombre']=$_POST['nombre'];
+            $_SESSION['pwd']=$_POST['pwd'];
+            // header('location:../controlador/login.php');
+        }
+        if(isset($_POST['registro'])){
+            
+        }
+    ?>
     <header class="container-sm mt-5">
         <div class="row">
             <div class="col">
@@ -24,8 +35,9 @@
             <article class="col-7 cuadro ml-auto mr-auto pb-5">
                 <article class="row ml-auto mr-auto">
                     <p class="col display-3 text-center">Iniciar sesión</p>
-                    <p class="mensaje"></p>
+                    
                 </article>
+                <p class="mensaje text-danger text-center"></p>
                 <article class="row ">
                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" class="col-7 ml-auto mr-auto">
                         <p class="pb-2 pt-4"><label for="nombre">Nombre: </label> <input type="text" name="nombre" require><br>
@@ -34,15 +46,10 @@
                         <input type="submit" name="registro" value="Registrarse" class="btn btn-primary float-right">
                     </form>
                 </article>
+                
             </article>
+            
         </article>
     </section>
-    <?php
-        $_SESSION['nombre']=$_POST['nombre'];
-        $_SESSION['pwd']=$_POST['pwd'];
-        // if(isset($_POST['entrar'])){
-        //     header('location:../controlador/login.php');
-        // }
-    ?>
 </body>
 </html>
