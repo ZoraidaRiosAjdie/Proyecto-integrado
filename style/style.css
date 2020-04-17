@@ -1,7 +1,21 @@
-.container-sm{
-    background-color: violet;
+body.index{
+    background-image:url("../imagenes/index.png");
+    background-position: center center;	  
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+body.login{
+    background-image:url("../../Proyecto-integrado/imagenes/login.jpg");
+    background-position: center center;	  
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+article.cuadro{
+    background-color: rgba(46, 177, 227, .8);
     border-style: solid;
-    border-color: purple;
+    border-color: #3452FF;
     border-radius: 12px;
     border-width: 6px;
 }
