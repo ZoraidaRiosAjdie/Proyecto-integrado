@@ -20,7 +20,8 @@ CREATE TABLE pelicula (
     fecha_estreno varchar(45),
     calificacion varchar(45),
     sinopsis varchar(45),
-    CONSTRAINT PK_usuario PRIMARY KEY (idPelicula)
+    imagen varchar(100),
+    CONSTRAINT PK_pelicula PRIMARY KEY (idPelicula)
 );
 CREATE TABLE valoracion (
     idUsuario int NOT NULL,
@@ -33,13 +34,13 @@ CREATE TABLE sala (
     idSala int NOT NULL AUTO_INCREMENT,
     butaca varchar(45) NOT NULL,
     tipo varchar(45),
-    CONSTRAINT PK_usuario PRIMARY KEY (idSala)
+    CONSTRAINT PK_sala PRIMARY KEY (idSala)
 );
 CREATE TABLE tarifa (
     idTipo int NOT NULL AUTO_INCREMENT,
     definicion varchar(45) NOT NULL,
     precio FLOAT NOT NULL,
-    CONSTRAINT PK_usuario PRIMARY KEY (idTipo)
+    CONSTRAINT PK_tarifa PRIMARY KEY (idTipo)
 );
 CREATE TABLE proyeccion (
     idProyeccion int NOT NULL AUTO_INCREMENT,
@@ -48,7 +49,7 @@ CREATE TABLE proyeccion (
     idTipo int NOT NULL,
     fecha DATE,
     hora varchar(45),
-    CONSTRAINT PK_usuario PRIMARY KEY (idProyeccion),
+    CONSTRAINT PK_proyeccion PRIMARY KEY (idProyeccion),
     CONSTRAINT FK_proyeccionSala FOREIGN KEY (idSala) REFERENCES sala(idSala),
     CONSTRAINT FK_proyeccionPelicula FOREIGN KEY (idPelicula) REFERENCES pelicula(idPelicula),
     CONSTRAINT FK_proyeccionTipo FOREIGN KEY (idTipo) REFERENCES tarifa(idTipo)
@@ -73,28 +74,34 @@ VALUES ("3", "Pedro", "pedro@gmail.com", "1234" , 0);
 INSERT INTO usuario (idUsuario, nombre, email, pws, admin)
 VALUES ("4", "Angela", "angela@gmail.com", "1234" , 0);
 /*Pelicula*/
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
 VALUES ("1", "2020", "Aves de presa", "Estados Unidos" , "Superhéroes", "109 minutos", "6 de febrero de 2020", "+16" ,
  "Tras los acontecimientos de Escuadrón suicida, Harley Quinn es abandonada por el Joker. Cuando Cassandra Cain, 
  una joven, se encuentra con un diamante que pertenece al amo del crimen Máscara Negra, después de una serie de 
- eventos, Harley termina haciendo una alianza con Canario Negro, Cazadora y Renée Montoya para ayudar a protegerla."
+ eventos, Harley termina haciendo una alianza con Canario Negro, Cazadora y Renée Montoya para ayudar a protegerla.",
+ '../../imagenes/avesdepresa.jpg'
  );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
 VALUES ("2", "2020", "Black Widow", "Estados Unidos" , "Cine de superhéroes", "109 minutos", "6 de noviembre de 2020" , "+17", 
 "Situada 1 año después de los sucesos de Capitán América: 
 Civil War y antes de Avengers: Infinity War, Natasha Romanoff se encuentra sola y obligada a enfrentar una peligrosa 
 conspiración con lazos con su pasado mientras es buscada por la ley. Perseguida por una fuerza que no se detendrá 
 ante nada para derribarla, Romanoff debe lidiar con su historia como espía y las relaciones rotas que 
-dejó a su paso mucho antes de convertirse en Vengadora.");
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis)
+dejó a su paso mucho antes de convertirse en Vengadora.", "../../imagenes/blackwidow.webp"
+);
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
 VALUES ("3", "2019", "Once Upon a Time in Hollywood", "Estados Unidos" , "Comedia dramática", "160 minutos", "21 de mayo de 2019" , "+16", 
 "Hollywood, años 60. La estrella de un western televisivo, Rick Dalton (DiCaprio), intenta amoldarse a los cambios del 
 medio al mismo tiempo que su doble (Pitt). La vida de Dalton está ligada completamente a Hollywood, y es vecino de la 
-joven y prometedora actriz y modelo Sharon Tate (Robbie) que acaba de casarse con el prestigioso director Roman Polanski.");
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis)
+joven y prometedora actriz y modelo Sharon Tate (Robbie) que acaba de casarse con el prestigioso director Roman Polanski.",
+"../../imagenes/OnceUponaTimeinHollywood.jpeg"
+);
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
 VALUES ("4", "2019", "Historia de un matrimonio", "Estados Unidos" , "Drama", "136 minutos", "6 de noviembre de 2019" , "+12", 
 "Un director de teatro y su mujer, actriz, luchan por superar un divorcio que les lleva al extremo tanto en lo personal como en lo creativo. 
-Además de aprender a convivir para lograr una estabilidad en la vida de su pequeño hijo.");
+Además de aprender a convivir para lograr una estabilidad en la vida de su pequeño hijo.",
+"../../imagenes/Historiadeunmatrimonio.jpg"
+);
 /*Valoracion*/
 INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
 VALUES ("1", "4", "8");

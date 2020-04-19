@@ -20,7 +20,7 @@
             // header('location:../controlador/login.php');
         }
         if(isset($_POST['registro'])){
-
+            header('location:../vista/registro.php');
         }
     ?>
     <header class="container-sm mt-5">
@@ -40,8 +40,14 @@
                 <p class="mensaje text-danger text-center"></p>
                 <article class="row ">
                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" class="col-7 ml-auto mr-auto">
-                        <p class="pb-2 pt-4"><label for="nombre">Nombre: </label> <input type="text" name="nombre" require><br>
-                        <label for="contraseña">Contraseña: </label> <input type="text" name="pwd" require></p>
+                        <div class="pt-4">
+                            <label for="nombre">Nombre: </label>
+                            <input type="text" name="nombre" require class='col'> 
+                        </div>
+                        <div class="pt-2 pb-3">
+                            <label for="contraseña">Contraseña: </label>
+                            <input type="text" name="pwd" require class='col'>
+                        </div> 
                         <input type="submit" name="entrar" value="Entrar" class="btn btn-primary float-left entrar">
                         <input type="submit" name="registro" value="Registrarse" class="btn btn-primary float-right">
                     </form>

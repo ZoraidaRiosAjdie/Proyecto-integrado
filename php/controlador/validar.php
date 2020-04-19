@@ -4,7 +4,7 @@
     $mostrar =  $usuario -> validar();
     $lista1= array();
     while ($todo = $mostrar -> fetch()){
-        $usuario = ["nombre"=>$todo['nombre'],"email"=>$todo['email']];
+        $usuario = ["nombre"=>$todo['nombre'],"email"=>$todo['email'],"pwd"=>$todo['pws']];
         array_push($lista1,$usuario);
     }
     // $lista = ['registro'=>$lista1];

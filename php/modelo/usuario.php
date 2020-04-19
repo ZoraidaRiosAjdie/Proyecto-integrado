@@ -7,7 +7,7 @@
         public $email;
         public $pws;
         public $admin;
-        function __construct($idUsuario="", $nombre="", $email="", $pws="", $admin=""){
+        function __construct($idUsuario="", $nombre="", $email="", $pws="", $admin=0){
             $this->idUsuario = $idUsuario;
             $this->nombre = $nombre;
             $this->email = $email;
@@ -27,7 +27,7 @@
             return DataBase::getConsultasPDO($consulta);
         }
         public function insert(){
-            $insercion = "INSERT INTO usuario ($idUsuario, $nombre, $email, $pws, $admin) 
+            $insercion = "INSERT INTO usuario (idUsuario, nombre, email, pws, admin) 
                         VALUES (NULL, \"".$this->nombre."\", \"".$this->email."\", \"".$this->pws."\", 0)";
             return DataBase::getConsultasPDO($insercion);
         }

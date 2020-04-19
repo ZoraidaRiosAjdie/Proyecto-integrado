@@ -10,25 +10,49 @@
     <script src="../../script/validar.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
-<body>
+<body class="login">
     <?php
         if(isset($_POST['atras'])){
             header('location:../vista/login.php');
         }
-        // if(isset($_POST['aceptar'])){
-        //     header('location:../controlador/validar.php');
-        // }
     ?>
-    <p></p>
-    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
-        Nombre: <input type="text" name="nombre" class="nombre is-valid" require><br>
-        <p id="1"></p>
-        Email: <input type="text" name="email" class="email"><br>
-        <p id="2"></p>
-        Contraseña: <input type="text" name="pwd" class="pwd"><br>
-        <p id="3"></p>
-        <input type="submit" name="atras" value="Atras">
-        <input type="submit" name="aceptar" value="Aceptar" class="aceptar">
-    </form>
+    <section class="cuadro container-sm ml-auto mr-auto mt-5">
+        <article class="row">
+            <article class="col-7 cuadro ml-auto mr-auto ">
+                <article class="row ml-auto mr-auto">
+                    <p class="col display-3 text-center">Registro</p>
+                </article>
+                
+                <p class="mensaje text-danger text-center"></p>
+                <article class="row pb-5">
+                    <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" class="col-7 ml-auto mr-auto">
+                        <!-- <p class="pb-2 pt-4"> -->
+                        <div class="form-group">
+                            <label for="nombre" class="pr-2">Nombre: </label></br>
+                            <input type="text" name="nombre" class="nombre col" require>
+                            <small id="1"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="pr-2">Email: </label></br>
+                            <input type="text" name="email" class="email col" require>
+                            <small id="2"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd" class="pr-2">Contraseña: </label></br>
+                            <input type="text" name="pwd" class="pwd col" require>
+                            <small id="3"></small>
+                        </div>
+                        <input type="submit" name="atras" value="Atras" class="btn btn-primary float-left">
+                        <input type="button" name="aceptar" value="Aceptar" class="btn btn-primary float-right aceptar">
+                    </form>
+                </article>
+                <!-- <article class="row pb-2">
+                    <div class="col-7 progress ml-auto mr-auto">
+                        <div class="progress-bar bg-success barra" role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </article> -->
+            </article>
+        </article>
+    </section>
 </body>
 </html>

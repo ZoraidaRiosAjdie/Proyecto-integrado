@@ -1,3 +1,4 @@
+/*inicio*/
 body.index{
     background-image:url("../imagenes/index.png");
     background-position: center center;	  
@@ -5,6 +6,7 @@ body.index{
 	background-attachment: fixed;
 	background-size: cover;
 }
+/*login y registro*/
 body.login{
     background-image:url("../../Proyecto-integrado/imagenes/login.jpg");
     background-position: center center;	  
@@ -18,4 +20,19 @@ article.cuadro{
     border-color: #3452FF;
     border-radius: 12px;
     border-width: 6px;
+}
+/*Cartelera*/
+body.cartelera{
+    background-image:url("../../Proyecto-integrado/imagenes/cartelera.webp");
+    background-position: center center;	  
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+header.cabecera{
+    background-color:rgba(255, 0, 139, .5);
+}
+nav.menu{
+    /* background-color:rgba(0, 255, 222, .6); */
+    background-color:rgba(255, 0, 139, .6);
 }
