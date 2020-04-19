@@ -2,32 +2,39 @@
 <?php
     require_once('bd.php');
     class Funcion{
-        public $idPelicula;
-        public $anio;
-        public $titulo;
-        public $pais;
-        public $genero;
-        public $duracion;
-        public $fecha_estreno;
-        public $calificacion;
-        public $sinopsis;
-        public $imagen;
-        function __construct($idPelicula="", $anio="", $titulo="", $pais="", $genero="", $duracion="", $fecha_estreno="", $calificacion="", $sinopsis="", $imagen=""){
-            $this->idPelicula = $idPelicula;
-            $this->anio = $anio;
-            $this->titulo = $titulo;
-            $this->pais = $pais;
-            $this->genero = $genero;
-            $this->duracion = $duracion;
-            $this->fecha_estreno = $fecha_estreno;
-            $this->calificacion = $calificacion;
-            $this->sinopsis = $sinopsis;
-            $this->imagen = $imagen;
-        }
+        // public $idPelicula;
+        // public $anio;
+        // public $titulo;
+        // public $pais;
+        // public $genero;
+        // public $duracion;
+        // public $fecha_estreno;
+        // public $calificacion;
+        // public $sinopsis;
+        // public $imagen;
+        // function __construct($idPelicula="", $anio="", $titulo="", $pais="", $genero="", $duracion="", $fecha_estreno="", $calificacion="", $sinopsis="", $imagen=""){
+        //     $this->idPelicula = $idPelicula;
+        //     $this->anio = $anio;
+        //     $this->titulo = $titulo;
+        //     $this->pais = $pais;
+        //     $this->genero = $genero;
+        //     $this->duracion = $duracion;
+        //     $this->fecha_estreno = $fecha_estreno;
+        //     $this->calificacion = $calificacion;
+        //     $this->sinopsis = $sinopsis;
+        //     $this->imagen = $imagen;
+        // }
         public function mostrar(){
-            $consulta ="SELECT *
-                        from pelicula";
+            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen, valoracion
+                        from pelicula p, valoracion v
+                        WHERE p.idPelicula = v.idPelicula
+                        ORDER BY anio DESC";
             return DataBase::getConsultasPDO($consulta);
         }
+        // public function valoracion(){
+        //     $consulta ="SELECT valoracion
+        //                 from valoracion";
+        //     return DataBase::getConsultasPDO($consulta);
+        // }
     }
 ?>

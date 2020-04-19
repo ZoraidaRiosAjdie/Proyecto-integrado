@@ -12,7 +12,7 @@ CREATE TABLE usuario (
 );
 CREATE TABLE pelicula (
     idPelicula int NOT NULL AUTO_INCREMENT,
-    anio varchar(45) NOT NULL,
+    anio int NOT NULL,
     titulo varchar(45) NOT NULL,
     pais varchar(45),
     genero varchar(45),
@@ -101,6 +101,19 @@ VALUES ("4", "2019", "Historia de un matrimonio", "Estados Unidos" , "Drama", "1
 "Un director de teatro y su mujer, actriz, luchan por superar un divorcio que les lleva al extremo tanto en lo personal como en lo creativo. 
 Además de aprender a convivir para lograr una estabilidad en la vida de su pequeño hijo.",
 "../../imagenes/Historiadeunmatrimonio.jpg"
+);
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+VALUES ("5", "2019 ", "Mujercitas", "Estados Unidos" , "Drama", "134 minutos", "25 de diciembre de 2019" , "+13", 
+"Amy, Jo, Beth y Meg son cuatro hermanas que atraviesan Massachussets con su madre durante la Guerra Civil, unas 
+vacaciones que realizan sin su padre evangelista itinerante. Durante estas vacaciones las adolescentes descubren 
+el amor y la importancia de los lazos familiares.", "../../imagenes/Mujercitas.jpg"
+);
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+VALUES ("6", "2019 ", "Zombieland: Double Tap", "Estados Unidos" , "Post-apocalíptica", "99 minutos", "18 de octubre de 2019" , "+17", 
+"Los cazadores de zombis viajan desde la Casa Blanca hasta el corazón de los Estados Unidos, donde tendrán 
+que defenderse de nuevas clases de muertos vivientes que han evolucionado. Mientras intentan salvar 
+el mundo, los miembros de la pandilla también tendrán que aprender a convivir.", 
+"../../imagenes/Zombieland.jpg"
 );
 /*Valoracion*/
 INSERT INTO valoracion (idUsuario, idPelicula, valoracion)

@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../../script/validar.js"></script>
+    <!-- <script src="../../script/validar.js"></script> -->
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
@@ -53,7 +53,43 @@
                 </div>
             </nav>
         </div>
-        
     </header>
+    <section class="container-sm">
+        <?php
+            $i=5;
+            while ($i > 0){
+                $todo = $mostrar -> fetch();
+        ?>
+        <article class="row">
+            <article class="col">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="<?php echo $todo['imagen'];?>" alt="" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <p class="display-3"><?php echo $todo['titulo'];?></p>
+                        <div class="row">
+                            <div class="col-2">
+                                <p class="border-right-3 border-primary"><?php echo $todo['duracion'];?></p>
+                            </div>
+                            <div class="col-2">
+                                <p class="border-right-3 border-primary"><?php echo $todo['pais'];?></p>
+                            </div>
+                            <div class="col-2">
+                                <p class="border-right-3 border-primary"><?php echo $todo['genero'];?></p>
+                            </div>
+                            <div class="col-2">
+                                <p><?php echo $todo['calificacion'];?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </article>
+        </article>
+        <?php
+                $i--;
+            }
+        ?>
+    </section>
 </body>
 </html>
