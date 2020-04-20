@@ -19,7 +19,7 @@ CREATE TABLE pelicula (
     duracion varchar(45),
     fecha_estreno varchar(45),
     calificacion varchar(45),
-    sinopsis varchar(45),
+    sinopsis varchar(10000000),
     imagen varchar(100),
     CONSTRAINT PK_pelicula PRIMARY KEY (idPelicula)
 );
@@ -124,6 +124,10 @@ INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
 VALUES ("3", "2", "6");
 INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
 VALUES ("4", "1", "5");
+INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
+VALUES ("1", "5", "4");
+INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
+VALUES ("4", "5", "3");
 /*Sala*/
 INSERT INTO sala (idSala, butaca, tipo)
 VALUES ("1", "180", "4DX");
