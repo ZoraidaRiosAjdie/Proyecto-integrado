@@ -5,8 +5,9 @@
     // var_dump($mostrar);
     $lista= array();
     $i = 5 ;
-    while ($i > 0){
-        $todo = $mostrar -> fetch();
+    // while ($i > 0){
+    while ($todo = $mostrar -> fetch()){
+        // $todo = $mostrar -> fetch();
         $peli = [
             "anio"=>$todo['anio'],
             "titulo"=>$todo['titulo'],
@@ -23,5 +24,4 @@
         $i--;
     }
     echo json_encode($lista);
-    // echo $lista;
     

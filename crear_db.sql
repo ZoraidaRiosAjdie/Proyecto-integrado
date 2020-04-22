@@ -20,6 +20,7 @@ CREATE TABLE pelicula (
     fecha_estreno varchar(45),
     calificacion varchar(45),
     sinopsis varchar(10000000),
+    actores vachar (1000000),
     imagen varchar(100),
     CONSTRAINT PK_pelicula PRIMARY KEY (idPelicula)
 );
@@ -78,7 +79,10 @@ INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_es
 VALUES ("1", "2020", "Aves de presa", "Estados Unidos" , "Superhéroes", "109 minutos", "6 de febrero de 2020", "+16" ,
  "Tras los acontecimientos de Escuadrón suicida, Harley Quinn es abandonada por el Joker. Cuando Cassandra Cain, 
  una joven, se encuentra con un diamante que pertenece al amo del crimen Máscara Negra, después de una serie de 
- eventos, Harley termina haciendo una alianza con Canario Negro, Cazadora y Renée Montoya para ayudar a protegerla.",
+ eventos, Harley termina haciendo una alianza con Canario Negro, Cazadora y Renée Montoya para ayudar a protegerla.", 
+ "Margot Robbie (Harleen Quinzel/Harley Quinn), Mary Elizabeth Winstead (Helena Bertinelli/Huntress(Cazadora)), 
+ Jurnee Smollett-Bell (Dinah Laurel Lance/Black Canary (Canario Negro)), Rosie Perez (Renée Montoya), 
+ Ella Jay Basco (Cassandra Cain), Ewan McGregor(Roman Sionis/Black Mask(Máscara Negra)), Chris Messina(Victor Zsasz)", 
  '../../imagenes/avesdepresa.jpg'
  );
 INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
@@ -87,21 +91,37 @@ VALUES ("2", "2020", "Black Widow", "Estados Unidos" , "Cine de superhéroes", "
 Civil War y antes de Avengers: Infinity War, Natasha Romanoff se encuentra sola y obligada a enfrentar una peligrosa 
 conspiración con lazos con su pasado mientras es buscada por la ley. Perseguida por una fuerza que no se detendrá 
 ante nada para derribarla, Romanoff debe lidiar con su historia como espía y las relaciones rotas que 
-dejó a su paso mucho antes de convertirse en Vengadora.", "../../imagenes/blackwidow.webp"
+dejó a su paso mucho antes de convertirse en Vengadora.","Scarlett Johansson (Natasha Romanoff/Black Widow), 
+David Harbour (Alexei Shostakov/Red Guardian), Florence Pugh (Yelena Belova/Black Widow), Rachel Weisz (Melina Vostokoff/Black Widow), 
+O.T.Fagbenle (Rick Mason), William Hurt (Thaddeus 'Thunderbolt' Ross)", "../../imagenes/blackwidow.webp"
 );
 INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
 VALUES ("3", "2019", "Once Upon a Time in Hollywood", "Estados Unidos" , "Comedia dramática", "160 minutos", "21 de mayo de 2019" , "+16", 
 "Hollywood, años 60. La estrella de un western televisivo, Rick Dalton (DiCaprio), intenta amoldarse a los cambios del 
 medio al mismo tiempo que su doble (Pitt). La vida de Dalton está ligada completamente a Hollywood, y es vecino de la 
 joven y prometedora actriz y modelo Sharon Tate (Robbie) que acaba de casarse con el prestigioso director Roman Polanski.",
+"Leonardo DiCaprio (Rick Dalton), Brad Pitt (Cliff Booth), Margot Robbie (Sharon Tate), Emile Hirsch (Jay Sebring), 
+Margaret Qualley («Pussycat»), Timothy Olyphant (James Stacy), Julia Butters (Trudi Fraser), Austin Butler (Charles «Tex» Watson), 
+Dakota Fanning (Lynette «Squeaky» Fromme), Bruce Dern (George Spahn), Mike Moh (Bruce Lee), Luke Perry (Wayne Maunder), Damian Lewis 
+(Steve McQueen), Al Pacino (Marvin Schwarzs), Nicholas Hammond (Sam Wanamaker), Samantha Robinson (Abigail Folger)",
 "../../imagenes/OnceUponaTimeinHollywood.jpeg"
 );
 INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
 VALUES ("4", "2019", "Historia de un matrimonio", "Estados Unidos" , "Drama", "136 minutos", "6 de noviembre de 2019" , "+12", 
 "Un director de teatro y su mujer, actriz, luchan por superar un divorcio que les lleva al extremo tanto en lo personal como en lo creativo. 
-Además de aprender a convivir para lograr una estabilidad en la vida de su pequeño hijo.",
+Además de aprender a convivir para lograr una estabilidad en la vida de su pequeño hijo.", "Scarlett Johansson (Nicole Barber), 
+Adam Driver (Charlie Barber), Laura Dern (Nora Fanshaw), Alan Alda (Bert Spitz), Ray Liotta (Jay Marotta), Julie Hagerty (Sandra), 
+Merritt Wever (Cassie), Azhy Robertson (Henry Barber), Wallace Shawn(Frank), Martha Kelly (Nancy Katz)",
 "../../imagenes/Historiadeunmatrimonio.jpg"
 );
+-- Mark O'Brien como Carter Mitchum
+-- Matthew Shear como Terry
+-- Brooke Bloom como Mary Ann
+-- Kyle Bornheimer como Ted
+-- Mickey Sumner como Beth
+-- Lucas Neff como Pablo
+-- Tunde Adebimpe como Sam
+-- Rich Fulcher como el juez Neil Tilden
 INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
 VALUES ("5", "2019 ", "Mujercitas", "Estados Unidos" , "Drama", "134 minutos", "25 de diciembre de 2019" , "+13", 
 "Amy, Jo, Beth y Meg son cuatro hermanas que atraviesan Massachussets con su madre durante la Guerra Civil, unas 
@@ -127,7 +147,7 @@ VALUES ("4", "1", "5");
 INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
 VALUES ("1", "5", "4");
 INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
-VALUES ("4", "5", "3");
+VALUES ("4", "6", "3");
 /*Sala*/
 INSERT INTO sala (idSala, butaca, tipo)
 VALUES ("1", "180", "4DX");
