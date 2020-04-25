@@ -17,6 +17,7 @@
             "fecha"=>$todo['fecha_estreno'],
             "calificacion"=>$todo['calificacion'],
             "sinopsis"=>$todo['sinopsis'],
+            "actores"=>$todo['actores'],
             "imagen"=>$todo['imagen'],
             "valoracion"=>$todo['valoracion']
         ];

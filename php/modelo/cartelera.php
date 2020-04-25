@@ -25,7 +25,7 @@
         //     $this->imagen = $imagen;
         // }
         public function mostrar(){
-            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen, valoracion
+            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores,imagen, valoracion
                         from pelicula p, valoracion v
                         WHERE p.idPelicula = v.idPelicula
                         ORDER BY anio DESC";

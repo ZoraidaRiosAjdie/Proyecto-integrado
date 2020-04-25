@@ -20,7 +20,7 @@ CREATE TABLE pelicula (
     fecha_estreno varchar(45),
     calificacion varchar(45),
     sinopsis varchar(10000000),
-    actores vachar (1000000),
+    actores vachar (10000000),
     imagen varchar(100),
     CONSTRAINT PK_pelicula PRIMARY KEY (idPelicula)
 );
@@ -75,7 +75,7 @@ VALUES ("3", "Pedro", "pedro@gmail.com", "1234" , 0);
 INSERT INTO usuario (idUsuario, nombre, email, pws, admin)
 VALUES ("4", "Angela", "angela@gmail.com", "1234" , 0);
 /*Pelicula*/
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
 VALUES ("1", "2020", "Aves de presa", "Estados Unidos" , "Superhéroes", "109 minutos", "6 de febrero de 2020", "+16" ,
  "Tras los acontecimientos de Escuadrón suicida, Harley Quinn es abandonada por el Joker. Cuando Cassandra Cain, 
  una joven, se encuentra con un diamante que pertenece al amo del crimen Máscara Negra, después de una serie de 
@@ -85,7 +85,7 @@ VALUES ("1", "2020", "Aves de presa", "Estados Unidos" , "Superhéroes", "109 mi
  Ella Jay Basco (Cassandra Cain), Ewan McGregor(Roman Sionis/Black Mask(Máscara Negra)), Chris Messina(Victor Zsasz)", 
  '../../imagenes/avesdepresa.jpg'
  );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
 VALUES ("2", "2020", "Black Widow", "Estados Unidos" , "Cine de superhéroes", "109 minutos", "6 de noviembre de 2020" , "+17", 
 "Situada 1 año después de los sucesos de Capitán América: 
 Civil War y antes de Avengers: Infinity War, Natasha Romanoff se encuentra sola y obligada a enfrentar una peligrosa 
@@ -95,7 +95,7 @@ dejó a su paso mucho antes de convertirse en Vengadora.","Scarlett Johansson (N
 David Harbour (Alexei Shostakov/Red Guardian), Florence Pugh (Yelena Belova/Black Widow), Rachel Weisz (Melina Vostokoff/Black Widow), 
 O.T.Fagbenle (Rick Mason), William Hurt (Thaddeus 'Thunderbolt' Ross)", "../../imagenes/blackwidow.webp"
 );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
 VALUES ("3", "2019", "Once Upon a Time in Hollywood", "Estados Unidos" , "Comedia dramática", "160 minutos", "21 de mayo de 2019" , "+16", 
 "Hollywood, años 60. La estrella de un western televisivo, Rick Dalton (DiCaprio), intenta amoldarse a los cambios del 
 medio al mismo tiempo que su doble (Pitt). La vida de Dalton está ligada completamente a Hollywood, y es vecino de la 
@@ -106,33 +106,31 @@ Dakota Fanning (Lynette «Squeaky» Fromme), Bruce Dern (George Spahn), Mike Moh
 (Steve McQueen), Al Pacino (Marvin Schwarzs), Nicholas Hammond (Sam Wanamaker), Samantha Robinson (Abigail Folger)",
 "../../imagenes/OnceUponaTimeinHollywood.jpeg"
 );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
 VALUES ("4", "2019", "Historia de un matrimonio", "Estados Unidos" , "Drama", "136 minutos", "6 de noviembre de 2019" , "+12", 
 "Un director de teatro y su mujer, actriz, luchan por superar un divorcio que les lleva al extremo tanto en lo personal como en lo creativo. 
 Además de aprender a convivir para lograr una estabilidad en la vida de su pequeño hijo.", "Scarlett Johansson (Nicole Barber), 
 Adam Driver (Charlie Barber), Laura Dern (Nora Fanshaw), Alan Alda (Bert Spitz), Ray Liotta (Jay Marotta), Julie Hagerty (Sandra), 
-Merritt Wever (Cassie), Azhy Robertson (Henry Barber), Wallace Shawn(Frank), Martha Kelly (Nancy Katz)",
+Merritt Wever (Cassie), Azhy Robertson (Henry Barber), Wallace Shawn(Frank), Martha Kelly (Nancy Katz), Mark O'Brien (Carter Mitchum)",
 "../../imagenes/Historiadeunmatrimonio.jpg"
 );
--- Mark O'Brien como Carter Mitchum
--- Matthew Shear como Terry
--- Brooke Bloom como Mary Ann
--- Kyle Bornheimer como Ted
--- Mickey Sumner como Beth
--- Lucas Neff como Pablo
--- Tunde Adebimpe como Sam
--- Rich Fulcher como el juez Neil Tilden
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
 VALUES ("5", "2019 ", "Mujercitas", "Estados Unidos" , "Drama", "134 minutos", "25 de diciembre de 2019" , "+13", 
 "Amy, Jo, Beth y Meg son cuatro hermanas que atraviesan Massachussets con su madre durante la Guerra Civil, unas 
 vacaciones que realizan sin su padre evangelista itinerante. Durante estas vacaciones las adolescentes descubren 
-el amor y la importancia de los lazos familiares.", "../../imagenes/Mujercitas.jpg"
+el amor y la importancia de los lazos familiares.", "Saoirse Ronan (Josephine 'Jo' March), 
+Emma Watson (Margaret 'Meg' March), Florence Pugh (Amy March), Eliza Scanlen (Elizabeth 'Beth' March), 
+Timothée Chalamet (Theodore 'Laurie' Laurence), Laura Dern (Marmee March), Meryl Streep (Tía March), 
+Tracy Letts (Sr. Dashwood), Bob Odenkirk (padre de la familia March), James Norton (John Brooke), 
+Louis Garrel (Friedrich Bhaer), Chris Cooper (Sr. Laurence)", "../../imagenes/Mujercitas.jpg"
 );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
 VALUES ("6", "2019 ", "Zombieland: Double Tap", "Estados Unidos" , "Post-apocalíptica", "99 minutos", "18 de octubre de 2019" , "+17", 
 "Los cazadores de zombis viajan desde la Casa Blanca hasta el corazón de los Estados Unidos, donde tendrán 
 que defenderse de nuevas clases de muertos vivientes que han evolucionado. Mientras intentan salvar 
-el mundo, los miembros de la pandilla también tendrán que aprender a convivir.", 
+el mundo, los miembros de la pandilla también tendrán que aprender a convivir.", " Woody Harrelson (Tallahassee), 
+Jesse Eisenberg (Columbus), Emma Stone (Wichita/Kristal), Abigail Breslin (Little Rock), Rosario Dawson (Nevada), 
+Zoey Deutch (Madison), Luke Wilson (Albuquerque), Avan Jogia (Berkeley), Thomas Middleditch (Flagstaff)",
 "../../imagenes/Zombieland.jpg"
 );
 /*Valoracion*/

@@ -55,53 +55,6 @@
         </div>
     </header>
     <section class="container-sm mt-5">
-       <!--  <article class="row">
-            <article class="col">
-                <div class="row">
-                    <div class="col-3 imagen">
-                        <img src="" alt="" class="img-thumbnail">
-                    </div>
-                    <div class="col titulo">
-                        <p class=" "></p>
-                        <div class="row">
-                            <div class="col-2 duracion">
-                                <p class="border-right-3 border-primary "></p>
-                            </div>
-                            <div class="col-2 pais">
-                                <p class="border-right-3 border-primary"></p>
-                            </div>
-                            <div class="col-2 genero">
-                                <p class="border-right-3 border-primary"></p>
-                            </div>
-                            <div class="col-2 calificacion">
-                                <p class=""></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p class=""></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p class=""></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <p class="valoracion"></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <input type="button" name="fotos" value="Fotos" class="btn btn-primary float-left fotos">
-                            <input type="button" name="trailer" value="Trailer" class="btn btn-primary float-right trailer">
-                        </div>
-                    </div>
-                </div> 
-            </article>
-        </article> -->
     </section>
 </body>
 </html>
