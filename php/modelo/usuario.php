@@ -14,11 +14,22 @@
             $this->pws = $pws;
             $this->admin = $admin;
         }
-        public function usuario($nombre, $pws){
-            $consulta ="SELECT idUsuario
+        public function usuario(){
+            $consulta ="SELECT *
+                        from usuario";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        // public function usuario($nombre, $pws){
+        //     $consulta ="SELECT idUsuario
+        //                 from usuario
+        //                 WHERE nombre = '$nombre'
+        //                 and pws = '$pws'";
+        //     return DataBase::getConsultasPDO($consulta);
+        // }
+        public function administrador(){
+            $consulta ="SELECT admin
                         from usuario
-                        WHERE nombre = '$nombre'
-                        and pws = '$pws'";
+                        where idUsuario = \"".$this->idUsuario."\"";
             return DataBase::getConsultasPDO($consulta);
         }
         public function validar(){

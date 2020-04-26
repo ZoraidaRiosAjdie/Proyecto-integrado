@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +50,15 @@
                                 <a class="dropdown-item" href="#">Servicio al cliente</a>
                             </div>
                         </li>
+                    <?php
+                        if ($_SESSION['admin'] == 1){
+                            ?>
+                            <li class="nav-item active">
+                                <a href="#" class="nav-link">Administrador</a>
+                            </li>
+                            <?php
+                        }
+                    ?>
                     </ul>
                 </div>
             </nav>

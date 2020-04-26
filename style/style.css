@@ -39,3 +39,7 @@ nav.menu{
 /* section.princi{
     background-color: gray;
 } */
+article.princ{
+    background-color: rgba(187,183,182,.7);
+    border-radius: 50px;
+}

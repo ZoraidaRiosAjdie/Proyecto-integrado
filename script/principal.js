@@ -3,7 +3,7 @@ $(document).ready(function(){
         var obj = JSON.parse(r);
         for (let index = 0; index < obj.length; index++) {
             var article = $("<article>");
-            article.attr('class','row mb-5 p-3');
+            article.attr('class','row mb-5 p-3 princ');
             $('.container-sm').append(article);
 
             var article2 = $("<article>");
@@ -155,7 +155,7 @@ $(document).ready(function(){
             var sinopsis = obj[index].sinopsis.split('.');
             var longuitud = sinopsis[0] + '.';
             var i = 1;
-            while (i < 1) {
+            while (i < 2) {
 
                 longuitud = longuitud +sinopsis[i]+'.' ;
                 i++;

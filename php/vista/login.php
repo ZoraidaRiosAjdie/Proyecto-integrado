@@ -14,11 +14,10 @@
 <body class="login pl-5">
     <?php
         
-        if(isset($_POST['entrar'])){
-            $_SESSION['nombre']=$_POST['nombre'];
-            $_SESSION['pwd']=$_POST['pwd'];
-            // header('location:../controlador/login.php');
-        }
+        // if(isset($_POST['entrar'])){
+        //     $_SESSION['nombre']=$_POST['nombre'];
+        //     $_SESSION['pwd']=$_POST['pwd'];
+        // }
         if(isset($_POST['registro'])){
             header('location:../vista/registro.php');
         }
@@ -42,13 +41,13 @@
                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" class="col-7 ml-auto mr-auto">
                         <div class="pt-4">
                             <label for="nombre">Nombre: </label>
-                            <input type="text" name="nombre" require class='col'> 
+                            <input type="text" name="nombre" require class='col nombre'> 
                         </div>
                         <div class="pt-2 pb-3">
                             <label for="contraseña">Contraseña: </label>
-                            <input type="text" name="pwd" require class='col'>
+                            <input type="text" name="pwd" require class='col pwd'>
                         </div> 
-                        <input type="submit" name="entrar" value="Entrar" class="btn btn-primary float-left entrar">
+                        <input type="button" name="entrar" value="Entrar" class="btn btn-primary float-left entrar">
                         <input type="submit" name="registro" value="Registrarse" class="btn btn-primary float-right">
                     </form>
                 </article>
