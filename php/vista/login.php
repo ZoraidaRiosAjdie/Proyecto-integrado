@@ -13,14 +13,6 @@
 </head>
 <body class="login pl-5">
     <?php
-        
-        // if(isset($_POST['entrar'])){
-        //     $_SESSION['nombre']=$_POST['nombre'];
-        //     $_SESSION['pwd']=$_POST['pwd'];
-        // }
-        if(isset($_POST['registro'])){
-            header('location:../vista/registro.php');
-        }
     ?>
     <header class="container-sm mt-5">
         <div class="row">
@@ -48,7 +40,7 @@
                             <input type="text" name="pwd" require class='col pwd'>
                         </div> 
                         <input type="button" name="entrar" value="Entrar" class="btn btn-primary float-left entrar">
-                        <input type="submit" name="registro" value="Registrarse" class="btn btn-primary float-right">
+                        <input type="button" name="registro" value="Registrarse" class="btn btn-primary float-right">
                     </form>
                 </article>
                 

@@ -8,24 +8,16 @@ $(document).ready(function(){
             // var lista={'nombre':obj[i].nombre , 'pwd':obj[i].pwd};
             // objeto.push(lista);
                 if ($('.nombre').val()== obj[i].nombre && $('.pwd').val()== obj[i].pwd){
-                        existe = {'resultado':obj[i].admin};
+                        existe = obj[i].admin;
                 }
             }
             if (existe == null){
                 $('.mensaje').text("Error en contraseña o usuario");
             }
             else {
-                $.ajax({
-                    url: "../controlador/admin.php",
-                    type: "POST",
-                    data: existe
-                });
-            }
-            // for (let i = 0; i < objeto.length; i++) {
-            //     if ($('.nombre').val()== objeto[i].nombre){
-            //         nombre_existe = $('.nombre').val();
-            //     }
-            // } 
+                sessionStorage.setItem("id", existe);
+                window.location.replace("../vista/principal.php");
+            } 
         }); 
     });
     // $('.entrar').click(function(){

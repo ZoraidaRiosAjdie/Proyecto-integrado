@@ -198,7 +198,15 @@ $(document).ready(function(){
             $(div17).append(input1);
         }
     });
-    // function longuitudSinopsis (){
-
-    // }
+    if (sessionStorage.getItem("id")==1){
+        var li = $('<li>');
+        $('.lista').append(li);
+        var a =$('<a>');
+        a.attr('class','nav-link dropdown-toggle');
+        a.attr('data-toggle','dropdown');
+        var texto = "Administrador";
+        $(li).append(a);
+        $(a).text(texto);
+    }
+   
 });

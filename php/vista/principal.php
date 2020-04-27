@@ -22,7 +22,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="menu">
-                    <ul class="navbar-nav mr-auto ml-auto">
+                    <ul class="navbar-nav mr-auto ml-auto lista">
                         <li class="nav-item active">
                             <a href="cartelera.php" class="nav-link">Inicio</a>
                         </li>
@@ -50,7 +50,7 @@
                                 <a class="dropdown-item" href="#">Servicio al cliente</a>
                             </div>
                         </li>
-                    <?php
+                    <!-- <?php
                         if ($_SESSION['admin'] == 1){
                             ?>
                             <li class="nav-item active">
@@ -58,7 +58,7 @@
                             </li>
                             <?php
                         }
-                    ?>
+                    ?> -->
                     </ul>
                 </div>
             </nav>
