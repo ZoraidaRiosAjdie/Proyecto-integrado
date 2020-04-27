@@ -165,6 +165,17 @@ $(document).ready(function(){
             var li3 = $("<li>");
             $(ul).append(li3);
             li3.text('Hora de proyección: '+ obj[index].hora);
+            // Fila Botones 
+            var div20 = $("<div>");
+            div20.attr('class','row');
+            $(article2).append(div20);
+            // Columna botenes1
+            var div21 = $("<div>");
+            div21.attr('class','col');
+            $(div20).append(div21);
+            // Botones1
+            var button = $('<input>');
+
         }
     });
 
