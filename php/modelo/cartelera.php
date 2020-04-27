@@ -31,6 +31,12 @@
                         ORDER BY anio DESC";
             return DataBase::getConsultasPDO($consulta);
         }
+        public function cartelera(){
+            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, sinopsis, actores, imagen, idSala, fecha, hora
+                        from pelicula p, proyeccion pr
+                        WHERE p.idPelicula = pr.idPelicula";
+            return DataBase::getConsultasPDO($consulta);
+        }
         // public function valoracion(){
         //     $consulta ="SELECT valoracion
         //                 from valoracion";
