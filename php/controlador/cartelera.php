@@ -1,7 +1,7 @@
-<?php 
-    require_once("../modelo/admin.php");
+<?php
+    require_once("../modelo/cartelera.php");
     $pelicula = new Funcion();
-    $mostrar =  $pelicula -> cartelera();
+    $mostrar =  $pelicula -> mostrar();
     $lista= array();
     while ($todo = $mostrar -> fetch()){
         $peli = [
@@ -11,12 +11,11 @@
             "genero"=>$todo['genero'],
             "duracion"=>$todo['duracion'],
             "fecha"=>$todo['fecha_estreno'],
+            "calificacion"=>$todo['calificacion'],
             "sinopsis"=>$todo['sinopsis'],
             "actores"=>$todo['actores'],
             "imagen"=>$todo['imagen'],
-            "idSala"=>$todo['idSala'],
-            "fecha_pro"=>$todo['fecha'],
-            "hora"=>$todo['hora']
+            "valoracion"=>$todo['valoracion']
         ];
         array_push($lista,$peli);
     }

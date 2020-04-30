@@ -20,12 +20,13 @@ CREATE TABLE pelicula (
     fecha_estreno varchar(45),
     calificacion varchar(45),
     sinopsis varchar(10000000),
-    actores vachar (10000000),
+    actores varchar (10000000),
     imagen varchar(100),
+    mostrar int NOT NULL,
     CONSTRAINT PK_pelicula PRIMARY KEY (idPelicula)
 );
 CREATE TABLE valoracion (
-    idUsuario int NOT NULL,
+    idUsuario int,
     idPelicula int NOT NULL,
     valoracion FLOAT,
     CONSTRAINT FK_valoracionUsuario FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario),
@@ -39,7 +40,8 @@ CREATE TABLE sala (
 );
 CREATE TABLE tarifa (
     idTipo int NOT NULL AUTO_INCREMENT,
-    definicion varchar(45) NOT NULL,
+    nombre varchar (45) NOT NULL,
+    definicion varchar(100000) NOT NULL,
     precio FLOAT NOT NULL,
     CONSTRAINT PK_tarifa PRIMARY KEY (idTipo)
 );
@@ -75,7 +77,7 @@ VALUES ("3", "Pedro", "pedro@gmail.com", "1234" , 0);
 INSERT INTO usuario (idUsuario, nombre, email, pws, admin)
 VALUES ("4", "Angela", "angela@gmail.com", "1234" , 0);
 /*Pelicula*/
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar)
 VALUES ("1", "2020", "Aves de presa", "Estados Unidos" , "Superhéroes", "109 minutos", "6 de febrero de 2020", "+16" ,
  "Tras los acontecimientos de Escuadrón suicida, Harley Quinn es abandonada por el Joker. Cuando Cassandra Cain, 
  una joven, se encuentra con un diamante que pertenece al amo del crimen Máscara Negra, después de una serie de 
@@ -83,9 +85,9 @@ VALUES ("1", "2020", "Aves de presa", "Estados Unidos" , "Superhéroes", "109 mi
  "Margot Robbie (Harleen Quinzel/Harley Quinn), Mary Elizabeth Winstead (Helena Bertinelli/Huntress(Cazadora)), 
  Jurnee Smollett-Bell (Dinah Laurel Lance/Black Canary (Canario Negro)), Rosie Perez (Renée Montoya), 
  Ella Jay Basco (Cassandra Cain), Ewan McGregor(Roman Sionis/Black Mask(Máscara Negra)), Chris Messina(Victor Zsasz)", 
- '../../imagenes/avesdepresa.jpg'
+ '../../imagenes/avesdepresa.jpg', 1
  );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar)
 VALUES ("2", "2020", "Black Widow", "Estados Unidos" , "Cine de superhéroes", "109 minutos", "6 de noviembre de 2020" , "+17", 
 "Situada 1 año después de los sucesos de Capitán América: 
 Civil War y antes de Avengers: Infinity War, Natasha Romanoff se encuentra sola y obligada a enfrentar una peligrosa 
@@ -93,9 +95,9 @@ conspiración con lazos con su pasado mientras es buscada por la ley. Perseguida
 ante nada para derribarla, Romanoff debe lidiar con su historia como espía y las relaciones rotas que 
 dejó a su paso mucho antes de convertirse en Vengadora.","Scarlett Johansson (Natasha Romanoff/Black Widow), 
 David Harbour (Alexei Shostakov/Red Guardian), Florence Pugh (Yelena Belova/Black Widow), Rachel Weisz (Melina Vostokoff/Black Widow), 
-O.T.Fagbenle (Rick Mason), William Hurt (Thaddeus 'Thunderbolt' Ross)", "../../imagenes/blackwidow.webp"
+O.T.Fagbenle (Rick Mason), William Hurt (Thaddeus 'Thunderbolt' Ross)", "../../imagenes/blackwidow.webp",0
 );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar)
 VALUES ("3", "2019", "Once Upon a Time in Hollywood", "Estados Unidos" , "Comedia dramática", "160 minutos", "21 de mayo de 2019" , "+16", 
 "Hollywood, años 60. La estrella de un western televisivo, Rick Dalton (DiCaprio), intenta amoldarse a los cambios del 
 medio al mismo tiempo que su doble (Pitt). La vida de Dalton está ligada completamente a Hollywood, y es vecino de la 
@@ -104,17 +106,17 @@ joven y prometedora actriz y modelo Sharon Tate (Robbie) que acaba de casarse co
 Margaret Qualley («Pussycat»), Timothy Olyphant (James Stacy), Julia Butters (Trudi Fraser), Austin Butler (Charles «Tex» Watson), 
 Dakota Fanning (Lynette «Squeaky» Fromme), Bruce Dern (George Spahn), Mike Moh (Bruce Lee), Luke Perry (Wayne Maunder), Damian Lewis 
 (Steve McQueen), Al Pacino (Marvin Schwarzs), Nicholas Hammond (Sam Wanamaker), Samantha Robinson (Abigail Folger)",
-"../../imagenes/OnceUponaTimeinHollywood.jpeg"
+"../../imagenes/OnceUponaTimeinHollywood.jpeg",1
 );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar)
 VALUES ("4", "2019", "Historia de un matrimonio", "Estados Unidos" , "Drama", "136 minutos", "6 de noviembre de 2019" , "+12", 
 "Un director de teatro y su mujer, actriz, luchan por superar un divorcio que les lleva al extremo tanto en lo personal como en lo creativo. 
 Además de aprender a convivir para lograr una estabilidad en la vida de su pequeño hijo.", "Scarlett Johansson (Nicole Barber), 
 Adam Driver (Charlie Barber), Laura Dern (Nora Fanshaw), Alan Alda (Bert Spitz), Ray Liotta (Jay Marotta), Julie Hagerty (Sandra), 
 Merritt Wever (Cassie), Azhy Robertson (Henry Barber), Wallace Shawn(Frank), Martha Kelly (Nancy Katz), Mark O'Brien (Carter Mitchum)",
-"../../imagenes/Historiadeunmatrimonio.jpg"
+"../../imagenes/Historiadeunmatrimonio.jpg",0
 );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar)
 VALUES ("5", "2019 ", "Mujercitas", "Estados Unidos" , "Drama", "134 minutos", "25 de diciembre de 2019" , "+13", 
 "Amy, Jo, Beth y Meg son cuatro hermanas que atraviesan Massachussets con su madre durante la Guerra Civil, unas 
 vacaciones que realizan sin su padre evangelista itinerante. Durante estas vacaciones las adolescentes descubren 
@@ -122,16 +124,16 @@ el amor y la importancia de los lazos familiares.", "Saoirse Ronan (Josephine 'J
 Emma Watson (Margaret 'Meg' March), Florence Pugh (Amy March), Eliza Scanlen (Elizabeth 'Beth' March), 
 Timothée Chalamet (Theodore 'Laurie' Laurence), Laura Dern (Marmee March), Meryl Streep (Tía March), 
 Tracy Letts (Sr. Dashwood), Bob Odenkirk (padre de la familia March), James Norton (John Brooke), 
-Louis Garrel (Friedrich Bhaer), Chris Cooper (Sr. Laurence)", "../../imagenes/Mujercitas.jpg"
+Louis Garrel (Friedrich Bhaer), Chris Cooper (Sr. Laurence)", "../../imagenes/Mujercitas.jpg",1
 );
-INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen)
+INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar)
 VALUES ("6", "2019 ", "Zombieland: Double Tap", "Estados Unidos" , "Post-apocalíptica", "99 minutos", "18 de octubre de 2019" , "+17", 
 "Los cazadores de zombis viajan desde la Casa Blanca hasta el corazón de los Estados Unidos, donde tendrán 
 que defenderse de nuevas clases de muertos vivientes que han evolucionado. Mientras intentan salvar 
 el mundo, los miembros de la pandilla también tendrán que aprender a convivir.", " Woody Harrelson (Tallahassee), 
 Jesse Eisenberg (Columbus), Emma Stone (Wichita/Kristal), Abigail Breslin (Little Rock), Rosario Dawson (Nevada), 
 Zoey Deutch (Madison), Luke Wilson (Albuquerque), Avan Jogia (Berkeley), Thomas Middleditch (Flagstaff)",
-"../../imagenes/Zombieland.jpg"
+"../../imagenes/Zombieland.jpg",0
 );
 /*Valoracion*/
 INSERT INTO valoracion (idUsuario, idPelicula, valoracion)
@@ -168,16 +170,16 @@ VALUES ("9", "180", "normal");
 INSERT INTO sala (idSala, butaca, tipo)
 VALUES ("10", "180", "XD");
 /*Tarifa*/
-INSERT INTO tarifa (idTipo, definicion, precio)
-VALUES ("1", "Entrada normal", "7,00");
-INSERT INTO tarifa (idTipo, definicion, precio)
-VALUES ("2", "Día espectador", "3,50");
-INSERT INTO tarifa (idTipo, definicion, precio)
-VALUES ("3", "Día pareja", 7);
-INSERT INTO tarifa (idTipo, definicion, precio)
-VALUES ("4", "Matinal", 5);
-INSERT INTO tarifa (idTipo, definicion, precio)
-VALUES ("5", "Sala 3D", 7);
+INSERT INTO tarifa (idTipo, nombre , definicion, precio)
+VALUES ("1", "Entrada normal",'', "7,00");
+INSERT INTO tarifa (idTipo, nombre , definicion, precio)
+VALUES ("2", "Día espectador",'El miercoles el precio de la entrada bajará de precio durante todo el día', "3,50");
+INSERT INTO tarifa (idTipo, nombre , definicion, precio)
+VALUES ("3", "Día pareja",'Ven con un acompañante y pagais la entrada de solo uno, esta tarifa se  realiza los jueves' ,7);
+INSERT INTO tarifa (idTipo, nombre , definicion, precio)
+VALUES ("4", "Matinal", 'El sabado y domingo a las 12:00, se realizará una rebaja en el precio de la entrada',5);
+INSERT INTO tarifa (idTipo, nombre , definicion, precio)
+VALUES ("5", "Sala 3D", 'Se proyectaran peliculas en 3D',7);
 /*Proyeccion*/
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
 VALUES ("1", "5", "1", "3", STR_TO_DATE('19/09/2020', '%d/%m/%Y'), "17:00");

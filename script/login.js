@@ -3,12 +3,13 @@ $(document).ready(function(){
     $.post("../controlador/login.php", function(r){
         var obj = JSON.parse(r);
         var existe = null;
+        var id = null;
         $('.entrar').click(function(){
             for (let i = 0; i < obj.length; i++) {
-            // var lista={'nombre':obj[i].nombre , 'pwd':obj[i].pwd};
-            // objeto.push(lista);
                 if ($('.nombre').val()== obj[i].nombre && $('.pwd').val()== obj[i].pwd){
                         existe = obj[i].admin;
+                        id = obj[i].idUsuario;
+
                 }
             }
             if (existe == null){
@@ -18,6 +19,7 @@ $(document).ready(function(){
                 sessionStorage.setItem("id", existe);
                 window.location.replace("../vista/principal.php");
             } 
+            sessionStorage.setItem("idUsuario", id);
         }); 
     });
     // $('.entrar').click(function(){

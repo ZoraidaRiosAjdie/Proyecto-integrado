@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $.post("../controlador/principal.php", function(r){
+    $.post("../controlador/cartelera.php", function(r){
         var obj = JSON.parse(r);
         for (let index = 0; index < obj.length; index++) {
             var article = $("<article>");
@@ -137,8 +137,7 @@ $(document).ready(function(){
             var enlace1 = $("<a>");
             $(p8).append(enlace1);
             enlace1.text(' ...ver más');
-            var t = 'mas.php#'+index;
-            enlace1.attr('href',t);
+            enlace1.attr('href','#')
             // Fila sinopsis
             var div13 = $("<div>");
             div13.attr('class','row');
@@ -168,7 +167,7 @@ $(document).ready(function(){
             var enlace = $("<a>");
             $(p5).append(enlace);
             enlace.text(' ...ver más');
-            enlace.attr('href',t)
+            enlace.attr('href','#')
             // Fila fecha y botones
             var div15 = $("<div>");
             div15.attr('class','row');

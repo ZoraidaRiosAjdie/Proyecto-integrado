@@ -1,10 +1,11 @@
 $(document).ready(function(){
-    $.post("../controlador/pelicula.php", function(r){
+    $.post("../controlador/cartelera.php", function(r){
         var obj = JSON.parse(r);
         for (let index = 0; index < obj.length; index++) {
             // obj[index].titulo;
             var article = $("<article>");
             article.attr('class','row mb-5 p-3 princ');
+            article.attr('id', index);
             $('.container-sm').append(article);
 
             var article2 = $("<article>");
@@ -40,6 +41,34 @@ $(document).ready(function(){
             $(div4).append(p);
             p.text(obj[index].titulo);
             p.attr('class','display-4');
+            /*Columna valoracion */
+            var div5 = $("<div>");
+            var valoracion = obj[index].valoracion;
+            div5.attr('class','col-2');
+            $(div3).append(div5);
+            // Segunda fila valoracion 
+            var div25 = $("<div>");
+            div25.attr('class','row');
+            $(div5).append(div25);
+            // Segunda columna valoracion 
+            var div26 = $("<div>");
+            // div26.attr('class','col-6 bg-info rounded-circle');
+            if (valoracion < 5 ){
+                div26.attr('class','col-6 bg-danger rounded-circle');
+            }
+            else {
+                if (valoracion >= 5 ){
+                    div26.attr('class','col-6 bg-warning rounded-circle');
+                    if (valoracion >= 6 ){
+                        div26.attr('class','col-6 bg-success rounded-circle');
+                    }
+                }
+            }
+            $(div25).append(div26);
+            /*Valoracion*/            var p7 = $("<p>");
+            p7.attr('class','text-center mr-auto ml-auto mt-4');
+            $(div26).append(p7);
+            p7.text(obj[index].valoracion);
             /*Fila de duracion... */
             var div6 = $("<div>");
             div6.attr('class','row');
@@ -133,69 +162,31 @@ $(document).ready(function(){
             var p5 = $("<p>");
             $(div14).append(p5);
             p5.text(obj[index].sinopsis);
-            // Fila proyeccion 
-            var div18 = $("<div>");
-            div18.attr('class','row');
-            $(article2).append(div18);
-            // Columna proyeccion
-            var div19 = $("<div>");
-            div19.attr('class','col');
-            $(div18).append(div19);
-            // Separacion proyeccion 
-            var hr1 =$('<hr>');
-            $(div19).append(hr1);
-            $(hr1).attr('class','separacion');
-            // Titulo proyeccion 
-            var b3 = $("<b>");
-            $(div19).append(b3);
-            b3.attr('class','display-5')
-            b3.text('Proyeccion');
-            // Lista de proyeccion
-            var ul = $('<ul>');
-            $(div19).append(ul);
-            // Numero de sala
-            var li1 = $("<li>");
-            $(ul).append(li1);
-            li1.text('Numero de sala: '+ obj[index].idSala);
-            // Fecha de proyeccion
-            var li2 = $("<li>");
-            $(ul).append(li2);
-            li2.text('Fecha de proyección: '+ obj[index].fecha_pro);
-            // Numero de sala
-            var li3 = $("<li>");
-            $(ul).append(li3);
-            li3.text('Hora de proyección: '+ obj[index].hora);
-            // Fila Botones 
-            var div20 = $("<div>");
-            div20.attr('class','row pb-4 pt-5');
-            $(article2).append(div20);
-            // Columna botenes1
-            var div21 = $("<div>");
-            div21.attr('class','col');
-            $(div20).append(div21);
-            // Botones1-1
-            var button = $('<input>');
-            $(div21).append(button);
-            button.attr('value','Modificar');
-            button.attr('type','button');
-            button.attr('class','btn btn-primary float-left');
-            // Botones 1-2
-            var button1 = $('<input>');
-            $(div21).append(button1);
-            button1.attr('value','Eliminar');
-            button1.attr('type','button');
-            button1.attr('class','btn btn-primary float-right');
-            // Columna boton2
-            var div22 = $("<div>");
-            div22.attr('class','col-8');
-            $(div20).append(div22);
-            // Boton 2
-            var button2 = $('<input>');
-            $(div22).append(button2);
-            button2.attr('value','Mostrar Cartelera');
-            button2.attr('type','button');
-            button2.attr('class','btn btn-primary float-right');
         }
     });
+    if (sessionStorage.getItem("id")==1){
+        var li = $('<li>');
+        $('.lista').append(li);
+        var a =$('<a>');
+        a.attr('class','nav-link dropdown-toggle');
+        a.attr('data-toggle','dropdown');
+        var texto = "Administrador";
+        $(li).append(a);
+        $(li).attr('class','nav-item dropdown')
+        $(a).text(texto);
+        var div = $('<div>');
+        $(li).append(div);
+        var a1 = $('<a>');
+        var a2 = $('<a>');
+        var texto1 = "Pelicula";
+        var texto2 = "Tarifa";
+        $(a1).text(texto1);
+        $(a2).text(texto2);
+        $(div).append(a1);
+        $(div).append(a2);
+        $(a1).attr('class','dropdown-item');
+        $(a2).attr('class','dropdown-item');
+        $(div).attr('class','dropdown-menu');
+    }
 
 });

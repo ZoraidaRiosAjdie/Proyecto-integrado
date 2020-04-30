@@ -2,12 +2,11 @@
     require_once("../modelo/cartelera.php");
     $pelicula = new Funcion();
     $mostrar =  $pelicula -> mostrar();
-    // var_dump($mostrar);
     $lista= array();
-    $i = 5 ;
-    // while ($i > 0){
-    while ($todo = $mostrar -> fetch()){
-        // $todo = $mostrar -> fetch();
+    $i = 4 ;
+    while ($i > 0){
+    // while ($todo = $mostrar -> fetch()){
+        $todo = $mostrar -> fetch();
         $peli = [
             "anio"=>$todo['anio'],
             "titulo"=>$todo['titulo'],

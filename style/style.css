@@ -36,10 +36,31 @@ nav.menu{
     /* background-color:rgba(0, 255, 222, .6); */
     background-color:rgba(255, 0, 139, .6);
 }
-/* section.princi{
-    background-color: gray;
-} */
-article.princ{
+.princ{
     background-color: rgba(187,183,182,.7);
     border-radius: 50px;
+}
+/* valoracion */
+label.estr{ 
+    color:grey;
+}
+input.estr{ 
+    display:none;
+}
+.clasificacion{
+    direction: rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
+}
+label.estr:hover{
+    color:orange;
+}
+label.estr:hover ~ label.estr {
+    color: orange;
+}
+  
+input.estr:checked ~ label {
+    color: orange;
+}
+.elec{
+    border-right: 6px solid gray;
 }

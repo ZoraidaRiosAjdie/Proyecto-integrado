@@ -46,11 +46,6 @@
                         <input type="button" name="aceptar" value="Aceptar" class="btn btn-primary float-right aceptar">
                     </form>
                 </article>
-                <!-- <article class="row pb-2">
-                    <div class="col-7 progress ml-auto mr-auto">
-                        <div class="progress-bar bg-success barra" role="progressbar" style="width:0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </article> -->
             </article>
         </article>
     </section>

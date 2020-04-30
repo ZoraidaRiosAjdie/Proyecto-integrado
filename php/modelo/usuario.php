@@ -14,33 +14,29 @@
             $this->pws = $pws;
             $this->admin = $admin;
         }
+        // Para login
         public function usuario(){
             $consulta ="SELECT *
                         from usuario";
             return DataBase::getConsultasPDO($consulta);
         }
-        // public function usuario($nombre, $pws){
-        //     $consulta ="SELECT idUsuario
-        //                 from usuario
-        //                 WHERE nombre = '$nombre'
-        //                 and pws = '$pws'";
-        //     return DataBase::getConsultasPDO($consulta);
-        // }
-        public function administrador(){
-            $consulta ="SELECT admin
-                        from usuario
-                        where idUsuario = \"".$this->idUsuario."\"";
-            return DataBase::getConsultasPDO($consulta);
-        }
+        // Para registro
         public function validar(){
             $consulta ="SELECT *
                         from usuario";
             return DataBase::getConsultasPDO($consulta);
         }
+        // Para registro
         public function insert(){
             $insercion = "INSERT INTO usuario (idUsuario, nombre, email, pws, admin) 
                         VALUES (NULL, \"".$this->nombre."\", \"".$this->email."\", \"".$this->pws."\", 0)";
             return DataBase::getConsultasPDO($insercion);
+        }
+        // Para tarifa
+        public function tarifa(){
+            $consulta ="SELECT *
+                        from tarifa";
+            return DataBase::getConsultasPDO($consulta);
         }
     }
 ?>
