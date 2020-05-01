@@ -57,7 +57,7 @@
                 <h1>Insertar Pelicula: </h1>
                 <form>
                     <h2>Parte de pelicula</h2>
-                    <div class="row bg-success">
+                    <div class="row">
                         <div class="col">
                             <div class="form-group ">
                                 <label for="titulo">Titulo</label>
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row bg-success">
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="pais">Pais</label>
@@ -89,11 +89,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row bg-success">
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="duracion">Duración</label>
-                                <input type="text" class="form-control" id="duracion">
+                                <input type="time" class="form-control" id="duracion">
                                 <small id="duracion" class=""></small>
                             </div>
                         </div>
@@ -105,44 +105,50 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row bg-success">
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="calificacion">Calificación</label>
-                                <input type="text" class="form-control" id="calificacion">
-                                <small id="calificacion" class=""></small>
+                                <select class="form-control calificacion" name="calificacion">
+                                    <option value="Todas">Todas</option>
+                                    <option value="+10">+10</option>
+                                    <option value="+12">+12</option>
+                                    <option value="+14">+14</option>
+                                    <option value="+16">+16</option>
+                                    <option value="+18">+18</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="sinopsis">Sinopsis</label>
-                                <input type="text" class="form-control" id="sinopsis">
+                                <textarea class="form-control" id="sinopsis" rows="4" cols="50"></textarea>
                                 <small id="sinopsis" class=""></small>
                             </div>
                         </div>
                     </div>
-                    <div class="row bg-success actores">
-                        <!-- <div class="col">
+                    <div class="row actores">
+                        <div class="col">
                             <div class="form-group">
                                 <label for="actores">Actores</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="ac1">
                                 <small id="ac1" class=""></small>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="papel">Papel que interpreta</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="p1">
                                 <small id="p1" class=""></small>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <input type="button" class="btn btn-primary" value="Añadir">
+                                <input type="button" class="btn btn-primary añadir_actor" value="Añadir actor">
                             </div>
-                        </div> -->
+                        </div>
                     </div>
-                    <div class="row bg-success">
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="imagen">Imagen</label>
@@ -187,7 +193,7 @@
                         </div>
                     </div>
                     <h2>Parte Sala</h2>
-                    <div class="row bg-success">
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="sala">Nombre de sala</label>
@@ -200,7 +206,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row bg-success">
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <input type="button" class="btn btn-primary añadir_sala" value="Añadir">
