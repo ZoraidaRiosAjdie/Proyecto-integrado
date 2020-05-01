@@ -16,9 +16,9 @@ $(document).ready(function(){
                 $('.mensaje').text("Error en contraseña o usuario");
             }
             else {
-                sessionStorage.setItem("id", existe);
                 window.location.replace("../vista/principal.php");
             } 
+            sessionStorage.setItem("id", existe);
             sessionStorage.setItem("idUsuario", id);
         }); 
     });

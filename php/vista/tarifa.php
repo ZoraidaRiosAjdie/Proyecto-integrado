@@ -8,10 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../../script/menuT.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
-    <header class="container-fluid cabecera">
+<header class="container-fluid cabecera">
         <div class="row">
             <h1 class="col text-center display-1">Cinemania</h1>
         </div>
@@ -34,20 +35,15 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown">Tarifas</a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu tarifa">
                                 <a class="dropdown-item" href="tarifa.php">Todas</a>
-                                <a class="dropdown-item" href="#1">Entrada normal</a>
-                                <a class="dropdown-item" href="#2">Día espectador</a>
-                                <a class="dropdown-item" href="#3">Día pareja</a>
-                                <a class="dropdown-item" href="#4">Matinal</a>
-                                <a class="dropdown-item" href="#5">Sala 3D</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown">Contacto</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">¿Dónde estamos?</a>
-                                <a class="dropdown-item" href="#">Servicio al cliente</a>
+                                <a class="dropdown-item" href="../vista/ubicacion.php">¿Dónde estamos?</a>
+                                <a class="dropdown-item" href="../vista/contacto.php">Servicio al cliente</a>
                             </div>
                         </li>
                     </ul>

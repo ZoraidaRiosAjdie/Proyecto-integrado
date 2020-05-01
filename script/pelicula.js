@@ -1,8 +1,18 @@
 $(document).ready(function(){
     $.post("../controlador/pelicula.php", function(r){
         var obj = JSON.parse(r);
+        var id =[];
+        var anio = [];
+        var titulo = [];
+        var pais = [];
+        var genero = [];
+        var duracion = [];
+        var fecha = [];
+        var calificacion = [];
+        var sinopsis = [];
+        var actores = [];
+        var imagen = [];
         for (let index = 0; index < obj.length; index++) {
-            // obj[index].titulo;
             var article = $("<article>");
             article.attr('class','row mb-5 p-3 princ');
             $('.container-sm').append(article);
@@ -23,6 +33,7 @@ $(document).ready(function(){
             $(div1).append(img);
             img.attr('src',obj[index].imagen);
             img.attr('class','img-thumbnail');
+            img.attr('id', obj[index].idPelicula);
             /*Columna titulo*/
             var div2 = $("<div>");
             div2.attr('class','col-9');
@@ -40,6 +51,7 @@ $(document).ready(function(){
             $(div4).append(p);
             p.text(obj[index].titulo);
             p.attr('class','display-4');
+            p.attr('id', obj[index].idPelicula);
             /*Fila de duracion... */
             var div6 = $("<div>");
             div6.attr('class','row');
@@ -52,6 +64,7 @@ $(document).ready(function(){
             var p1 = $("<p>");
             $(div7).append(p1);
             p1.text(obj[index].duracion);
+            p1.attr('id', obj[index].idPelicula);
             p1.attr('class','border-right-3 border-primary');
             // Columna pais
             var div8 = $("<div>");
@@ -61,6 +74,7 @@ $(document).ready(function(){
             var p2 = $("<p>");
             $(div8).append(p2);
             p2.text(obj[index].pais);
+            p2.attr('id', obj[index].idPelicula);
             p2.attr('class','border-right-3 border-primary');
             // Columna genero
             var div9 = $("<div>");
@@ -70,6 +84,7 @@ $(document).ready(function(){
             var p3 = $("<p>");
             $(div9).append(p3);
             p3.text(obj[index].genero);
+            p3.attr('id', obj[index].idPelicula);
             p3.attr('class','border-right-3 border-primary');
             // Columna calificacion
             var div10 = $("<div>");
@@ -79,6 +94,7 @@ $(document).ready(function(){
             var p4 = $("<p>");
             $(div10).append(p4);
             p4.text(obj[index].calificacion);
+            p4.attr('id', obj[index].idPelicula);
             p4.attr('class','border-right-3 border-primary');
             /*Fila actores */
             var div11 = $("<div>");
@@ -96,6 +112,7 @@ $(document).ready(function(){
             var p8 = $("<p>");
             $(div12).append(p8);
             p8.text(obj[index].actores);
+            p8.attr('id', obj[index].idPelicula);
             // Fila fecha y botones
             var div15 = $("<div>");
             div15.attr('class','row');
@@ -108,6 +125,7 @@ $(document).ready(function(){
             var p6 = $("<p>");
             $(div16).append(p6);
             p6.text(obj[index].fecha);
+            p6.attr('id', obj[index].idPelicula);
             // Titulo fecha 
             var b2= $('<b>');
             $(p6).prepend(b2);
@@ -132,6 +150,7 @@ $(document).ready(function(){
             // Sinopsis
             var p5 = $("<p>");
             $(div14).append(p5);
+            p5.attr('id', obj[index].idPelicula);
             p5.text(obj[index].sinopsis);
             // Fila proyeccion 
             var div18 = $("<div>");
@@ -192,10 +211,76 @@ $(document).ready(function(){
             // Boton 2
             var button2 = $('<input>');
             $(div22).append(button2);
-            button2.attr('value','Mostrar Cartelera');
+            if(obj[index].mostrar == 1){
+                
+                button2.attr('value','Ocultar Cartelera');
+            }
+            else{
+                button2.attr('value','Mostrar Cartelera');
+            }
             button2.attr('type','button');
-            button2.attr('class','btn btn-primary float-right');
+            button2.attr('class','btn btn-primary float-right mostrar');
+            button2.attr('id', obj[index].idPelicula);
+            id.push(obj[index].idPelicula);
+            anio.push(obj[index].anio);
+             titulo.push(obj[index].titulo);
+             pais.push(obj[index].pais);
+             genero.push(obj[index].genero);
+             duracion.push(obj[index].duracion);
+             fecha.push(obj[index].fecha);
+             calificacion.push(obj[index].calificacion);
+             sinopsis.push(obj[index].sinopsis);
+             actores.push(obj[index].actores);
+             imagen.push(obj[index].imagen);
+            // $('.mostrar').click(function(event){
+            //     var evento = event.currentTarget;
+            //     if ($(evento).attr("id")==obj[index].idPelicula){
+                    // var objeto= null;
+                    // var lista = null;
+                    // if ($('.mostrar').val()== 'Mostrar Cartelera'){
+                    //     var objeto = {'idPelicula': obj[index].idPelicula,'anio': obj[index].anio,'titulo': obj[index].titulo,'pais': obj[index].pais,'genero': obj[index].genero,'duracion': obj[index].duracion,'fecha': obj[index].fecha,'calificacion': obj[index].calificacion,'sinopsis': obj[index].sinopsis,'actores': obj[index].actores,'imagen': obj[index].imagen,'mostrar': 1}
+                    //     $(evento).attr('value','Ocultar Cartelera');
+                    // }
+                    // else{
+                    //     var objeto = {'idPelicula': obj[index].idPelicula,'anio': obj[index].anio,'titulo': obj[index].titulo,'pais': obj[index].pais,'genero': obj[index].genero,'duracion': obj[index].duracion,'fecha': obj[index].fecha,'calificacion': obj[index].calificacion,'sinopsis': obj[index].sinopsis,'actores': obj[index].actores,'imagen': obj[index].imagen,'mostrar': 0}
+                    //     $(evento).attr('value','Mostrar Cartelera');
+                    // }
+                    // lista = {'resultado': objeto};
+                    // $.ajax({
+                    //     url: "../controlador/mostrar.php",
+                    //     type: "POST",
+                    //     data: lista,
+                    //     success: function(r){
+                    //         alert(r);
+                    //     }
+                    // });
+            //     }
+            // });
         }
+        $('.mostrar').click(function(event){
+            var evento = event.currentTarget;
+            for (let i = 0; i < id.length; i++) {
+                if ($(evento).attr("id")==id[i]){
+                    var objeto= null;
+                    var lista = null;
+                    if ($(evento).val()== 'Mostrar Cartelera'){
+                        var objeto = {'idPelicula': id[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 1}
+                        $(evento).attr('value','Ocultar Cartelera');
+                    }
+                    else{
+                    // if ($(evento).val()== 'Ocultar Cartelera'){
+                        var objeto = {'idPelicula': id[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 0}
+                        $(evento).attr('value','Mostrar Cartelera');
+                    }
+                    lista = {'resultado': objeto};
+                    $.ajax({
+                        url: "../controlador/mostrar.php",
+                        type: "POST",
+                        data: lista
+                    });
+                }
+            }
+        });
     });
-
+    
 });

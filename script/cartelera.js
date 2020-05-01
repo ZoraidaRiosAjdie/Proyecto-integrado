@@ -1,10 +1,98 @@
 $(document).ready(function(){
     $.post("../controlador/cartelera.php", function(r){
         var obj = JSON.parse(r);
-        for (let index = 0; index < obj.length; index++) {
+        var valoracion = [];
+        var id = [];
+        var cont = 0;
+        var total = 0 ;
+        var media = 0 ;
+        var objeto = null;
+        var lista = [];
+        var limagen = [];
+        var lactor = [];
+        var lgenero = [];
+        var lduracion = [];
+        var lanio = [];
+        var ltitulo = [];
+        var lpais = [];
+        var lfecha = [];
+        var lcalificacion = [];
+        var lsinopsis = [];
+
+        var imagen = [];
+        var actor = [];
+        var genero = [];
+        var duracion = [];
+        var anio = [];
+        var titulo = [];
+        var pais = [];
+        var fecha = [];
+        var calificacion = [];
+        var sinopsis = [];
+        for (let i = 0; i < obj.length; i++) {
+            valoracion.push(obj[i].valoracion);
+            id.push(obj[i].idPelicula);
+            limagen.push(obj[i].imagen);
+            lactor.push(obj[i].actores);
+            lanio.push(obj[i].anio);
+            ltitulo.push(obj[i].titulo);
+            lpais.push(obj[i].pais);
+            lgenero.push(obj[i].genero);
+            lduracion.push(obj[i].duracion);
+            lcalificacion.push(obj[i].calificacion);
+            lsinopsis.push(obj[i].sinopsis);
+        }
+        var lrepe = id.filter(function(item, index, array) {
+            return array.indexOf(item) === index;
+        })        
+        // Numeros de veces que se repite 
+        im = null;
+        ti = null;
+        ac = null;
+        an = null;
+        pa = null;
+        ge = null;
+        du = null;
+        ca = null;
+        si = null;
+        for (let i = 0; i < lrepe.length; i++) {
+            for (let j = 0; j < id.length; j++) {
+                if (id[j]==lrepe[i]) {
+                    total = total + parseInt(valoracion[j]);
+                    im = limagen[j];
+                    ac = lactor[j];
+                    an = lanio[j];
+                    ti = ltitulo[j];
+                    pa = lpais[j];
+                    ge = lgenero[j];
+                    du = lduracion[j];
+                    ca = lcalificacion[j];
+                    si = lsinopsis[j];
+                    cont++;
+                }
+            }
+            actor.push(ac);
+            anio.push(an);
+            pais.push(pa);
+            genero.push(ge);
+            duracion.push(du);
+            calificacion.push(ca);
+            sinopsis.push(si);
+            titulo.push(ti);
+            imagen.push(im);
+
+            media = total / cont;
+            media = round(media);
+            objeto= {'num_repe': cont , 'media': media};
+            lista.push(objeto);
+            total =0;
+            cont = 0; 
+        }
+        for (let i = 0; i < lrepe.length; i++) {
             var article = $("<article>");
             article.attr('class','row mb-5 p-3 princ');
             $('.container-sm').append(article);
+            article.attr('id', lrepe[i]);
 
             var article2 = $("<article>");
             article2.attr('class','col');
@@ -20,7 +108,7 @@ $(document).ready(function(){
             /*Imagen */
             var img = $("<img>");
             $(div1).append(img);
-            img.attr('src',obj[index].imagen);
+            img.attr('src',imagen[i]);
             img.attr('class','img-thumbnail');
             /*Columna titulo y valoracion */
             var div2 = $("<div>");
@@ -37,11 +125,11 @@ $(document).ready(function(){
             /*Titulo */
             var p = $("<p>");
             $(div4).append(p);
-            p.text(obj[index].titulo);
+            p.text(titulo[i]);
             p.attr('class','display-4');
             /*Columna valoracion */
             var div5 = $("<div>");
-            var valoracion = obj[index].valoracion;
+            var valoracion = lista[i].media;
             div5.attr('class','col-2');
             $(div3).append(div5);
             // Segunda fila valoracion 
@@ -63,10 +151,11 @@ $(document).ready(function(){
                 }
             }
             $(div25).append(div26);
-            /*Valoracion*/            var p7 = $("<p>");
+            /*Valoracion*/            
+            var p7 = $("<p>");
             p7.attr('class','text-center mr-auto ml-auto mt-4');
             $(div26).append(p7);
-            p7.text(obj[index].valoracion);
+            p7.text(valoracion);
             /*Fila de duracion... */
             var div6 = $("<div>");
             div6.attr('class','row');
@@ -78,7 +167,7 @@ $(document).ready(function(){
             /*Duracion */
             var p1 = $("<p>");
             $(div7).append(p1);
-            p1.text(obj[index].duracion);
+            p1.text(duracion[i]);
             p1.attr('class','border-right-3 border-primary');
             // Columna pais
             var div8 = $("<div>");
@@ -87,7 +176,7 @@ $(document).ready(function(){
             // Pais
             var p2 = $("<p>");
             $(div8).append(p2);
-            p2.text(obj[index].pais);
+            p2.text(pais[i]);
             p2.attr('class','border-right-3 border-primary');
             // Columna genero
             var div9 = $("<div>");
@@ -96,7 +185,7 @@ $(document).ready(function(){
             // Genero
             var p3 = $("<p>");
             $(div9).append(p3);
-            p3.text(obj[index].genero);
+            p3.text(genero[i]);
             p3.attr('class','border-right-3 border-primary');
             // Columna calificacion
             var div10 = $("<div>");
@@ -105,7 +194,7 @@ $(document).ready(function(){
             // Calificacion
             var p4 = $("<p>");
             $(div10).append(p4);
-            p4.text(obj[index].calificacion);
+            p4.text(calificacion[i]);
             p4.attr('class','border-right-3 border-primary');
             /*Fila actores */
             var div11 = $("<div>");
@@ -121,23 +210,24 @@ $(document).ready(function(){
             b.attr('class','display-5')
             b.text('Actores');
 
-            var actores = obj[index].actores;
+            var actores = actor[i];
             actores = actores.split(',');
-            var i = 1;
+            var l = 1;
             var p8 = $("<p>");
             $(div12).append(p8);
             var actor = actores[0]+','; 
-            while (i < 2) {
+            while (l < 2) {
 
-                actor = actor + actores[i] +',' ;
-                i++;
+                actor = actor + actores[l] +',' ;
+                l++;
             }
             p8.text(actor);
             // Enlace 
             var enlace1 = $("<a>");
             $(p8).append(enlace1);
             enlace1.text(' ...ver más');
-            enlace1.attr('href','#')
+            var en1 = 'mas.php#'+lrepe[i]
+            enlace1.attr('href', en1)
             // Fila sinopsis
             var div13 = $("<div>");
             div13.attr('class','row');
@@ -152,13 +242,13 @@ $(document).ready(function(){
             b1.attr('class','display-5')
             b1.text('Sinopsis');
             // Sinopsis
-            var sinopsis = obj[index].sinopsis.split('.');
-            var longuitud = sinopsis[0] + '.';
-            var i = 1;
-            while (i < 2) {
+            var sinop = sinopsis[i].split('.');
+            var longuitud = sinop[0] + '.';
+            var q = 1;
+            while (q < 2) {
 
-                longuitud = longuitud +sinopsis[i]+'.' ;
-                i++;
+                longuitud = longuitud +sinop[q]+'.' ;
+                q++;
             }
             var p5 = $("<p>");
             $(div14).append(p5);
@@ -167,7 +257,7 @@ $(document).ready(function(){
             var enlace = $("<a>");
             $(p5).append(enlace);
             enlace.text(' ...ver más');
-            enlace.attr('href','#')
+            enlace.attr('href',en1)
             // Fila fecha y botones
             var div15 = $("<div>");
             div15.attr('class','row');
@@ -179,7 +269,7 @@ $(document).ready(function(){
             // fecha
             var p6 = $("<p>");
             $(div16).append(p6);
-            p6.text(obj[index].fecha);
+            p6.text(fecha[i]);
             // Columna de botones
             var div17 = $("<div>");
             div17.attr('class','col');
@@ -196,30 +286,19 @@ $(document).ready(function(){
             input1.attr('class','btn btn-info float-left');
             input1.attr('value','Fotos');
             $(div17).append(input1);
-        }
+            
+        } 
     });
-    if (sessionStorage.getItem("id")==1){
-        var li = $('<li>');
-        $('.lista').append(li);
-        var a =$('<a>');
-        a.attr('class','nav-link dropdown-toggle');
-        a.attr('data-toggle','dropdown');
-        var texto = "Administrador";
-        $(li).append(a);
-        $(li).attr('class','nav-item dropdown')
-        $(a).text(texto);
-        var div = $('<div>');
-        $(li).append(div);
-        var a1 = $('<a>');
-        var a2 = $('<a>');
-        var texto1 = "Pelicula";
-        var texto2 = "Tarifa";
-        $(a1).text(texto1);
-        $(a2).text(texto2);
-        $(div).append(a1);
-        $(div).append(a2);
-        $(a1).attr('class','dropdown-item');
-        $(a2).attr('class','dropdown-item');
-        $(div).attr('class','dropdown-menu');
+    function round(num, decimales = 2) {
+        var signo = (num >= 0 ? 1 : -1);
+        num = num * signo;
+        if (decimales === 0) //con 0 decimales
+            return signo * Math.round(num);
+        // round(x * 10 ^ decimales)
+        num = num.toString().split('e');
+        num = Math.round(+(num[0] + 'e' + (num[1] ? (+num[1] + decimales) : decimales)));
+        // x * 10 ^ (-decimales)
+        num = num.toString().split('e');
+        return signo * (num[0] + 'e' + (num[1] ? (+num[1] - decimales) : -decimales));
     }
 });

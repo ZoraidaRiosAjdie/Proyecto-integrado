@@ -1,10 +1,11 @@
 <?php
-    require_once("../modelo/cartelera.php");
+    require_once("../modelo/usuario.php");
     $pelicula = new Funcion();
     $mostrar =  $pelicula -> mostrar();
     $lista= array();
     while ($todo = $mostrar -> fetch()){
         $peli = [
+            "idPelicula"=>$todo['idPelicula'],
             "anio"=>$todo['anio'],
             "titulo"=>$todo['titulo'],
             "pais"=>$todo['pais'],
@@ -15,7 +16,8 @@
             "sinopsis"=>$todo['sinopsis'],
             "actores"=>$todo['actores'],
             "imagen"=>$todo['imagen'],
-            "valoracion"=>$todo['valoracion']
+            "valoracion"=>$todo['valoracion'],
+            // "total"=>[$todo['idPelicula']=>$todo['valoracion']]
         ];
         array_push($lista,$peli);
     }

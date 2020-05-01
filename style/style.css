@@ -30,11 +30,11 @@ body.cartelera{
 	background-size: cover;
 }
 header.cabecera{
-    background-color:rgba(255, 0, 139, .5);
+    background-color:rgba(245, 198, 97, .5);
 }
 nav.menu{
     /* background-color:rgba(0, 255, 222, .6); */
-    background-color:rgba(255, 0, 139, .6);
+    background-color:rgba(252, 69, 0, .9);
 }
 .princ{
     background-color: rgba(187,183,182,.7);

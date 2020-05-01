@@ -13,6 +13,7 @@
         public $sinopsis;
         public $actores;
         public $imagen;
+        public $mostrar;
         public $idProyeccion;
         public $idSala;
         public $idTipo;
@@ -20,7 +21,7 @@
         public $hora;
         public $butaca;
         public $tipo;
-        function __construct($idPelicula="", $anio="", $titulo="", $pais="", $genero="", $duracion="", $fecha_estreno="", $calificacion="", $sinopsis="", $actores="", $imagen="", $idProyeccion="", $idSala="", $idTipo="", $fecha="", $hora="", $butaca="", $tipo=""){
+        function __construct($idPelicula="", $anio="", $titulo="", $pais="", $genero="", $duracion="", $fecha_estreno="", $calificacion="", $sinopsis="", $actores="", $imagen="", $mostrar="", $idProyeccion="", $idSala="", $idTipo="", $fecha="", $hora="", $butaca="", $tipo=""){
             $this->idPelicula = $idPelicula;
             $this->anio = $anio;
             $this->titulo = $titulo;
@@ -32,6 +33,7 @@
             $this->sinopsis = $sinopsis;
             $this->actores = $actores;
             $this->imagen = $imagen;
+            $this->mostrar = $mostrar;
             $this->idProyeccion = $idProyeccion;
             $this->idSala = $idSala;
             $this->idTipo = $idTipo;
@@ -41,9 +43,15 @@
             $this->tipo = $tipo;
         }
         public function cartelera(){
-            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, sinopsis, actores, imagen, idSala, fecha, hora
+            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, idSala, fecha, hora
                         from pelicula p, proyeccion pr
                         WHERE p.idPelicula = pr.idPelicula";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        public function mostrar(){
+            $consulta ="UPDATE pelicula
+                        SET idPelicula= \"".$this->idPelicula."\",anio=\"".$this->anio."\" ,titulo= \"".$this->titulo."\", pais=\"".$this->pais."\", genero=\"".$this->genero."\" , duracion=\"".$this->duracion."\" , fecha_estreno=\"".$this->fecha_estreno."\" , calificacion=\"".$this->calificacion."\" , sinopsis=\"".$this->sinopsis."\" , actores=\"".$this->actores."\" , imagen=\"".$this->imagen."\" , mostrar=\"".$this->mostrar."\" 
+                        WHERE idPelicula=\"".$this->idPelicula."\"";
             return DataBase::getConsultasPDO($consulta);
         }
     }

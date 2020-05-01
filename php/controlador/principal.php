@@ -1,13 +1,14 @@
 <?php
-    require_once("../modelo/cartelera.php");
+    require_once("../modelo/usuario.php");
     $pelicula = new Funcion();
     $mostrar =  $pelicula -> mostrar();
     $lista= array();
-    $i = 4 ;
+    $i = 3 ;
     while ($i > 0){
     // while ($todo = $mostrar -> fetch()){
         $todo = $mostrar -> fetch();
         $peli = [
+            "idPelicula"=>$todo['idPelicula'],
             "anio"=>$todo['anio'],
             "titulo"=>$todo['titulo'],
             "pais"=>$todo['pais'],
