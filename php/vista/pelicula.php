@@ -54,7 +54,7 @@
     <section class="container-sm mt-5">
         <article class="row">
             <div class="col pb-5">
-                <input type="button" value="Insertar pelicula" class="insertar float-right btn btn-primary" >
+                <input type="button" value="Insertar pelicula" class="insertar float-right btn btn-primary">
             </div>
         </article>
     </section>

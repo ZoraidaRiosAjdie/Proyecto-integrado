@@ -221,6 +221,7 @@ $(document).ready(function(){
             button2.attr('type','button');
             button2.attr('class','btn btn-primary float-right mostrar');
             button2.attr('id', obj[index].idPelicula);
+
             id.push(obj[index].idPelicula);
             anio.push(obj[index].anio);
              titulo.push(obj[index].titulo);
@@ -280,6 +281,9 @@ $(document).ready(function(){
                     });
                 }
             }
+        });
+        $('.insertar').click(function(event){
+            window.location.replace("../vista/principal.php");
         });
     });
     

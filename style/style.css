@@ -64,3 +64,10 @@ input.estr:checked ~ label {
 .elec{
     border-right: 6px solid gray;
 }
+/* Insertar pelicula */
+.formato{
+    display: none;
+}
+.sala{
+    display: none;
+}
