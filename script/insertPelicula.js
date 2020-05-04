@@ -1,205 +1,219 @@
 $(document).ready(function(){
     $.post("../controlador/pelicula.php", function(r){
         var obj = JSON.parse(r);
-        var id =[];
-        var anio = [];
         var titulo = [];
-        var pais = [];
-        var genero = [];
-        var duracion = [];
-        var fecha = [];
-        var calificacion = [];
-        var sinopsis = [];
-        var actores = [];
-        var imagen = [];
-        var idSala = [];
-        var fecha_pro = [];
-        var hora = [];
+        var select = null;
+        var fecha = null;
+        var minuto = null;
+        var lista =[];
+        var valor;
+        var ti = null;
+        var anio = null;
+        var duracion= null;
+        var fecha_estreno = null;
+        var calificacion = {'calificacion': $('.calificacion').val()};
+        var sinopsis = null;
+        var genero = null;
+        var actor = [];
+        var papel = [];
+        var listaAc = [];
+        var listaPa = [];
+        var objActor = null;
+        var t = null;
+        var listaTA = [];
         for (let i = 0; i < obj.length; i++) {
-
-            id.push(obj[i].idPelicula);
-            anio.push(obj[i].anio);
             titulo.push(obj[i].titulo);
-            pais.push(obj[i].pais);
-            genero.push(obj[i].genero);
-            duracion.push(obj[i].duracion);
-            fecha.push(obj[i].fecha);
-            calificacion.push(obj[i].calificacion);
-            sinopsis.push(obj[i].sinopsis);
-            actores.push(obj[i].actores);
-            imagen.push(obj[i].imagen);
-            idSala.push(obj[i].idSala);
-            fecha_pro.push(obj[i].fecha_pro);
-            hora.push(obj[i].hora);
         }
-        $('input#titulo').blur(function(){
-            var t = null;
-            jsonNombre = null;
-            if ($('input#titulo').val()== ""){
-                jsonNombre = null;
-                $('small#titulo').attr('class','text-danger');
-                $('small#titulo').text('Este campo es obligatorio');
-                $('input#titulo').css('border-style','solid');
-                $('input#titulo').css('border-color','red');
-            }
-            else {
-                for (let i = 0; i < titulo.length; i++) {
-                    
-                    if(titulo[i] != $('input#titulo').val()){
-                        $('small#titulo').text('');
-                        $('input#titulo').css('border-style','solid');
-                        $('input#titulo').css('border-color','green');
-                    }
-                    else{
-                        t = titulo[i];
-                    }
+        $('input').blur(function(event){
+            var evento = event.currentTarget;
+            if ($(evento).val()== ""){
+                ti=null;
+                anio = null;
+                duracion = null;
+                fecha_estreno = null;
+                select = 'small#'+$(evento).attr('id');
+                $(select).attr('class','text-danger');
+                $(select).text('Este campo es obligatorio');
+                $(evento).css('border-style','solid');
+                $(evento).css('border-color','red');
+                if ($(evento).attr('class') == 'form-control actores'){
+                    actor.removeItem($(evento).attr('id'));
                 }
-                if(t == $('input#titulo').val()){
-                    $('small#titulo').attr('class','text-danger');
-                    $('small#titulo').text('Esta pelicula ya existe');
-                    $('input#titulo').css('border-style','solid');
-                    $('input#titulo').css('border-color','red');
+                if ($(evento).attr('class') == 'form-control papeles'){
+                    papel.removeItem($(evento).attr('id'));
                 }
             }
-        });
-        $('input#anio').blur(function(){
-            var t = null;
-            jsonNombre = null;
-            if ($('input#anio').val()== ""){
-                jsonNombre = null;
-                $('small#anio').attr('class','text-danger');
-                $('small#anio').text('Este campo es obligatorio');
-                $('input#anio').css('border-style','solid');
-                $('input#anio').css('border-color','red');
-            }
             else {
-                $('small#anio').text('');
-                $('input#anio').css('border-style','solid');
-                $('input#anio').css('border-color','green');
-                validarAño($('input#anio').val());
+                $(select).text('');
+                $(evento).css('border-style','solid');
+                $(evento).css('border-color','green');
+                if ($(evento).attr('class') == 'form-control actores'){
+                    actor.push($(evento).attr('id'));
+                }
+                if ($(evento).attr('class') == 'form-control papeles'){
+                    papel.push($(evento).attr('id'));
+                }
+                if ($(evento).attr('id') == 'titulo'){
+                    for (let i = 0; i < titulo.length; i++) {
+                        if(titulo[i] != $(evento).val()){
+
+                            $(select).text('');
+                            $(evento).css('border-style','solid');
+                            $(evento).css('border-color','green');
+                            ti={'titulo':$(evento).val()};
+                        }
+                        else{
+                            t = titulo[i];
+                        }
+                    }
+                    if(t == $(evento).val()){
+                        ti=null;
+                        $(select).attr('class','text-danger');
+                        $(select).text('Esta pelicula ya existe');
+                        $(evento).css('border-style','solid');
+                        $(evento).css('border-color','red');
+                    }
+                }
+                if ($(evento).attr('id') == 'anio'){
+                    validarAño($('input#anio').val());
+                    if ($(select).text()==''){
+                        anio = {'anio': $('input#anio').val()};
+                    }
+                }
+                if ($(evento).attr('id') == 'duracion'){
+                    var min = $('input#duracion').val().split(':');
+                    minuto = (min[0]/60)+min[1];  
+                    duracion = {'duracion':minuto};
+                }
+                if ($(evento).attr('id') == 'fecha'){
+                    var parte = $('input#fecha').val().split('/');
+                    var mes = covertirMes(parte[1]);
+                    fecha = parte[0] + 'de mes de' + parte[2]; 
+                    fecha_estreno = {'fecha' : fecha};
+                }
+                if ($(evento).attr('id') == 'genero'){
+                    genero = {'genero' : $(evento).val('')};
+                }
+                $('input.actor').blur(function(event){
+                    var evento = event.currentTarget;
+                    select = 'small#'+$(evento).attr('id');
+                    if ($(evento).val() != ''){
+                        $(select).text('');
+                        $(evento).css('border-style','solid');
+                        $(evento).css('border-color','green');
+                        actor.push($(evento).attr('id'));
+                    } 
+                    else {
+                        if ($(evento).val() == ''){
+                            $(select).attr('class','text-danger');
+                            $(select).text('Este campo es obligatorio');
+                            $(evento).css('border-style','solid');
+                            $(evento).css('border-color','red');
+                            actor.removeItem($(evento).attr('id')); 
+                        }
+                    }
+                });
+                $('input.papel').blur(function(event){
+                    var evento = event.currentTarget;
+                    select = 'small#'+$(evento).attr('id');
+                    // alert($(evento).val());
+                    if ($(evento).val() != ''){
+                        $(select).text('');
+                        $(evento).css('border-style','solid');
+                        $(evento).css('border-color','green');
+                        papel.push($(evento).attr('id'));
+                    } 
+                    else {
+                        if ($(evento).val() == ''){
+                            $(select).text('Este campo es obligatorio');
+                            $(evento).css('border-style','solid');
+                            $(evento).css('border-color','red');
+                            papel.removeItem($(evento).attr('id'));
+                            
+                        }
+                    }
+                });
             }
         });
-        $('input#pais').blur(function(){
-            var t = null;
-            jsonNombre = null;
-            if ($('input#pais').val()== ""){
-                jsonNombre = null;
-                $('small#pais').attr('class','text-danger');
-                $('small#pais').text('Este campo es obligatorio');
-                $('input#pais').css('border-style','solid');
-                $('input#pais').css('border-color','red');
-            }
-            else {
-                $('small#pais').text('');
-                $('input#pais').css('border-style','solid');
-                $('input#pais').css('border-color','green');   
-            }
-        });
-        $('input#genero').blur(function(){
-            if ($('input#genero').val()== ""){
-                $('small#genero').attr('class','text-danger');
-                $('small#genero').text('Este campo es obligatorio');
-                $('input#genero').css('border-style','solid');
-                $('input#genero').css('border-color','red');
-            }
-            else {
-                $('small#genero').text('');
-                $('input#genero').css('border-style','solid');
-                $('input#genero').css('border-color','green');   
-            }
-        });
-        $('input#duracion').blur(function(){
-            var minuto = null;
-            if ($('input#duracion').val()== ""){
-                jsonNombre = null;
-                $('small#duracion').attr('class','text-danger');
-                $('small#duracion').text('Este campo es obligatorio');
-                $('input#duracion').css('border-style','solid');
-                $('input#duracion').css('border-color','red');
-            }
-            else {
-                var min = $('input#duracion').val().split(':');
-                minuto = (min[0]/60)+min[1];
-                $('small#duracion').text('');
-                $('input#duracion').css('border-style','solid');
-                $('input#duracion').css('border-color','green');   
-            }
-        });
-        $('input#fecha').blur(function(){
-            var fecha = null;
-            if ($('input#fecha').val()== ""){
-                jsonNombre = null;
-                $('small#fecha').attr('class','text-danger');
-                $('small#fecha').text('Este campo es obligatorio');
-                $('input#fecha').css('border-style','solid');
-                $('input#fecha').css('border-color','red');
-            }
-            else {
-                var parte = $('input#fecha').val().split('/');
-                var mes = covertirMes(parte[1]);
-                fecha = parte[0] + 'de mes de' + parte[2];
-                $('small#fecha').text('');
-                $('input#fecha').css('border-style','solid');
-                $('input#fecha').css('border-color','green');   
-            }
-        });
-        $('input#sinopsis').blur(function(){
-            if ($('input#sinopsis').val()== ""){
+        $('textarea').blur(function(){
+            if ($('textarea').val()== ""){
                 $('small#sinopsis').attr('class','text-danger');
                 $('small#sinopsis').text('Este campo es obligatorio');
-                $('input#sinopsis').css('border-style','solid');
-                $('input#sinopsis').css('border-color','red');
+                $('textarea').css('border-style','solid');
+                $('textarea').css('border-color','red');
+                sinopsis = null;
             }
             else {
                 $('small#sinopsis').text('');
-                $('input#sinopsis').css('border-style','solid');
-                $('input#sinopsis').css('border-color','green');   
+                $('textarea').css('border-style','solid');
+                $('textarea').css('border-color','green');
+                sinopsis = {'sinopsis':$('textarea').val()};
             }
         });
-        var cont = 2;
-        $('.añadir_actor').click(function(){
-            // Crear fila de actor
-            var div1 = $('<div>');
-            // var a = 'row actor' + cont;
-            $(".actores").after(div1);
-            div1.attr('class', 'row actor');
-            // Crear columna actor
-            var div2 = $('<div>');
-            $(div1).append(div2);
-            div2.attr('class','col');
-            // titulo actor
-            var label1 = $('<label>');
-            $(div2).append(label1);
-            label1.text('Actores');
-            // input actor
-            var input1 = $('<input>');
-            $(div2).append(input1);
-            input1.text('Actores');
-            input1.attr('type','text');
-            var b = 'ac'+ cont
-            input1.attr('class','form-control');
-            input1.attr('id', b);
-
-            // Crear columna papel
-            var div3 = $('<div>');
-            $(div1).append(div3);
-            div3.attr('class','col');
-            // titulo papel
-            var label2 = $('<label>');
-            $(div3).append(label2);
-            label2.text('Papel que interpreta');
-            // input papel
-            var c = 'p'+cont;
-            var input2 = $('<input>');
-            $(div3).append(input2);
-            input2.text('Actores');
-            input2.attr('type','text');
-            input2.attr('class','form-control');
-            input2.attr('id', c);
-            cont++;
+        $('select.mode').click(function(){
+            if ($('select.mode').val()== 'url'){
+                $('small#mode').text('Asegurate de poner la imagen en la carpeta imagen');
+                $('.formato').show();
+            }
+            else{
+                if ($('select.mode').val()== 'http'){
+                    $('small#mode').text('');
+                    $('.formato').hide();
+                }
+            }
+            
         });
+        $('input:checkbox').click(function(event){
+            var evento = event.currentTarget;
+            if( $(evento).prop('checked') ) {
+                valor = $(evento).val();
+                lista.push(valor);
+            }
+            else{
+                var attr = $(evento).attr('id');
+                removeItemFromArr(lista,attr);
+                var re = '#h'+attr
+                $(re).remove();
+            }
+        });
+        $('.calificacion').click(function(){
+            calificacion={'calificacion': $('.calificacion').val()}
+        });
+        Array.prototype.unique=function(a){
+            return function(){return this.filter(a)}}(function(a,b,c){return c.indexOf(a,b+1)<0
+        });
+        $('input.insert').click(function(){
+            listaAc = actor.unique();
+            listaPa = papel.unique();
+            listaPa.sort();
+            listaAc.sort();
+            var c = null;
+            var p = null;
+            for (let i = 0; i < listaPa.length; i++) {
+                c= listaAc[i].substring(2,3);
+                p= listaPa[i].substring(2,1);
+                if (c != p){
+                    listaAc.removeItem(listaAc[i]);
+                    listaPa.removeItem(listaPa[i]);
+                } 
+            }
+            for (let i = 0; i < listaAc.length; i++) {
+                c = 'input#'+listaAc[i];
+                p = 'input#'+listaPa[i];
+                var elemento = $(c).val()+" "+'(' + $(b).val() + ')' ;
+                listaTA.push(elemento);
+            }
+
+        });
+        
     });
-    
+    function removeItemFromArr ( arr, item ) {
+        var i = arr.indexOf( item );
+     
+        if ( i !== -1 ) {
+            arr.splice( i, 1 );
+        }
+    }
     function validarAño(n){
         patron = /\d{4}/;
         if (patron.test(n) && n >= 1890){
@@ -227,4 +241,15 @@ $(document).ready(function(){
             }            
         }
     }
+    Array.prototype.removeItem = function (a) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] == a) {
+                for (var i2 = i; i2 < this.length - 1; i2++) {
+                    this[i2] = this[i2 + 1];
+                }
+                this.length = this.length - 1;
+                return;
+            }
+        }
+    };
 });

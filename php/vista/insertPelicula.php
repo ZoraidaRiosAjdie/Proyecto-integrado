@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../script/menu.js"></script>
     <script src="../../script/insertPelicula.js"></script>
+    <script src="../../script/botonPelicula.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
@@ -131,20 +132,21 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="actores">Actores</label>
-                                <input type="text" class="form-control" id="ac1">
-                                <small id="ac1" class=""></small>
+                                <input type="text" class="form-control actores" id="ac0">
+                                <small id="ac0" class=""></small>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="papel">Papel que interpreta</label>
-                                <input type="text" class="form-control" id="p1">
-                                <small id="p1" class=""></small>
+                                <input type="text" class="form-control papeles" id="p0">
+                                <small id="p0" class=""></small>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <input type="button" class="btn btn-primary añadir_actor" value="Añadir actor">
+                                <input type="button" class="btn btn-primary eliminar" value="Eliminar fila">
                             </div>
                         </div>
                     </div>
@@ -156,6 +158,7 @@
                                     <option value="url">Local</option>
                                     <option value="http">HTTP</option>
                                 </select>
+                                <small id="mode" class="text-warning"></small>
                             </div>
                         </div>
                         <div class="col">
@@ -168,7 +171,7 @@
                         <div class="col formato">
                             <div class="form-group">
                                 <label for="imagen">Formato</label>
-                                <select class="form-control formato" name="formato">
+                                <select class="form-control " name="formato">
                                     <option value=".jpeg">JPEG</option>
                                     <option value=".jpg">JPG</option>
                                     <option value=".bmp">BMP</option>
@@ -187,55 +190,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row formato">
-                        <div class="col">
-                            <p class="text-warning"></p>
-                        </div>
-                    </div>
                     <h2>Parte Sala</h2>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="sala">Nombre de sala</label>
+                                <?php while ($todo = $sala -> fetch()){
+                                ?>
                                 <div class="form-check nombre_sala">
-                                    <!-- <input class="form-check-input" type="radio">
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        
-                                    </label> -->
+                                    <input type="checkbox" class="form-check-input" value="<?php echo $todo['idSala']?>" id="<?php echo $todo['idSala']?>">
+                                    <label class="form-check-label" for="defaultCheck1"><?php echo $todo['idSala']?></label>
                                 </div>
+                                <?php
+                                }
+                                ?>
                             </div>
                         </div>
+                        <div class="col sala"></div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <input type="button" class="btn btn-primary añadir_sala" value="Añadir">
-                            </div>
-                        </div>
-                        <div class="col sala">
-                            <div class="form-group">
-                                <label for="sala">Numero de la sala</label>
-                                <input type="number" class="form-control num_sala" min="0">
-                                <small id="sala" class=""></small>
-                            </div>
-                            <div class="form-group">
-                                <label for="butaca">Numero de butaca</label>
-                                <input type="number" class="form-control butaca" min="0">
-                                <small id="butaca" class=""></small>
-                            </div>
-                            <div class="form-group">
-                                <label for="tipo">Tipo de sala</label>
-                                <select class="form-control tipo" name="tipo">
-                                    <option value=".4DX">4DX</option>
-                                    <option value="iMax">iMax</option>
-                                    <option value="mega sala">mega sala</option>
-                                    <option value="XD">XD</option>
-                                    <option value="macro XE 3D">macro XE 3D</option>
-                                    <option value="2D">2D</option>
-                                    <option value="3D">3D</option>
-                                </select>
-                            </div>
-                        </div>
+                    <!-- <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="sala">Fecha de la proyeccion</label>
@@ -248,7 +221,7 @@
                                 <small id="sala" class=""></small>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -257,7 +230,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group float-right">
-                                <input type="button" class="btn btn-primary" value="Insertar">
+                                <input type="button" class="btn btn-primary insert" value="Insertar">
                             </div> 
                         </div>
                     </div>
