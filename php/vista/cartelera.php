@@ -52,6 +52,11 @@
         </div>
     </header>
     <section class="container-sm mt-5">
+        <div class="row reserva">
+            <div class="col">
+                <a href="reserva.php" class="float-right mb-4"><h4>Reserva tu entrada</h4></a>
+            </div>
+        </div>
     </section>
 </body>
 </html>

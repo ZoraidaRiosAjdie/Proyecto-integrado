@@ -4,7 +4,7 @@ $(document).ready(function(){
         for (let i = 0; i < obj.length; i++) {
             var a = $('<a>');
             $('.tarifa').append(a);
-            var href ='tarifa#'+ obj[i].idTipo;
+            var href ='../controlador/tarifa#'+ obj[i].idTipo;
             a.attr('href', href);
             a.attr('class','dropdown-item');
             a.text(obj[i].nombre)

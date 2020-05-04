@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +8,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../script/menu.js"></script>
-    <script src="../../script/mas.js"></script>
+    <script src="../../script/reserva.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
-<header class="container-fluid cabecera">
+    <header class="container-fluid cabecera">
         <div class="row">
             <h1 class="col text-center display-1">Cinemania</h1>
         </div>
@@ -53,9 +52,15 @@
         </div>
     </header>
     <section class="container-sm mt-5">
-        <div class="row reserva">
+        <div class="row princ">
             <div class="col">
-                <a href="reserva.php" class="float-right mb-4"><h4>Reserva tu entrada</h4></a>
+                <form action="" method="post">
+                    <h2>Selecciona la pelicula:</h2>
+                    <select class="form-control pelicula" name="pelicula">
+                    </select>
+                    <h3>Número de entradas que quieres comprar</h3>
+                    <input type="number" name="reserva" id="reserva">
+                </form>
             </div>
         </div>
     </section>

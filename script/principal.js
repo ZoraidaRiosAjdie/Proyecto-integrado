@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $('.reserva').hide();
+    if (sessionStorage.getItem("id")== 0 || sessionStorage.getItem("id")== 1){
+        $('.reserva').show();
+    }
     $.post("../controlador/principal.php", function(r){
         var obj = JSON.parse(r);
         var valoracion = [];

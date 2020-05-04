@@ -47,5 +47,11 @@
                         ORDER BY anio DESC";
             return DataBase::getConsultasPDO($consulta);
         }
+        // Para reserva 
+        public function reserva(){
+            $insercion = "INSERT INTO reserva (idReserva, idUsuario, idProyeccion, butaca) 
+                        VALUES (NULL, \"".$this->idUsuario."\", \"".$this->idProyeccion."\", \"".$this->butaca."\")";
+            return DataBase::getConsultasPDO($insercion);
+        }
     }
 ?>
