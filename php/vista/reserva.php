@@ -55,11 +55,63 @@
         <div class="row princ">
             <div class="col">
                 <form action="" method="post">
-                    <h2>Selecciona la pelicula:</h2>
-                    <select class="form-control pelicula" name="pelicula">
-                    </select>
-                    <h3>Número de entradas que quieres comprar</h3>
-                    <input type="number" name="reserva" id="reserva">
+                    <h1 class="display-4 text-center">Reserva</h1>
+                    <div class="row p-5">
+                        <div class="col-4 m-auto">
+                            <p>Selecciona la pelicula:</p>
+                            <select class="form-control pelicula" name="pelicula">
+                            </select>
+                            
+                        </div>
+                        <div class="col-3 mt-5">
+                            <input type="button" value="aceptar" class='btn btn-primary aceptar'>
+                        </div>
+                        <!-- <div class="row"> -->
+                            <div class="col-4 m-auto sala-fecha">
+                                <div class="row ">
+                                    <div class="col m-auto sala">
+                                        <p>Estas son las salas dispible: </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m-auto fecha">
+                                        <p>Estas son las fechas y horas disponibles: </p>   
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m-auto pt-3">
+                                        <p class="text-danger men"></p>
+                                        <input type="button" value="continuar" class="btn btn-primary cont">  
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                        
+                    </div>
+                    <div class="row pb-5">
+                        <div class="col-5 m-auto num_entrada">
+                            <p>Número de entradas que quieres comprar</p>
+                            <input type="number" name="reserva" id="reserva" class="reserva" min=""require>
+                            
+                            <small id="reserva"></small>
+                        </div>
+                        <div class="col-4 m-auto cont1">
+                            <input type="button" value="continuar" class="btn btn-primary cont1"> 
+                        </div>
+                        <div class="col-4 m-auto total">
+                             
+                            <p class="precio"><strong>Precio:</strong></p>
+                            <p id="tarifa"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m-auto atras pl-5">
+                            <input type="button" value="Atras" class="btn btn-primary atras float-left ">
+                        </div>
+                        <div class="col m-auto enviar">
+                            <input type="submit" value="Enviar" class="btn btn-primary enviar float-right">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

@@ -182,22 +182,22 @@ INSERT INTO tarifa (idTipo, nombre , definicion, precio)
 VALUES ("5", "Sala 3D", 'Se proyectaran peliculas en 3D',7);
 /*Proyeccion*/
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("1", "5", "1", "3", STR_TO_DATE('19/09/2020', '%d/%m/%Y'), "17:00");
+VALUES ("1", "5", "1", "4", STR_TO_DATE('19/09/2020', '%d/%m/%Y'), "17:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("2", "3", "3", "3", STR_TO_DATE('22/09/2020', '%d/%m/%Y'), "18:00");
+VALUES ("2", "3", "3", "4", STR_TO_DATE('22/09/2020', '%d/%m/%Y'), "18:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("3", "9", "2", "3", STR_TO_DATE('25/09/2020', '%d/%m/%Y'), "19:00");
+VALUES ("3", "9", "2", "4", STR_TO_DATE('25/09/2020', '%d/%m/%Y'), "19:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("4", "1", "5", "3", STR_TO_DATE('3/10/2020', '%d/%m/%Y'), "20:00");
+VALUES ("4", "1", "5", "4", STR_TO_DATE('3/10/2020', '%d/%m/%Y'), "20:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("5", "2", "4", "3", STR_TO_DATE('7/10/2020', '%d/%m/%Y'), "17:30");
+VALUES ("5", "2", "4", "4", STR_TO_DATE('7/10/2020', '%d/%m/%Y'), "17:30");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("6", "5", "6", "3", STR_TO_DATE('14/2/2020', '%d/%m/%Y'), "17:30");
+VALUES ("6", "5", "6", "4", STR_TO_DATE('14/2/2020', '%d/%m/%Y'), "17:30");
 /*Reserva*/
 INSERT INTO reserva (idReserva, idUsuario, idProyeccion, butaca)
 VALUES ("1", 2, 1, 3);

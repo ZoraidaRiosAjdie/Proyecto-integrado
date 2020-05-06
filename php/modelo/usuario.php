@@ -48,10 +48,34 @@
             return DataBase::getConsultasPDO($consulta);
         }
         // Para reserva 
-        public function reserva(){
-            $insercion = "INSERT INTO reserva (idReserva, idUsuario, idProyeccion, butaca) 
-                        VALUES (NULL, \"".$this->idUsuario."\", \"".$this->idProyeccion."\", \"".$this->butaca."\")";
-            return DataBase::getConsultasPDO($insercion);
+        // public function reserva(){
+        //     $insercion = "INSERT INTO reserva (idReserva, idUsuario, idProyeccion, butaca) 
+        //                 VALUES (NULL, \"".$this->idUsuario."\", \"".$this->idProyeccion."\", \"".$this->butaca."\")";
+        //     return DataBase::getConsultasPDO($insercion);
+        // }
+        // public function mostrar(){
+        //     $consulta ="UPDATE pelicula
+        //                 SET idPelicula= \"".$this->idPelicula."\",anio=\"".$this->anio."\" ,titulo= \"".$this->titulo."\", pais=\"".$this->pais."\", genero=\"".$this->genero."\" , duracion=\"".$this->duracion."\" , fecha_estreno=\"".$this->fecha_estreno."\" , calificacion=\"".$this->calificacion."\" , sinopsis=\"".$this->sinopsis."\" , actores=\"".$this->actores."\" , imagen=\"".$this->imagen."\" , mostrar=\"".$this->mostrar."\" 
+        //                 WHERE idPelicula=\"".$this->idPelicula."\"";
+        //     return DataBase::getConsultasPDO($consulta);
+        // }
+        public function sala(){
+            $consulta ="SELECT *
+                        from sala";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        public function proyeccion(){
+            $consulta ="SELECT titulo, idProyeccion, idSala, pr.idPelicula, f.idTipo, nombre, fecha, hora
+                        from proyeccion pr, pelicula p, tarifa f
+                        Where pr.idPelicula = p.idPelicula
+                        and pr.idTipo = f.idTipo";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        public function tarifaRe(){
+            $consulta ="SELECT idProyeccion, t.idTipo, nombre, definicion, precio, fecha, hora
+                        from proyeccion pr, tarifa t
+                        Where pr.idTipo = t.idTipo";
+            return DataBase::getConsultasPDO($consulta);
         }
     }
 ?>

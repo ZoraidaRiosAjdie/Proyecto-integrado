@@ -97,21 +97,18 @@ $(document).ready(function(){
             $('.aceptar').click(function(){
                 if (jsonNombre != null && jsonEmail != null && jsonPWD != null){
                     json = {'usuario':[jsonNombre,jsonEmail,jsonPWD]};
-                    // $('#resultado').val(json);
                     $.ajax({
                         url: "../controlador/insertar.php",
                         type: "POST",
-                        data: json,
-                        success: function(r){
-                            alert(r);
-                        }
+                        data: json
                     });
-                    //  window.location.replace("../controlador/insertar.php");
+                    window.location.replace("../vista/login.php");
+                }
+                else{
+                    alert('Error compruebe los campos');
                 }
             });
-            // else{
-            //     $('#resultado').text('Error compruebe los campos');
-            // }
+            
 
     });
     function validarEmail(valor) {
