@@ -37,10 +37,10 @@
                         </div>
                         <div class="pt-2 pb-3">
                             <label for="contraseña">Contraseña: </label>
-                            <input type="text" name="pwd" require class='col pwd'>
+                            <input type="password" name="pwd" require class='col pwd'>
                         </div> 
                         <input type="button" name="entrar" value="Entrar" class="btn btn-primary float-left entrar">
-                        <input type="button" name="registro" value="Registrarse" class="btn btn-primary float-right">
+                        <input type="button" name="registro" value="Registrarse" class="btn btn-primary float-right registro">
                     </form>
                 </article>
                 

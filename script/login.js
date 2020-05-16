@@ -21,6 +21,9 @@ $(document).ready(function(){
             sessionStorage.setItem("id", existe);
             sessionStorage.setItem("idUsuario", id);
         }); 
+        $('.registro').click(function(){
+            window.location.replace("../vista/registro.php");
+        }); 
     });
     // $('.entrar').click(function(){
 
