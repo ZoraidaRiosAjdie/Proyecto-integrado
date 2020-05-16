@@ -290,7 +290,19 @@ $(document).ready(function(){
             input1.attr('class','btn btn-info float-left');
             input1.attr('value','Fotos');
             $(div17).append(input1);
+
+            var input2 = $("<input>");
+            input2.attr('type','button');
+            input2.attr('class','btn btn-info ml-5');
+            input2.attr('value','Reservar entrada');
+            $(div17).append(input2);
             
+            $(':button').click(function(r){
+                var evento = r.currentTarget;
+                if ($(evento).val()=='Reservar entrada') {
+                    window.location.replace("../vista/reserva.php");
+                }
+            });
         } 
     });
     function round(num, decimales = 2) {
