@@ -8,7 +8,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../script/menu.js"></script>
-    <script src="../../script/reserva.js"></script>
+    <script src="../../script/precio.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
@@ -53,33 +53,41 @@
     </header>
     <section class="container-sm mt-5">
         <div class="row princ">
-            <div class="col">
+            <div class="col-7 mr-auto ml-auto pt-5">
                 <form action="" method="post">
                     <h1 class="display-4 text-center">Reserva</h1>
-                    <small id="mensaje"></small>
-                    <div class="row">
-                        <div class="col-7 m-auto">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Dia</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="fecha">
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p class="pt-4">Número de entradas que quieres comprar</p>
-                            <input type="number" name="reserva" id="reserva" class="reserva" min="0" require disabled>
-                            <small id="reserva"></small>
-                            <!-- <input type="number" name="" id="" min="0"> -->
+                    <div class="row pt-2">
+                        <div class="col">
+                            <p>Título</p>
+                            <input type="text" name="titulo" id="titulo" disabled class="form-control">
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col">
+                            <p>Numero de entradas</p>
+                            <input type="text" name="entrada" id="entrada" disabled class="form-control">
+                        </div>
+                        <div class="col">
+                            <p>Sala</p>
+                            <input type="text" name="sala" id="sala" disabled class="form-control">
+                        </div>
+                    </div>
+                    <div class="row pt-2">
+                        <div class="col">
+                            <p>Hora y fecha</p>
+                            <input type="text" name="hf" id="hf" disabled class="form-control">
+                        </div>
+                        <div class="col">
+                            <p>Tarifa: </p>
+                            <input type="text" name="tarifa" id="tarifa" disabled class="form-control">
+                            <p>Precio: </p>
+                            <input type="text" name="precio" id="precio" disabled class="form-control">
                         </div>
                     </div>
                     <div class="row pt-5">
-                        <div class="col-7 m-auto">
-                            <input type="button" value="Atras" class='btn btn-primary'>
-                            <input type="button" value="Continuar" class='btn btn-primary float-right'>
+                        <div class="col">
+                            <input type="button" value="Atras" class="btn btn-primary">
+                            <input type="submit" value="Pagar" class="btn btn-primary float-right">
                         </div>
                     </div>
                 </form>

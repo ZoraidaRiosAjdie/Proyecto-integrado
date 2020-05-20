@@ -300,6 +300,7 @@ $(document).ready(function(){
             $(':button').click(function(r){
                 var evento = r.currentTarget;
                 if ($(evento).val()=='Reservar entrada') {
+                    sessionStorage.setItem("idPelicula", $(evento).attr('id'));
                     window.location.replace("../vista/reserva.php");
                 }
             });

@@ -295,11 +295,13 @@ $(document).ready(function(){
             input2.attr('type','button');
             input2.attr('class','btn btn-info ml-5');
             input2.attr('value','Reservar entrada');
+            input2.attr('id',lrepe[i]);
             $(div17).append(input2);
 
             $(':button').click(function(r){
                 var evento = r.currentTarget;
                 if ($(evento).val()=='Reservar entrada') {
+                    sessionStorage.setItem("idPelicula", $(evento).attr('id'));
                     window.location.replace("../vista/reserva.php");
                 }
             });

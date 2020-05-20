@@ -9,7 +9,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../script/menu.js"></script>
     <script src="../../script/insertPelicula.js"></script>
-    <script src="../../script/botonPelicula.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
@@ -52,7 +51,7 @@
             </nav>
         </div>
     </header>
-    <section class="container-sm mt-5">
+    <!-- <section class="container-sm mt-5">
         <article class="row princ">
             <div class="col">
                 <h1>Insertar Pelicula: </h1>
@@ -195,19 +194,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="sala">Nombre de sala</label>
-                                <?php while ($todo = $sala -> fetch()){
-                                ?>
                                 <div class="form-check nombre_sala">
-                                    <input type="checkbox" class="form-check-input" value="<?php echo $todo['idSala']?>" id="<?php echo $todo['idSala']?>">
-                                    <label class="form-check-label" for="defaultCheck1"><?php echo $todo['idSala']?></label>
+                                    
                                 </div>
-                                <?php
-                                }
-                                ?>
                             </div>
                         </div>
                         <div class="col sala"></div>
-                    </div>
+                    </div> -->
                     <!-- <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -221,7 +214,7 @@
                                 <small id="sala" class=""></small>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -237,6 +230,102 @@
                 </form>
             </div>
         </article>
+    </section> -->
+    <section class="cuerpo">
+        <div class="row princ">
+            <div class="col-7 m-auto">
+                <h1 class="text-center">Pelicula</h1>
+                <form action="">
+                    <div class="row">
+                        <div class="col">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" id="titulo">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="anio">Año de estreno</label>
+                            <input type="text" class="form-control" id="anio">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                        <div class="col">
+                            <label for="duracion">Duracion</label>
+                            <input type="time" class="form-control" id="duracion">
+                        </div>
+                        <div class="col">
+                            <label for="calificacion">Calificacion</label>
+                            <input type="text" class="form-control" id="calificacion">
+                        </div>
+                        <div class="col">
+                            <label for="fecha">Fecha de estreno</label>
+                            <input type="date" class="form-control" id="fecha">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="genero">Género</label>
+                            <input type="text" class="form-control" id="genero">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                        <div class="col">
+                            <label for="pais">País</label>
+                            <input type="text" class="form-control" id="pais">
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="imagen">Imagen principal</label>
+                            <input type="text" class="form-control" id="imagen">
+                        </div>
+                    </div>
+                    <div class="row newImagen">
+                        <div class="col">
+                            <label for="otrasImagenes">Imagen para album</label>
+                            <input type="text" class="form-control" id="otrasImagenes">
+                        </div>
+                        <div class="col-2 pt-4">
+                            <input type="button" value="+" class="btn btn-primary" id="maxI">
+                            <input type="button" value="-" class="btn btn-primary" id="minI">
+                        </div>
+                    </div>
+                    <div class="row actores">
+                        <div class="col">
+                            <label for="actor">Actor</label>
+                            <input type="text" class="form-control" id="actor">
+                        </div>
+                        <div class="col">
+                            <label for="papel">Papel</label>
+                            <input type="text" class="form-control" id="papel">
+                        </div>
+                        <div class="col-2 pt-4">
+                            <input type="button" value="+" class="btn btn-primary" id="maxA">
+                            <input type="button" value="-" class="btn btn-primary" id="minA">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="sinopsis">Sinopsis</label>
+                            <textarea name="sinopsis" id="sinopsis" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <h2>Sala</h2>
+                    <div class="row">
+                        <div class="col" id="sala">
+                            
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col">
+                            <input type="button" value="Atras" class="btn btn-primary float-left">
+                            <input type="button" value="Insertar" class="btn btn-primary float-right">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
     </section>
 </body>
 </html>
