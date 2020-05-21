@@ -280,7 +280,7 @@
                             <input type="text" class="form-control" id="imagen">
                         </div>
                     </div>
-                    <div class="row newImagen">
+                    <!-- <div class="row newImagen">
                         <div class="col">
                             <label for="otrasImagenes">Imagen para album</label>
                             <input type="text" class="form-control" id="otrasImagenes">
@@ -289,7 +289,7 @@
                             <input type="button" value="+" class="btn btn-primary" id="maxI">
                             <input type="button" value="-" class="btn btn-primary" id="minI">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row actores">
                         <div class="col">
                             <label for="actor">Actor</label>
@@ -313,6 +313,9 @@
                     <h2>Sala</h2>
                     <div class="row">
                         <div class="col" id="sala">
+                            
+                        </div>
+                        <div class="col" id="proyeccion">
                             
                         </div>
                     </div>
