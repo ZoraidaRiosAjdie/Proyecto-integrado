@@ -246,16 +246,22 @@
                     <div class="row">
                         <div class="col">
                             <label for="anio">Año de estreno</label>
-                            <input type="text" class="form-control" id="anio">
+                            <input type="number" class="form-control" id="anio" min="1860">
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
                         <div class="col">
                             <label for="duracion">Duracion</label>
-                            <input type="time" class="form-control" id="duracion">
+                            <input type="number" class="form-control" id="duracion" min="1" max="900">
                         </div>
                         <div class="col">
                             <label for="calificacion">Calificacion</label>
-                            <input type="text" class="form-control" id="calificacion">
+                            <select name="calificacion" id="calificacion" class="form-control">
+                                <option value="Todas las edades">Todas las edades</option>
+                                <option value="+7">+7</option>
+                                <option value="+12">+12</option>
+                                <option value="+16">+16</option>
+                                <option value="+18">+18</option>
+                            </select>
                         </div>
                         <div class="col">
                             <label for="fecha">Fecha de estreno</label>
