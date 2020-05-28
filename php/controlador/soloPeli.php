@@ -1,7 +1,7 @@
-<?php 
+<?php
     require_once("../modelo/admin.php");
     $pelicula = new Funcion();
-    $mostrar =  $pelicula -> cartelera();
+    $mostrar =  $pelicula -> pelicula();
     $lista= array();
     while ($todo = $mostrar -> fetch()){
         $peli = [
@@ -11,15 +11,11 @@
             "pais"=>$todo['pais'],
             "genero"=>$todo['genero'],
             "duracion"=>$todo['duracion'],
-            "fecha_estreno"=>$todo['fecha_estreno'],
+            "fecha"=>$todo['fecha_estreno'],
             "calificacion"=>$todo['calificacion'],
             "sinopsis"=>$todo['sinopsis'],
             "actores"=>$todo['actores'],
-            "imagen"=>$todo['imagen'],
-            "mostrar"=>$todo['mostrar'],
-            "idSala"=>$todo['idSala'],
-            "fecha"=>$todo['fecha'],
-            "hora"=>$todo['hora']
+            "imagen"=>$todo['imagen']
         ];
         array_push($lista,$peli);
     }

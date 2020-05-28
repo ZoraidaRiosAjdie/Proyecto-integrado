@@ -48,6 +48,11 @@
                         WHERE p.idPelicula = pr.idPelicula";
             return DataBase::getConsultasPDO($consulta);
         }
+        public function pelicula(){
+            $consulta ="SELECT *
+                        from pelicula ";
+            return DataBase::getConsultasPDO($consulta);
+        }
         public function maxIdPelicula(){
             $consulta ="SELECT MAX(idPelicula) FROM pelicula";
             return DataBase::getConsultasPDO($consulta);
@@ -77,5 +82,18 @@
             $insercion = "INSERT INTO sala (idSala, butaca, tipo) 
                         VALUES (\"".$this->idSala."\",\"".$this->butaca."\", \"".$this->tipo."\")";
             return DataBase::getConsultasPDO($insercion);
+        }
+        // modificar
+        public function updatePeli(){
+            $consulta ="UPDATE pelicula
+                        SET idPelicula= \"".$this->idPelicula."\",anio =\"".$this->anio."\" ,titulo = \"".$this->titulo."\", pais \"".$this->pais."\", genero = \"".$this->genero."\", duracion =\"".$this->duracion."\", fecha_estreno=\"".$this->fecha_estreno."\", calificacion=\"".$this->calificacion."\", sinopsis=\"".$this->sinopsis."\", actores=\"".$this->actores."\", imagen=\"".$this->imagen."\", mostrar=\"".$this->mostrar."\"
+                        WHERE idPelicula=\"".$this->idPelicula."\"";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        public function updatePro(){
+            $consulta ="UPDATE proyeccion
+                        SET idProyeccion= \"".$this->idProyeccion."\",idSala =\"".$this->idSala."\" ,idPelicula = \"".$this->idPelicula."\", idTipo \"".$this->idTipo."\", fecha = \"".$this->fecha."\", hora =\"".$this->hora."\"
+                        WHERE idProyeccion=\"".$this->idProyeccion."\"";
+            return DataBase::getConsultasPDO($consulta);
         }
     }
