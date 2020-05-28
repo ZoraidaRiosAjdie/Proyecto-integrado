@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    if (sessionStorage.getItem("id") !=1){ 
+        window.location.replace("../vista/principal.php");
+    }
     var proyecccion = null ;
     var cont = 5;
     var cont1 = 5;
@@ -8,104 +11,16 @@ $(document).ready(function(){
     var listaHora =[];
     var listaFecha =[];
     var listaSala =[];
-    $.post("../controlador/salaRe.php", function(r){
-        var obj = JSON.parse(r);
-        for (let i = 0; i < obj.length; i++) {
-            var row = $('<div>');
-            $('#sala').append(row);
-            row.attr('class',"ml-5 row");
-
-            var col = $('<div>');
-            row.append(col);
-            col.attr('class',"col");
-
-            var check = $('<input>');
-            col.append(check);
-            check.attr('type','checkbox');
-        
-            check.val(obj[i].idSala);
-            check.attr('id',obj[i].idSala);
-            check.attr('class',"form-check-input");
-
-            var label = $('<label>');
-            col.append(label);
-            label.attr('class',"form-check-label");
-            label.text(obj[i].idSala);
-
-            $(':checkbox').click(function(event){
-                var e = event.currentTarget;
-                if ($(e).attr('id') == obj[i].idSala) {
-                    if ($(e).is(':checked')) {
-                        listaSala.push(obj[i].idSala);
-
-                        var b = 'b' + obj[i].idSala;
-                        var c = 'c' + obj[i].idSala;
-
-                        var h3 = $('<h4>');
-                        $('#proyeccion').append(h3);
-                        var texto = 'Datos para: ' + $(e).attr('id');
-                        h3.text(texto);
-                        h3.attr('id', b);
-
-                        var row2 = $('<div>');
-                        $('#proyeccion').append(row2);
-                        row2.attr('class', 'row');
-                        row2.attr('id', c);
-
-                        var col4 = $('<div>');
-                        row2.append(col4);
-                        col4.attr('class', 'col');
-                        
-                        var label1 = $('<label>');
-                        col4.append(label1);
-                        label1.text('Fecha: ');
-            
-                        var text3 = $('<input>');
-                        col4.append(text3);
-                        text3.attr('type', 'date');
-                        var f = 'form-control ' + b;
-                        text3.attr('class', f);
-
-                        var col5 = $('<div>');
-                        row2.append(col5);
-                        col5.attr('class', 'col');
-
-                        var label2 = $('<label>');
-                        col5.append(label2);
-                        label2.text('Hora: ');
-                        
-                        var text4 = $('<input>');
-                        col5.append(text4);
-                        text4.attr('type', 'time');
-                        var j = 'form-control ' + c;
-                        text4.attr('class', j);
-
-                        listaHora.push(c);
-                        listaFecha.push(b);
-
-                    }
-                    else{
-                        var id3 = '#b' + obj[i].idSala
-                        var id4 = '#c' + obj[i].idSala
-                        var g = 'b' + obj[i].idSala
-                        var d = 'c' + obj[i].idSala
-                        $(id3).remove();
-                        $(id4).remove();
-                        removeItemFromArr(listaFecha,g);
-                        removeItemFromArr(listaHora,d);
-                        removeItemFromArr(listaSala,obj[i].idSala);
-                    }
-                }
-            });
+    var listaPelicula = [];
+    var max = 0;
+    $(':button').click(function(r){
+        var evento = r.currentTarget;
+        if ($(evento).val()=="Atras") {
+            window.location.replace("../vista/pelicula.php");
         }
-        $(':button').click(function(r){
-            var evento = r.currentTarget;
-            if ($(evento).val()=="Atras") {
-                window.location.replace("../vista/pelicula.php");
-            }
-            else {
-                if ($(evento).attr('id')=='maxA') {
-                    if (cont1 > 0){
+        else {
+            if ($(evento).attr('id')=='maxA') {
+                if (cont1 > 0){
                         var id1 = 'a'+ cont1;                
                         var row1 = $('<div>');
                         $('.actores').after(row1);
@@ -157,7 +72,7 @@ $(document).ready(function(){
                         var listaActor = [];
                         var duracion;
                         var insertPelicula=null;
-                        if ($(evento).val()=='Insertar') {
+                        if ($(evento).val()=='Siguiente') {
                             if ($('#actor').val()!= '' && $('#papel').val()!= '' && $('#titulo').val()!= '' && $('#anio').val()!= '' && $('#duracion').val()!= '' && $('#genero').val()!= '' && $('#calificacion').val()!= '' && $('#pais').val()!= '' && $('#fecha').val()!= '' && $('#imagen').val()!= '' && $('#sinopsis').val()!= '') {
                                 var ac = $('#actor').val() + ' (' + $('#papel').val() + ')';
                                 listaActor.unshift(ac);
@@ -170,42 +85,23 @@ $(document).ready(function(){
                                     } 
                                 }
                                 duracion = $('#duracion').val() + ' minutos';
-                                var todoActor = listaActor.toString();
-                                insertPelicula = {'resultado' : {'anio': $('#anio').val(), 'titulo': $('#titulo').val(), 'pais': $('#pais').val(), 'genero': $('#genero').val(), 'duracion':min, 'fecha_estreno': $('#fecha').val(), 'calificacion': $('#calificacion').val(), 'sinopsis': $('#sinopsis').val(), 'actores': todoActor, 'imagen' : $('#imagen').val(), 'mostrar': 0}};
-                                $.ajax({
-                                    url: "../controlador/insertPelicula.php",
-                                    type: "POST",
-                                    data: insertPelicula,
-                                    success: function(r){
-                                        alert(r);
-
-                                    }
-                                });
-                                $.post("../controlador/proyeccion.php", function(re){
-                                    var ob = JSON.parse(re);
-                                    for (let i = 0; i < ob.length; i++) {
-                                        for (let j = 0; j < listaSala.length; j++) {
-                                            if (listaSala[j] == ob[i].idSala) {
-                                                var id5 = '#b' + ob[i].idSala;
-                                                var id6 = '#c' + ob[i].idSala;
-                                                var partes = $(id5).val().split('/');
-                                                var fechaPro1 = partes[2] + '-' + partes[1] + '-' + partes[0];
-                                                if (fechaPro1 != ob[i].fecha && $(id6).val() != ob[i].hora) {
-                                                    alert ('Hola');
-                                                }
-                                            }
-                                        }
-                                    }
-                                });
-                                proyecccion = {'resultado' : {}};
-                                $.ajax({
-                                    url: "../controlador/insertPelicula.php",
-                                    type: "POST",
-                                    data: insertPelicula,
-                                    success: function(r){
-                                        alert(r);
-                                    }
-                                });
+                                var todoActor = listaActor.toString();  
+                                var min = $('#duracion').val() + ' minutos'
+                                
+                                sessionStorage.setItem('anioPelicula', $('#anio').val());
+                                sessionStorage.setItem('tituloPelicula', $('#titulo').val());
+                                sessionStorage.setItem('paisPelicula', $('#pais').val());
+                                sessionStorage.setItem('generoPelicula', $('#genero').val());
+                                sessionStorage.setItem('duracionPelicula', min);
+                                sessionStorage.setItem('fechaPelicula', $('#fecha').val());
+                                sessionStorage.setItem('calificacionPelicula', $('#calificacion').val());
+                                sessionStorage.setItem('sinopsisPelicula', $('#sinopsis').val());
+                                sessionStorage.setItem('actoresPelicula', todoActor);
+                                sessionStorage.setItem('imagenPelicula', $('#imagen').val());
+                            
+                                window.location.replace("../vista/insertTodaPelicula.php");
+                                
+                                
                             }
                             else{
                                 alert('Has dejado algun campo en blanco');
@@ -215,7 +111,7 @@ $(document).ready(function(){
                 }
             }
         });
-    });
+
     function removeItemFromArr ( arr, item ) {
         var i = arr.indexOf( item );
         if ( i !== -1 ) {

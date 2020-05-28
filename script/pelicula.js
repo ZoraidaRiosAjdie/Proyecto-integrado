@@ -283,7 +283,7 @@ $(document).ready(function(){
             }
         });
         $('.insertar').click(function(event){
-            window.location.replace("../vista/principal.php");
+            window.location.replace("../vista/insertPelicula.php");
         });
     });
     

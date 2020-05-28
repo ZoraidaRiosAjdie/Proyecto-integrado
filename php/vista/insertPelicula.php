@@ -316,19 +316,10 @@
                             <textarea name="sinopsis" id="sinopsis" cols="30" rows="10" class="form-control"></textarea>
                         </div>
                     </div>
-                    <h2>Sala</h2>
-                    <div class="row">
-                        <div class="col" id="sala">
-                            
-                        </div>
-                        <div class="col" id="proyeccion">
-                            
-                        </div>
-                    </div>
                     <div class="row pt-5">
                         <div class="col">
                             <input type="button" value="Atras" class="btn btn-primary float-left">
-                            <input type="button" value="Insertar" class="btn btn-primary float-right">
+                            <input type="button" value="Siguiente" class="btn btn-primary float-right">
                         </div>
                     </div>
                     

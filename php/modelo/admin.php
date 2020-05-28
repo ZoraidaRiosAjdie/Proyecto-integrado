@@ -43,9 +43,13 @@
             $this->tipo = $tipo;
         }
         public function cartelera(){
-            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, idSala, fecha, hora
+            $consulta ="SELECT pr.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, idSala, fecha, hora
                         from pelicula p, proyeccion pr
                         WHERE p.idPelicula = pr.idPelicula";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        public function maxIdPelicula(){
+            $consulta ="SELECT MAX(idPelicula) FROM pelicula";
             return DataBase::getConsultasPDO($consulta);
         }
         public function mostrar(){
