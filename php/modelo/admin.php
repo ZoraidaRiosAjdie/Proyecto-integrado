@@ -53,6 +53,11 @@
                         from pelicula ";
             return DataBase::getConsultasPDO($consulta);
         }
+        public function proyeccion(){
+            $consulta ="SELECT *
+                        from proyeccion ";
+            return DataBase::getConsultasPDO($consulta);
+        }
         public function maxIdPelicula(){
             $consulta ="SELECT MAX(idPelicula) FROM pelicula";
             return DataBase::getConsultasPDO($consulta);
@@ -94,6 +99,17 @@
             $consulta ="UPDATE proyeccion
                         SET idProyeccion= \"".$this->idProyeccion."\",idSala =\"".$this->idSala."\" ,idPelicula = \"".$this->idPelicula."\", idTipo \"".$this->idTipo."\", fecha = \"".$this->fecha."\", hora =\"".$this->hora."\"
                         WHERE idProyeccion=\"".$this->idProyeccion."\"";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        // Borrar
+        public function deletePeli(){
+            $consulta ="DELETE FROM pelicula
+                        WHERE idPelicula= \"".$this->idPelicula."\", anio =\"".$this->anio."\" , titulo = \"".$this->titulo."\", pais \"".$this->pais."\", genero = \"".$this->genero."\", duracion =\"".$this->duracion."\", fecha_estreno=\"".$this->fecha_estreno."\", calificacion=\"".$this->calificacion."\", sinopsis=\"".$this->sinopsis."\", actores=\"".$this->actores."\", imagen=\"".$this->imagen."\", mostrar=\"".$this->mostrar."\" ";
+            return DataBase::getConsultasPDO($consulta);
+        }
+        public function deletePro(){
+            $consulta ="DELETE FROM proyeccion
+                        WHERE  idProyeccion= \"".$this->idProyeccion."\"";
             return DataBase::getConsultasPDO($consulta);
         }
     }

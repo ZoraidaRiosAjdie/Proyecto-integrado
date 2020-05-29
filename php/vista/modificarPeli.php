@@ -85,7 +85,7 @@
                         </div>
                         <div class="col">
                             <label for="fecha">Fecha de estreno</label>
-                            <input type="date" class="form-control" id="fecha">
+                            <input type="text" class="form-control" id="fecha">
                         </div>
                     </div>
                     <div class="row">

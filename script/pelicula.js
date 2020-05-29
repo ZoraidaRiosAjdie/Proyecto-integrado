@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $.post("../controlador/pelicula.php", function(r){
+        var sala = [];
         var obj = JSON.parse(r);
         var lid =[];
         var lanio = [];
@@ -74,7 +75,7 @@ $(document).ready(function(){
             for (let j = 0; j < lrepe.length; j++) {
                 if (lid[i]==lrepe[j]) {
                     todo = {'idPelicula': lrepe[j], 'idSala' : lidSala[i], 'fecha' : lfecha[i], 'hora': lhora[i]}
-                    console.log(todo);
+                    // console.log(todo);
                 }
                 
             }
@@ -285,6 +286,8 @@ $(document).ready(function(){
                     var li1 = $("<li>");
                     $(ul).append(li1);
                     li1.text('Numero de sala: '+ jsonId[j].idSala);
+                    li1.attr('class', jsonId[j].idPelicula);
+                    sala.push(jsonId[j].idSala);
                     // lista interior hora y fecha 
                     var ul1 = $("<ul>");
                     $(li1).append(ul1);
@@ -368,8 +371,16 @@ $(document).ready(function(){
         });
         $('.modificar').click(function(event){
             var e = event.currentTarget;
+            var a = [];
+            // alert (a);
             sessionStorage.setItem("idPeliMod", $(e).attr('id'));
-            window.location.replace("../vista/modificarPelicula.php");            
+            for (let i = 0; i < jsonId.length; i++) {
+                if ($(e).attr('id') == jsonId[i].idPelicula) {
+                    a.push(jsonId[i].idSala)
+                }
+            }
+            sessionStorage.setItem("idSalaMod", a);
+            window.location.replace("../vista/modificarPeli.php");            
         });
     });
 });

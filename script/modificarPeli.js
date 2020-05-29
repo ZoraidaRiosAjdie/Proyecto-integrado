@@ -13,7 +13,9 @@ $(document).ready(function(){
                 var duracion = obj[i].duracion.split(' ');
                 $('#duracion').val(duracion[0]);
                 $('#calificacion').val(obj[i].calificacion);
+
                 $('#fecha').val(obj[i].fecha);
+                // $('#fecha').text(fecha);
                 $('#genero').val(obj[i].genero);
                 $('#pais').val(obj[i].pais);
                 $('#imagen').val(obj[i].imagen);
@@ -88,8 +90,17 @@ $(document).ready(function(){
                     sessionStorage.setItem('actoresPelMod', todoActor);
                     sessionStorage.setItem('imagenPelMod', $('#imagen').val());
                 }
-            }        
+            } 
+            window.location.replace("../vista/modificarPro.php");       
         }
     });
-     
+    // function mes (nombre) {
+    //     var mes = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+    //     var numero = [1,2,3,4,5,6,7,8,9,10,11,12];
+    //     for (let i = 0; i < mes.length; i++) {
+    //         if (nombre == mes[i]) {
+    //             return numero[i];
+    //         }
+    //     }
+    // }
 });

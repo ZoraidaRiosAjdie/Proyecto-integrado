@@ -15,7 +15,8 @@
             "calificacion"=>$todo['calificacion'],
             "sinopsis"=>$todo['sinopsis'],
             "actores"=>$todo['actores'],
-            "imagen"=>$todo['imagen']
+            "imagen"=>$todo['imagen'],
+            "mostar"=>$todo['mostar']
         ];
         array_push($lista,$peli);
     }
