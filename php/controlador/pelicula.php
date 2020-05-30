@@ -5,6 +5,7 @@
     $lista= array();
     while ($todo = $mostrar -> fetch()){
         $peli = [
+            "idProyeccion"=>$todo['idProyeccion'],
             "idPelicula"=>$todo['idPelicula'],
             "anio"=>$todo['anio'],
             "titulo"=>$todo['titulo'],

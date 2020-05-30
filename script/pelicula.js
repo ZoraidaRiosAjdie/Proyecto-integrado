@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    todo = null;
+    jsonId = [];
     $.post("../controlador/pelicula.php", function(r){
         var sala = [];
         var obj = JSON.parse(r);
@@ -17,6 +19,7 @@ $(document).ready(function(){
         var lfecha = [];
         var lhora = [];
         var lmostrar =[];
+        var lidPro =[];
 
         var id =[];
         var anio = [];
@@ -49,8 +52,9 @@ $(document).ready(function(){
             lfecha.push(obj[index].fecha);
             lhora.push(obj[index].hora);
             lmostrar.push(obj[index].mostrar);
+            lidPro.push(obj[index].idProyeccion);
         }
-        console.log(limagen);
+        console.log(lidPro);
         var lrepe = lid.filter(function(item, index, array) {
             return array.indexOf(item) === index;
         })       
@@ -69,12 +73,12 @@ $(document).ready(function(){
         h = null;
         m = null;
 
-        todo = null;
-        jsonId = [];
+        
+        
         for (let i = 0; i < lid.length; i++) {
             for (let j = 0; j < lrepe.length; j++) {
                 if (lid[i]==lrepe[j]) {
-                    todo = {'idPelicula': lrepe[j], 'idSala' : lidSala[i], 'fecha' : lfecha[i], 'hora': lhora[i]}
+                    todo = {'idPelicula': lrepe[j],'idProyeccion': lidPro[i], 'idSala' : lidSala[i], 'fecha' : lfecha[i], 'hora': lhora[i]}
                     // console.log(todo);
                 }
                 
@@ -117,7 +121,7 @@ $(document).ready(function(){
             mostrar.push(m);
         }
         
-        console.log(imagen);
+        console.log(todo);
         for (let i = 0; i < lrepe.length; i++) {
             
             var article = $("<article>");
@@ -302,15 +306,19 @@ $(document).ready(function(){
                 }
                 
             }
-            
+            // formulario 
+            var form1 = $('<form>');
+            $(article2).append(form1);
+            form1.attr('method', 'post');
             // Fila Botones 
             var div20 = $("<div>");
             div20.attr('class','row pb-4 pt-5');
-            $(article2).append(div20);
+            $(form1).append(div20);
             // Columna botenes1
             var div21 = $("<div>");
             div21.attr('class','col');
             $(div20).append(div21);
+            
             // Botones1-1
             var button = $('<input>');
             $(div21).append(button);
@@ -323,7 +331,8 @@ $(document).ready(function(){
             $(div21).append(button1);
             button1.attr('value','Eliminar');
             button1.attr('type','button');
-            button1.attr('class','btn btn-primary float-right');
+            button1.attr('class','btn btn-primary float-right eliminar');
+            button1.attr('id', lrepe[i]);   
             // Columna boton2
             var div22 = $("<div>");
             div22.attr('class','col-8');
@@ -381,6 +390,27 @@ $(document).ready(function(){
             }
             sessionStorage.setItem("idSalaMod", a);
             window.location.replace("../vista/modificarPeli.php");            
+        });
+        $('.eliminar').click(function(event){
+            var e = event.currentTarget;
+            for (let i = 0; i < jsonId.length; i++) {
+                if ($(e).attr('id') == jsonId[i].idPelicula) {
+                    borrarPro = {'resultado' : {'idProyeccion': jsonId[i].idProyeccion}};
+                    $.ajax({
+                        url: "../controlador/borrarPro.php",
+                        type: "POST",
+                        data: borrarPro
+                    });
+                    borrarPeli = {'resultado' : {'idPelicula': $(e).attr('id')}};
+                    $.ajax({
+                        url: "../controlador/borrarPeli.php",
+                        type: "POST",
+                        data: borrarPeli
+                    });
+                }
+            }
+            alert ('Regarge la pagina');
+            window.location.replace("../vista/pelicula.php");
         });
     });
 });

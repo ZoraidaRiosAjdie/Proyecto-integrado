@@ -1,4 +1,4 @@
-<?php ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL); ?>
+
 <?php
     require_once('bd.php');
     class Funcion{
@@ -18,6 +18,11 @@
         }
         
         // Para reserva 
+        public function todoReserva(){
+            $insercion = "SELECT *
+                        from reserva ";
+            return DataBase::getConsultasPDO($insercion);
+        }
         public function reserva(){
             $insercion = "INSERT INTO reserva (idReserva, idUsuario, idProyeccion, butaca) 
                         VALUES (NULL, \"".$this->idUsuario."\", \"".$this->idProyeccion."\", \"".$this->butaca."\")";

@@ -117,7 +117,7 @@ $(document).ready(function(){
                     });
                     $.post("../controlador/maxIdPelicula.php", function(e){
                         var obj = JSON.parse(e);
-                        idMax= obj.idPelicula + 1;
+                        idMax= parseInt(obj.idPelicula) + 1;
                     });
                     $.post("../controlador/proyeccion.php", function(re){
                         $.post("../controlador/todaTarifa.php", function(s){
@@ -161,6 +161,8 @@ $(document).ready(function(){
                                                                     data: proyecccion
                                                             });
                                                                 removeItemFromArr(listaSala,listaSala[i]);
+                                                                removeItemFromArr(listaFecha,listaFecha[i]);
+                                                                removeItemFromArr(listaHora,listaHora[i]);
                                                         }
                                                     }
                                                     else{
@@ -174,6 +176,8 @@ $(document).ready(function(){
                                                                         data: proyecccion
                                                                 });
                                                                 removeItemFromArr(listaSala,listaSala[i]);
+                                                                removeItemFromArr(listaFecha,listaFecha[i]);
+                                                                removeItemFromArr(listaHora,listaHora[i]);
                                                             }
                                                         }
                                                         else{
@@ -186,6 +190,8 @@ $(document).ready(function(){
                                                                         data: proyecccion
                                                                 });
                                                                 removeItemFromArr(listaSala,listaSala[i]);
+                                                                removeItemFromArr(listaFecha,listaFecha[i]);
+                                                                removeItemFromArr(listaHora,listaHora[i]);
                                                             }
                                                         }
                                                     }

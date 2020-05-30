@@ -31,8 +31,8 @@ $(document).ready(function(){
             }
         }
     });
-    var mostar;
-    $.post("../controlador/soloPro.php", function(r){
+    var mostrar;
+    $.post("../controlador/soloPeli.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
             if (obj[i].idPelicula == sessionStorage.getItem("idPeliMod")) {
@@ -163,9 +163,9 @@ $(document).ready(function(){
                 text3.attr('type', 'text');
                 var f = 'form-control ' + b;
                 text3.attr('class', f);
-                var partes = todo[j].fecha.split('-');
-                var fecha = partes[2] + '/' + partes[1] + '/' + partes[0] ;
-                text3.val(fecha);
+                // var partes = todo[j].fecha.split('-');
+                // var fecha = partes[2] + '/' + partes[1] + '/' + partes[0] ;
+                text3.val(todo[j].fecha);
     
                 var col5 = $('<div>');
                 row2.append(col5);
@@ -201,10 +201,6 @@ $(document).ready(function(){
                         type: "POST",
                         data: insertPelicula
                     });
-                    $.post("../controlador/maxIdPelicula.php", function(e){
-                        var obj = JSON.parse(e);
-                        idMax= obj.idPelicula + 1;
-                    });
                     $.post("../controlador/proyeccion.php", function(re){
                         $.post("../controlador/todaTarifa.php", function(e){
                             var obj = JSON.parse(e);
@@ -221,33 +217,35 @@ $(document).ready(function(){
                                         var fechaHora = new Date(string);
                                         var semana = fechaHora.getDay();
                                         for (let z = 0; z < todo.length; z++) {
-                                            if (listaSala[j] == todo[z].idSala) {
-                                                if (semana == 3){
-                                                    if (obj[i].nombre == 'Día espectador'){
-                                                        proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion , 'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
-                                                        $.ajax({
-                                                                url: "../controlador/modificarPro.php",
-                                                                type: "POST",
-                                                                data: proyecccion
-                                                        }); 
-                                                        removeItemFromArr(listaSala,listaSala[i]);
-                                                    }
-                                                }
-                                                else{
-                                                    if(semana == 6){
-                                                        if (obj[i].nombre == 'Día pareja'){
+                                            var id = '#'+todo[z].idSala;
+                                            if ($(id).prop('checked') == false) {
+                                                proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion}};
+                                                $.ajax({
+                                                    url: "../controlador/borrarPro.php",
+                                                    type: "POST",
+                                                    data: proyecccion
+                                                }); 
+                                                removeItemFromArr(todo,todo[z]);
+                                            }
+                                            else {
+                                                if (listaSala[j] == todo[z].idSala) {
+                                                    if (semana == 3){
+                                                        if (obj[i].nombre == 'Día espectador'){
                                                             proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion , 'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
                                                             $.ajax({
-                                                                url: "../controlador/modificarPro.php",
-                                                                type: "POST",
-                                                                data: proyecccion
+                                                                    url: "../controlador/modificarPro.php",
+                                                                    type: "POST",
+                                                                    data: proyecccion
                                                             }); 
                                                             removeItemFromArr(listaSala,listaSala[j]);
+                                                            removeItemFromArr(listaFecha,listaFecha[j]);
+                                                            removeItemFromArr(listaHora,listaHora[j]);
+                                                            removeItemFromArr(todo,todo[z]);
                                                         }
                                                     }
                                                     else{
-                                                        if (semana == 6 && h == 12.00 ||  semana == 0 && h == 12.00){
-                                                            if (obj[i].nombre == 'Matinal'){
+                                                        if(semana == 6){
+                                                            if (obj[i].nombre == 'Día pareja'){
                                                                 proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion , 'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
                                                                 $.ajax({
                                                                     url: "../controlador/modificarPro.php",
@@ -255,254 +253,117 @@ $(document).ready(function(){
                                                                     data: proyecccion
                                                                 }); 
                                                                 removeItemFromArr(listaSala,listaSala[j]);
+                                                                removeItemFromArr(listaFecha,listaFecha[j]);
+                                                                removeItemFromArr(listaHora,listaHora[j]);
+                                                                removeItemFromArr(todo,todo[z]);
                                                             }
                                                         }
                                                         else{
-                                                            if (obj[i].nombre == 'Entrada normal'){
-                                                                proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion , 'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
-                                                                $.ajax({
-                                                                    url: "../controlador/modificarPro.php",
-                                                                    type: "POST",
-                                                                    data: proyecccion
-                                                                }); 
-                                                                removeItemFromArr(listaSala,listaSala[j]);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            else {
-                                                var id = '#'+todo[z].idSala;
-                                                if ($(id).prop('checked') == false) {
-                                                    proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion}};
-                                                    $.ajax({
-                                                        url: "../controlador/borrarPro.php",
-                                                        type: "POST",
-                                                        data: proyecccion
-                                                    }); 
-                                                    if (listaSala.length > 1) {
-                                                        removeItemFromArr(listaSala,listaSala[j]);
-                                                    }
-                                                }
-                                                if (listaSala[j] != todo[z].idSala) {
-                                                    if (obj1[y].idSala != listaSala[j] && partes != obj1[y].fecha && $(idH).val() != obj1[y].hora) {
-                                                        if (semana == 3){
-                                                            if (obj[i].nombre == 'Día espectador'){
-                                                                proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
-                                                                $.ajax({
-                                                                        url: "../controlador/insertProyeccion.php",
+                                                            if (semana == 6 && h == 12.00 ||  semana == 0 && h == 12.00){
+                                                                if (obj[i].nombre == 'Matinal'){
+                                                                    proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion , 'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
+                                                                    $.ajax({
+                                                                        url: "../controlador/modificarPro.php",
                                                                         type: "POST",
                                                                         data: proyecccion
-                                                                }); 
-                                                                removeItemFromArr(listaSala,listaSala[j]);
-                                                            }
-                                                        }
-                                                        else{
-                                                            if(semana == 6){
-                                                                if (obj[i].nombre == 'Día pareja'){
-                                                                    proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
-                                                                        
-                                                                    $.ajax({
-                                                                            url: "../controlador/insertProyeccion.php",
-                                                                            type: "POST",
-                                                                            data: proyecccion
-                                                                    });
-                                                                        removeItemFromArr(listaSala,listaSala[j]);
+                                                                    }); 
+                                                                    removeItemFromArr(listaSala,listaSala[j]);
+                                                                    removeItemFromArr(listaFecha,listaFecha[j]);
+                                                                    removeItemFromArr(listaHora,listaHora[j]);
+                                                                    removeItemFromArr(todo,todo[z]);
                                                                 }
                                                             }
                                                             else{
-                                                                if (semana == 6 && h == 12.00 ||  semana == 0 && h == 12.00){
-                                                                    if (obj[i].nombre == 'Matinal'){
-                                                                        proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
-                                                                            
-                                                                        $.ajax({
-                                                                                url: "../controlador/insertProyeccion.php",
-                                                                                type: "POST",
-                                                                                data: proyecccion
-                                                                        });
-                                                                        removeItemFromArr(listaSala,listaSala[j]);
-                                                                    }
-                                                                }
-                                                                else{
-                                                                    if (obj[i].nombre == 'Entrada normal'){
-                                                                        proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};   
-                                                                            
-                                                                        $.ajax({
-                                                                                url: "../controlador/insertProyeccion.php",
-                                                                                type: "POST",
-                                                                                data: proyecccion
-                                                                        });
-                                                                        removeItemFromArr(listaSala,listaSala[j]);
-                                                                    }
+                                                                if (obj[i].nombre == 'Entrada normal'){
+                                                                    proyecccion = {'resultado' : {'idProyeccion':todo[z].idProyeccion , 'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
+                                                                    $.ajax({
+                                                                        url: "../controlador/modificarPro.php",
+                                                                        type: "POST",
+                                                                        data: proyecccion
+                                                                    }); 
+                                                                    removeItemFromArr(listaSala,listaSala[j]);
+                                                                    removeItemFromArr(listaFecha,listaFecha[j]);
+                                                                    removeItemFromArr(listaHora,listaHora[j]);
+                                                                    removeItemFromArr(todo,todo[z]);
                                                                 }
                                                             }
                                                         }
-                                                    } 
-                                                    else{
-                                                        $('.mensaje').text('Este dato ya existe');
                                                     }
-                                                } 
+                                                }
                                             }
+                                        }
+                                        if (obj1[y].idSala != listaSala[j] && partes != obj1[y].fecha && $(idH).val() != obj1[y].hora) {
+                                            if (semana == 3){
+                                                if (obj[i].nombre == 'Día espectador'){
+                                                    proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
+                                                    $.ajax({
+                                                            url: "../controlador/insertProyeccion.php",
+                                                            type: "POST",
+                                                            data: proyecccion
+                                                    }); 
+                                                    removeItemFromArr(listaSala,listaSala[j]);
+                                                    removeItemFromArr(listaFecha,listaFecha[j]);
+                                                    removeItemFromArr(listaHora,listaHora[j]);
+                                                }
+                                            }
+                                            else{
+                                                if(semana == 6){
+                                                    if (obj[i].nombre == 'Día pareja'){
+                                                        proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
+                                                            
+                                                        $.ajax({
+                                                                url: "../controlador/insertProyeccion.php",
+                                                                type: "POST",
+                                                                data: proyecccion
+                                                        });
+                                                            removeItemFromArr(listaSala,listaSala[j]);
+                                                            removeItemFromArr(listaFecha,listaFecha[j]);
+                                                            removeItemFromArr(listaHora,listaHora[j]);
+                                                    }
+                                                }
+                                                else{
+                                                    if (semana == 6 && h == 12.00 ||  semana == 0 && h == 12.00){
+                                                        if (obj[i].nombre == 'Matinal'){
+                                                            proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};
+                                                                
+                                                            $.ajax({
+                                                                    url: "../controlador/insertProyeccion.php",
+                                                                    type: "POST",
+                                                                    data: proyecccion
+                                                            });
+                                                            removeItemFromArr(listaSala,listaSala[j]);
+                                                            removeItemFromArr(listaFecha,listaFecha[j]);
+                                                            removeItemFromArr(listaHora,listaHora[j]);
+                                                        }
+                                                    }
+                                                    else{
+                                                        if (obj[i].nombre == 'Entrada normal'){
+                                                            proyecccion = {'resultado' : {'idSala':listaSala[j], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj[i].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};   
+                                                                
+                                                            $.ajax({
+                                                                    url: "../controlador/insertProyeccion.php",
+                                                                    type: "POST",
+                                                                    data: proyecccion
+                                                            });
+                                                            removeItemFromArr(listaSala,listaSala[j]);
+                                                            removeItemFromArr(listaFecha,listaFecha[j]);
+                                                            removeItemFromArr(listaHora,listaHora[j]);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        } 
+                                        else{
+                                            $('.mensaje').text('Este dato ya existe');
                                         }
                                     }
                                 }
                             }
                         });
                     });
+                    alert('Se ha relaizado de forma correcta');
+                    window.location.replace("../vista/pelicula.php");
                 }
-                    
-                    // $.post("../controlador/maxIdPelicula.php", function(e){
-                    //     var obj = JSON.parse(e);
-                    //     idMax= obj.idPelicula + 1;
-                    // });
-            //         $.post("../controlador/proyeccion.php", function(re){
-            //             $.post("../controlador/todaTarifa.php", function(s){
-            //                 var obj = JSON.parse(s);
-            //                 var t = JSON.parse(re);
-            //                 for (let p = 0; p < t.length; p++) {
-            //                     
-            // //                             for (let i = 0; i < listaSala.length; i++) {
-            //                                 // var idF = '.' + listaFecha[i];
-            //                                 // var id6 = '.' + listaHora[i];
-            // //                                 var idCheck = '#'+ listaSala[j];
-            //                                 // var partes = $(id5).val().split('/');
-            // //                                 var partesHora = $(id6).val().split(':');
-            // //                                 var h = parseFloat(partesHora[0] + '.' + partesHora[1]); 
-            // //                                 var string = $(id5).val() + 'T' + $(id6).val() + 'Z';
-            //                                 // var fechaHora = new Date(string);
-            //                                 // var semana = fechaHora.getDay();
-            // //                                     for (let y = 0; y < todo.length; y++) {
-            // //                                         if (listaSala[i] == todo[y].idSala) {
-            //                                             if (semana == 3){
-            //                                                 if (obj[i].nombre == 'Día espectador'){
-            //                                                     proyecccion = {'resultado' : {'idProyeccion':todo[y].idProyeccion , 'idSala':listaSala[i], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-            //                                                     $.ajax({
-            //                                                             url: "../controlador/modeficarPro.php",
-            //                                                             type: "POST",
-            //                                                             data: proyecccion
-            //                                                     }); 
-            //                                                     removeItemFromArr(listaSala,listaSala[i]);
-            //                                                 }
-            //                                             }
-            //                                             else{
-            //                                                 if(semana == 6){
-            //                                                     if (w[j].nombre == 'Día pareja'){
-            //                                                         proyecccion = {'resultado' : {'idProyeccion':todo[y].idProyeccion , 'idSala':listaSala[i], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-            //                                                         $.ajax({
-            //                                                             url: "../controlador/modeficarPro.php",
-            //                                                             type: "POST",
-            //                                                             data: proyecccion
-            //                                                         }); 
-            //                                                         removeItemFromArr(listaSala,listaSala[i]);
-            //                                                     }
-            //                                                 }
-            //                                                 else{
-            //                                                     if (semana == 6 && h == 12.00 ||  semana == 0 && h == 12.00){
-            //                                                         if (w[j].nombre == 'Matinal'){
-            //                                                             proyecccion = {'resultado' : {'idProyeccion':todo[y].idProyeccion , 'idSala':listaSala[i], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-            //                                                             $.ajax({
-            //                                                                 url: "../controlador/modeficarPro.php",
-            //                                                                 type: "POST",
-            //                                                                 data: proyecccion
-            //                                                             }); 
-            //                                                             removeItemFromArr(listaSala,listaSala[i]);
-            //                                                         }
-            //                                                     }
-            //                                                     else{
-            //                                                         if (w[j].nombre == 'Entrada normal'){
-            //                                                             proyecccion = {'resultado' : {'idProyeccion':todo[y].idProyeccion , 'idSala':listaSala[i], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-            //                                                             $.ajax({
-            //                                                                 url: "../controlador/modeficarPro.php",
-            //                                                                 type: "POST",
-            //                                                                 data: proyecccion
-            //                                                             }); 
-            //                                                             removeItemFromArr(listaSala,listaSala[i]);
-            //                                                         }
-            //                                                     }
-            //                                                 }
-            //                                             }
-            //                                         }
-            //                                         else{
-            //                                             var id = '#'+todo[y].idSala;
-            //                                             if ($(id).prop('checked')== false) {
-            //                                                 proyecccion = {'resultado' : {'idProyeccion':todo[y].idProyeccion , 'idSala':listaSala[i], 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-            //                                                             $.ajax({
-            //                                                                 url: "../controlador/modeficarPro.php",
-            //                                                                 type: "POST",
-            //                                                                 data: proyecccion
-            //                                                             }); 
-            //                                             }
-                                                        // if (t[p].idSala != listaSala[i] && partes != t[p].fecha && $(id6).val() != t[p].hora) {
-                                                        //     if (semana == 3){
-                                                        //         if (w[j].nombre == 'Día espectador'){
-                                                        //             proyecccion = {'resultado' : {'idSala':listaSala[i], 'idPelicula':idMax, 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-                                                        //             $.ajax({
-                                                        //                     url: "../controlador/insertProyeccion.php",
-                                                        //                     type: "POST",
-                                                        //                     data: proyecccion
-                                                        //             }); 
-                                                        //             removeItemFromArr(listaSala,listaSala[i]);
-                                                        //         }
-                                                        //     }
-                                                        //     else{
-                                                        //         if(semana == 6){
-                                                        //             if (w[j].nombre == 'Día pareja'){
-                                                        //                 proyecccion = {'resultado' : {'idSala':listaSala[i], 'idPelicula':idMax, 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-                                                                            
-                                                        //                 $.ajax({
-                                                        //                         url: "../controlador/insertProyeccion.php",
-                                                        //                         type: "POST",
-                                                        //                         data: proyecccion
-                                                        //                 });
-                                                        //                     removeItemFromArr(listaSala,listaSala[i]);
-                                                        //             }
-                                                        //         }
-                                                        //         else{
-                                                        //             if (semana == 6 && h == 12.00 ||  semana == 0 && h == 12.00){
-                                                        //                 if (w[j].nombre == 'Matinal'){
-                                                        //                     proyecccion = {'resultado' : {'idSala':listaSala[i], 'idPelicula':idMax, 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};
-                                                                                
-                                                        //                     $.ajax({
-                                                        //                             url: "../controlador/insertProyeccion.php",
-                                                        //                             type: "POST",
-                                                        //                             data: proyecccion
-                                                        //                     });
-                                                        //                     removeItemFromArr(listaSala,listaSala[i]);
-                                                        //                 }
-                                                        //             }
-                                                        //             else{
-                                                        //                 if (w[j].nombre == 'Entrada normal'){
-                                                        //                     proyecccion = {'resultado' : {'idSala':listaSala[i], 'idPelicula':idMax, 'idTipo':w[j].idTipo, 'fecha': $(id5).val(), 'hora':$(id6).val() }};   
-                                                                                
-                                                        //                     $.ajax({
-                                                        //                             url: "../controlador/insertProyeccion.php",
-                                                        //                             type: "POST",
-                                                        //                             data: proyecccion
-                                                        //                     });
-                                                        //                     removeItemFromArr(listaSala,listaSala[i]);
-                                                        //                 }
-                                                        //             }
-                                                        //         }
-                                                        //     }
-                                                        // } 
-                                                        // else{
-                                                        //     $('.mensaje').text('Este dato ya existe');
-                                                        // } 
-            //                                         }
-            //                                     }                                 
-            //                             }
-                                            
-            //                     }
-            //                 }
-                                
-            //             });
-            //         });
-            //         alert('Se ha relaizado de forma correcta');
-            //         window.location.replace("../vista/pelicula.php");
-            //     }
-            //     else{
-            //         $('.mensaje').text('Hay datos sin rellenar');
-            //     }
             }
         }
     });

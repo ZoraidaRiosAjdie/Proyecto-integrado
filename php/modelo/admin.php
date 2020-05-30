@@ -43,7 +43,7 @@
             $this->tipo = $tipo;
         }
         public function cartelera(){
-            $consulta ="SELECT pr.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, idSala, fecha, hora
+            $consulta ="SELECT idProyeccion ,pr.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, idSala, fecha, hora
                         from pelicula p, proyeccion pr
                         WHERE p.idPelicula = pr.idPelicula";
             return DataBase::getConsultasPDO($consulta);
@@ -90,21 +90,35 @@
         }
         // modificar
         public function updatePeli(){
+            // $update ="UPDATE datos
+		    // 		SET usuario= \"".$this->usuario."\", pwd= \"".$this->pwd."\", email=\"".$this->email."\", rol= \"".$this->rol."\" 
+		    // 		WHERE id=\"".$this->id."\"";
             $consulta ="UPDATE pelicula
-                        SET idPelicula= \"".$this->idPelicula."\",anio =\"".$this->anio."\" ,titulo = \"".$this->titulo."\", pais \"".$this->pais."\", genero = \"".$this->genero."\", duracion =\"".$this->duracion."\", fecha_estreno=\"".$this->fecha_estreno."\", calificacion=\"".$this->calificacion."\", sinopsis=\"".$this->sinopsis."\", actores=\"".$this->actores."\", imagen=\"".$this->imagen."\", mostrar=\"".$this->mostrar."\"
+                        SET idPelicula= \"".$this->idPelicula."\", 
+                            anio =\"".$this->anio."\" ,
+                            titulo = \"".$this->titulo."\", 
+                            pais = \"".$this->pais."\", 
+                            genero = \"".$this->genero."\", 
+                            duracion =\"".$this->duracion."\", 
+                            fecha_estreno=\"".$this->fecha_estreno."\", 
+                            calificacion=\"".$this->calificacion."\", 
+                            sinopsis=\"".$this->sinopsis."\", 
+                            actores=\"".$this->actores."\", 
+                            imagen=\"".$this->imagen."\", 
+                            mostrar=\"".$this->mostrar."\"
                         WHERE idPelicula=\"".$this->idPelicula."\"";
             return DataBase::getConsultasPDO($consulta);
         }
         public function updatePro(){
             $consulta ="UPDATE proyeccion
-                        SET idProyeccion= \"".$this->idProyeccion."\",idSala =\"".$this->idSala."\" ,idPelicula = \"".$this->idPelicula."\", idTipo \"".$this->idTipo."\", fecha = \"".$this->fecha."\", hora =\"".$this->hora."\"
+                        SET idProyeccion= \"".$this->idProyeccion."\",idSala =\"".$this->idSala."\" ,idPelicula = \"".$this->idPelicula."\", idTipo = \"".$this->idTipo."\", fecha = \"".$this->fecha."\", hora =\"".$this->hora."\"
                         WHERE idProyeccion=\"".$this->idProyeccion."\"";
             return DataBase::getConsultasPDO($consulta);
         }
         // Borrar
         public function deletePeli(){
             $consulta ="DELETE FROM pelicula
-                        WHERE idPelicula= \"".$this->idPelicula."\", anio =\"".$this->anio."\" , titulo = \"".$this->titulo."\", pais \"".$this->pais."\", genero = \"".$this->genero."\", duracion =\"".$this->duracion."\", fecha_estreno=\"".$this->fecha_estreno."\", calificacion=\"".$this->calificacion."\", sinopsis=\"".$this->sinopsis."\", actores=\"".$this->actores."\", imagen=\"".$this->imagen."\", mostrar=\"".$this->mostrar."\" ";
+                        WHERE idPelicula= \"".$this->idPelicula."\"";
             return DataBase::getConsultasPDO($consulta);
         }
         public function deletePro(){
