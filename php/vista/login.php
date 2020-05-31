@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +11,10 @@
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="login pl-5">
-    <?php
-    ?>
     <header class="container-sm mt-5">
         <div class="row">
             <div class="col">
-                <a href="#" class="float-right ">Entrar sin registrar</a>
+                <a href="principal.php" class="float-right ">Entrar sin registrar</a>
             </div>
         </div>
     </header>
@@ -26,7 +23,6 @@
             <article class="col-7 cuadro ml-auto mr-auto pb-5">
                 <article class="row ml-auto mr-auto">
                     <p class="col display-3 text-center">Iniciar sesión</p>
-                    
                 </article>
                 <p class="mensaje text-danger text-center"></p>
                 <article class="row ">
@@ -42,10 +38,8 @@
                         <input type="button" name="entrar" value="Entrar" class="btn btn-primary float-left entrar">
                         <input type="button" name="registro" value="Registrarse" class="btn btn-primary float-right registro">
                     </form>
-                </article>
-                
-            </article>
-            
+                </article> 
+            </article>            
         </article>
     </section>
 </body>

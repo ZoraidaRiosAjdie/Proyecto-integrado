@@ -8,6 +8,7 @@ CREATE TABLE usuario (
     email varchar(45),
     pws varchar(45) NOT NULL,
     admin int,
+    imagen varchar (60);
     CONSTRAINT PK_usuario PRIMARY KEY (idUsuario)
 );
 CREATE TABLE pelicula (
@@ -68,14 +69,14 @@ CREATE TABLE reserva (
 );
 /*Insertar en tablas*/
 /*Usuario*/
-INSERT INTO usuario (idUsuario, nombre, email, pws, admin)
-VALUES ("1", "Juan", "juan@gmail.com", "1234" , 1);
-INSERT INTO usuario (idUsuario, nombre, email, pws, admin)
-VALUES ("2", "Lola", "lola@gmail.com", "1234" , 1);
-INSERT INTO usuario (idUsuario, nombre, email, pws, admin)
-VALUES ("3", "Pedro", "pedro@gmail.com", "1234" , 0);
-INSERT INTO usuario (idUsuario, nombre, email, pws, admin)
-VALUES ("4", "Angela", "angela@gmail.com", "1234" , 0);
+INSERT INTO usuario (idUsuario, nombre, email, pws, admin, imagen)
+VALUES ("1", "Juan", "juan@gmail.com", "1234" , 1, '../../imagenes/user.png');
+INSERT INTO usuario (idUsuario, nombre, email, pws, admin, imagen)
+VALUES ("2", "Lola", "lola@gmail.com", "1234" , 1, '../../imagenes/user.png');
+INSERT INTO usuario (idUsuario, nombre, email, pws, admin, imagen)
+VALUES ("3", "Pedro", "pedro@gmail.com", "1234" , 0, '../../imagenes/user.png');
+INSERT INTO usuario (idUsuario, nombre, email, pws, admin, imagen)
+VALUES ("4", "Angela", "angela@gmail.com", "1234" , 0, '../../imagenes/user.png');
 /*Pelicula*/
 INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar)
 VALUES ("1", "2020", "Aves de presa", "Estados Unidos" , "Superhéroes", "109 minutos", "6 de febrero de 2020", "+16" ,

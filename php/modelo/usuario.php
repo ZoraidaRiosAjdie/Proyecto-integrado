@@ -7,12 +7,14 @@
         public $email;
         public $pws;
         public $admin;
-        function __construct($idUsuario="", $nombre="", $email="", $pws="", $admin=0){
+        public $imagen;
+        function __construct($idUsuario="", $nombre="", $email="", $pws="", $admin=0, $imagen = ""){
             $this->idUsuario = $idUsuario;
             $this->nombre = $nombre;
             $this->email = $email;
             $this->pws = $pws;
             $this->admin = $admin;
+            $this->imagen = $imagen;
         }
         // Para login
         public function usuario(){
@@ -28,8 +30,8 @@
         }
         // Para registro
         public function insert(){
-            $insercion = "INSERT INTO usuario (idUsuario, nombre, email, pws, admin) 
-                        VALUES (NULL, \"".$this->nombre."\", \"".$this->email."\", \"".$this->pws."\", 0)";
+            $insercion = "INSERT INTO usuario (idUsuario, nombre, email, pws, admin, imagen) 
+                        VALUES (NULL, \"".$this->nombre."\", \"".$this->email."\", \"".$this->pws."\", 0, \"".$this->imagen."\")";
             return DataBase::getConsultasPDO($insercion);
         }
         // Para tarifa

@@ -9,12 +9,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../script/menuT.js"></script>
     <script src="../../script/tarifa.js"></script>
+    <script src="../../script/usuario.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
-<header class="container-fluid cabecera">
+    <header class="container-fluid cabecera">
         <div class="row">
-            <h1 class="col text-center display-1">Cinemania</h1>
+            <div class="col">
+                <h1 class="col text-center display-1">Cinemania</h1>
+            </div>
+            <div class="col-1 rounded-circle navbar-collapse usuario" id="imagen">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropleft">
+                            <img src="" alt="" class="foto nav-link dropdown-toggle" data-toggle="dropdown">
+                            <ul class="dropdown-menu ventana">
+                                <li class="text-right">
+                                    <a class="dropdown-item ventana" href="verReserva.php" class="usuario" id="reserva">Reservas</a>
+                                </li>
+                                <li class="text-right">
+                                    <a class="dropdown-item ventana" class="usuario" id="sesion">Cerrar Sesión</a> 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+            </div>
         </div>
         <div class="row">
             <nav class="navbar navbar-expand-sm navbar-dark  col menu">

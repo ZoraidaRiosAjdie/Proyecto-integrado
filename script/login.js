@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     $.post("../controlador/login.php", function(r){
         var obj = JSON.parse(r);

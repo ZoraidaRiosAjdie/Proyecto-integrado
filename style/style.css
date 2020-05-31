@@ -21,6 +21,22 @@ article.cuadro{
     border-radius: 12px;
     border-width: 6px;
 }
+/*Principal*/
+div#imagen{
+    z-index:3;
+}
+img.imagen {
+    border: 5px solid rgba(252, 69, 0, .9);
+    border-radius: 5px;
+}
+ul.ventana{
+    background-color: rgba(245, 198, 97, .9);
+    /* color: white; */
+}
+a.ventana:hover{
+    background-color: rgba(252, 69, 0, .3);
+    color: white;
+}
 /*Cartelera*/
 body.cartelera{
     background-image:url("../../Proyecto-integrado/imagenes/cartelera.webp");

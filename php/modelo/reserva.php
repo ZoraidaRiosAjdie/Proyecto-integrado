@@ -34,5 +34,11 @@
                         WHERE idSala=\"".$this->idSala."\"";
             return DataBase::getConsultasPDO($consulta);
         }
+        // Eliminar reserva
+        public function deleteReserva(){
+            $consulta ="DELETE FROM reserva
+                        WHERE  idReserva= \"".$this->idReserva."\"";
+            return DataBase::getConsultasPDO($consulta);
+        }
     }
 ?>

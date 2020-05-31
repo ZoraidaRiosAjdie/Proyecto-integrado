@@ -9,10 +9,12 @@ $(document).ready(function(){
             var email = [];
             var usuario;
             var email1;
+            var imagen = null;
             // var pwd = [];
             for (let index = 0; index < obj.length; index++) {
                 nombre.push(obj[index].nombre);
                 email.push(obj[index].email);
+                imagen = obj[index].imagen;
             }
             $('.nombre').blur(function(){
                 if ($('.nombre').val()== ""){
@@ -95,8 +97,11 @@ $(document).ready(function(){
                 }
             });
             $('.aceptar').click(function(){
+                if ($('.foto').val() != '' ){
+                    imagen = $('.foto').val();
+                }
                 if (jsonNombre != null && jsonEmail != null && jsonPWD != null){
-                    json = {'usuario':[jsonNombre,jsonEmail,jsonPWD]};
+                    json = {'usuario':[jsonNombre,jsonEmail,jsonPWD,imagen]};
                     $.ajax({
                         url: "../controlador/insertar.php",
                         type: "POST",

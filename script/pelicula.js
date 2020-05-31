@@ -353,17 +353,16 @@ $(document).ready(function(){
         };
         $('.mostrar').click(function(event){
             var evento = event.currentTarget;
-            for (let i = 0; i < id.length; i++) {
-                if ($(evento).attr("id")==id[i]){
+            for (let i = 0; i < lrepe.length; i++) {
+                if ($(evento).attr("id")==lrepe[i]){
                     var objeto= null;
                     var lista = null;
                     if ($(evento).val()== 'Mostrar Cartelera'){
-                        var objeto = {'idPelicula': id[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 1}
+                        var objeto = {'idPelicula': lrepe[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 1}
                         $(evento).attr('value','Ocultar Cartelera');
                     }
                     else{
-                    // if ($(evento).val()== 'Ocultar Cartelera'){
-                        var objeto = {'idPelicula': id[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 0}
+                        var objeto = {'idPelicula': lrepe[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 0}
                         $(evento).attr('value','Mostrar Cartelera');
                     }
                     lista = {'resultado': objeto};

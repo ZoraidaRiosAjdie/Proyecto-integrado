@@ -26,21 +26,33 @@
                 <p class="mensaje text-danger text-center"></p>
                 <article class="row pb-5">
                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" class="col-7 ml-auto mr-auto">
-                        <!-- <p class="pb-2 pt-4"> -->
-                        <div class="form-group">
-                            <label for="nombre" class="pr-2">Nombre: </label></br>
-                            <input type="text" name="nombre" class="nombre col" require>
-                            <small id="1"></small>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="nombre" class="pr-2">Nombre: </label></br>
+                                <input type="text" name="nombre" class=" form-control nombre col" require>
+                                <small id="1"></small>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email" class="pr-2">Email: </label></br>
-                            <input type="text" name="email" class="email col" require>
-                            <small id="2"></small>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="email" class="pr-2">Email: </label></br>
+                                <input type="text" name="email" class=" form-control email col" require>
+                                <small id="2"></small>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="pwd" class="pr-2">Contraseña: </label></br>
-                            <input type="text" name="pwd" class="pwd col" require>
-                            <small id="3"></small>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="pwd" class="pr-2">Contraseña: </label></br>
+                                <input type="password" name="pwd" class="form-control pwd col" require>
+                                <small id="3"></small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="foto" class="pr-2">Foto de perfil: </label></br>
+                                <input type="text" name="foto" class="form-control foto col">
+                                <small id="4"></small>
+                            </div>
                         </div>
                         <input type="submit" name="atras" value="Atras" class="btn btn-primary float-left">
                         <input type="button" name="aceptar" value="Aceptar" class="btn btn-primary float-right aceptar">

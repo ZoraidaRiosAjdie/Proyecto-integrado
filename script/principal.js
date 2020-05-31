@@ -1,8 +1,13 @@
 $(document).ready(function(){
     $('.reserva').hide();
+    $('.usuario').hide();
     if (sessionStorage.getItem("id")== 0 || sessionStorage.getItem("id")== 1){
         $('.reserva').show();
+        $('.usuario').show();
     }
+    $( function() {
+        $( "#imagen" ).draggable();
+    } );
     $.post("../controlador/principal.php", function(r){
         var obj = JSON.parse(r);
         var valoracion = [];
@@ -297,16 +302,14 @@ $(document).ready(function(){
             input2.attr('value','Reservar entrada');
             input2.attr('id',lrepe[i]);
             $(div17).append(input2);
-
-            $(':button').click(function(r){
-                var evento = r.currentTarget;
-                if ($(evento).val()=='Reservar entrada') {
-                    sessionStorage.setItem("idPelicula", $(evento).attr('id'));
-                    window.location.replace("../vista/reserva.php");
-                }
-            });
-            
         } 
+        $(':button').click(function(r){
+            var evento = r.currentTarget;
+            if ($(evento).val()=='Reservar entrada') {
+                sessionStorage.setItem("idPelicula", $(evento).attr('id'));
+                window.location.replace("../vista/reserva.php");
+            }
+        });
     });
     function round(num, decimales = 2) {
         var signo = (num >= 0 ? 1 : -1);
