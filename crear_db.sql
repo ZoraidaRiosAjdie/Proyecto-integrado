@@ -8,7 +8,7 @@ CREATE TABLE usuario (
     email varchar(45),
     pws varchar(45) NOT NULL,
     admin int,
-    imagen varchar (60);
+    imagen varchar (60),
     CONSTRAINT PK_usuario PRIMARY KEY (idUsuario)
 );
 CREATE TABLE pelicula (
@@ -44,6 +44,9 @@ CREATE TABLE tarifa (
     nombre varchar (45) NOT NULL,
     definicion varchar(100000) NOT NULL,
     precio FLOAT NOT NULL,
+    semana varchar (30) ,
+    horario varchar (45),
+    rebaja varchar (45),
     CONSTRAINT PK_tarifa PRIMARY KEY (idTipo)
 );
 CREATE TABLE proyeccion (
@@ -171,16 +174,16 @@ VALUES ("9", "180", "normal");
 INSERT INTO sala (idSala, butaca, tipo)
 VALUES ("10", "180", "XD");
 /*Tarifa*/
-INSERT INTO tarifa (idTipo, nombre , definicion, precio)
-VALUES ("1", "Entrada normal",'', "7,00");
-INSERT INTO tarifa (idTipo, nombre , definicion, precio)
-VALUES ("2", "Día espectador",'El miercoles el precio de la entrada bajará de precio durante todo el día', "3,50");
-INSERT INTO tarifa (idTipo, nombre , definicion, precio)
-VALUES ("3", "Día pareja",'Ven con un acompañante y pagais la entrada de solo uno, esta tarifa se  realiza los jueves' ,7);
-INSERT INTO tarifa (idTipo, nombre , definicion, precio)
-VALUES ("4", "Matinal", 'El sabado y domingo a las 12:00, se realizará una rebaja en el precio de la entrada',5);
-INSERT INTO tarifa (idTipo, nombre , definicion, precio)
-VALUES ("5", "Sala 3D", 'Se proyectaran peliculas en 3D',7);
+INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
+VALUES ("1", "Entrada normal",'', "7,00", '1,2,3,4,5,6,0', null, null);
+INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
+VALUES ("2", "Día espectador",'El miercoles el precio de la entrada bajará de precio durante todo el día', "3,50", '3', '00:00-23:59', null);
+INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
+VALUES ("3", "Día pareja",'Ven con un acompañante y pagais la entrada de solo uno, esta tarifa se  realiza los jueves' , 7, '4', '00:00-23:59', '2*');
+INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
+VALUES ("4", "Matinal", 'El sabado y domingo a las 12:00, se realizará una rebaja en el precio de la entrada',5, '6,0', '12:00,12:00', null);
+INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
+VALUES ("5", "Sala 3D", 'Se proyectaran peliculas en 3D los lunes',7, '1', '12:00-18:00', null);
 /*Proyeccion*/
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
 VALUES ("1", "5", "1", "4", STR_TO_DATE('19/09/2020', '%d/%m/%Y'), "17:00");

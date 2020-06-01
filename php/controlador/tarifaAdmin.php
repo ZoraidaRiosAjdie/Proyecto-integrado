@@ -8,7 +8,10 @@
             "idTipo"=>$todo['idTipo'],
             "nombre"=>$todo['nombre'],
             "definicion"=>$todo['definicion'],
-            "precio"=>$todo['precio']
+            "precio"=>$todo['precio'],
+            "semana"=>$todo['semana'],
+            "horario"=>$todo['horario'],
+            "rebaja"=>$todo['rebaja']
         ];
         array_push($lista,$peli);
     }

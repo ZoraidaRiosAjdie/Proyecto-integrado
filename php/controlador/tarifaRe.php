@@ -11,7 +11,10 @@
             "definicion"=>$todo['definicion'],
             "precio"=>$todo['precio'],
             "fecha"=>$todo['fecha'],
-            "hora"=>$todo['hora']
+            "hora"=>$todo['hora'],
+            "semana"=>$todo['semana'],
+            "horario"=>$todo['horario'],
+            "rebaja"=>$todo['rebaja']
         ];
         array_push($lista,$peli);
     }

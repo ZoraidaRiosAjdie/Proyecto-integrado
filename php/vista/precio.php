@@ -59,29 +59,29 @@
                     <div class="row pt-2">
                         <div class="col">
                             <p>Título</p>
-                            <input type="text" name="titulo" id="titulo" disabled class="form-control">
+                            <input type="text" name="titulo" id="titulo" readonly class="form-control">
                         </div>
                     </div>
                     <div class="row pt-2">
                         <div class="col">
                             <p>Numero de entradas</p>
-                            <input type="text" name="entrada" id="entrada" disabled class="form-control">
+                            <input type="text" name="entrada" id="entrada" readonly class="form-control">
                         </div>
                         <div class="col">
                             <p>Sala</p>
-                            <input type="text" name="sala" id="sala" disabled class="form-control">
+                            <input type="text" name="sala" id="sala" readonly class="form-control">
                         </div>
                     </div>
                     <div class="row pt-2">
                         <div class="col">
                             <p>Hora y fecha</p>
-                            <input type="text" name="hf" id="hf" disabled class="form-control">
+                            <input type="text" name="hf" id="hf" readonly class="form-control">
                         </div>
                         <div class="col">
                             <p>Tarifa: </p>
-                            <input type="text" name="tarifa" id="tarifa" disabled class="form-control">
+                            <input type="text" name="tarifa" id="tarifa" readonly class="form-control">
                             <p>Precio: </p>
-                            <input type="text" name="precio" id="precio" disabled class="form-control">
+                            <input type="text" name="precio" id="precio" readonly class="form-control">
                         </div>
                     </div>
                     <div class="row pt-5">

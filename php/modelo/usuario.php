@@ -74,7 +74,7 @@
             return DataBase::getConsultasPDO($consulta);
         }
         public function tarifaRe(){
-            $consulta ="SELECT idProyeccion, t.idTipo, nombre, definicion, precio, fecha, hora
+            $consulta ="SELECT idProyeccion, t.idTipo, nombre, definicion, precio, fecha, hora, semana, horario, rebaja
                         from proyeccion pr, tarifa t
                         Where pr.idTipo = t.idTipo";
             return DataBase::getConsultasPDO($consulta);
