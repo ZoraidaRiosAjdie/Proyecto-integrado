@@ -79,8 +79,7 @@ $(document).ready(function(){
                         text4.attr('type', 'button');
                         text4.attr('class', 'btn btn-primary float-right');
                         text4.val('Eliminar');
-                        text4.attr('id', obj[i].idSala);
-                        console.log(obj[i].idProyeccion)
+                        text4.attr('id', obj[i].idProyeccion);
                     }
                 }
             }
@@ -119,6 +118,17 @@ $(document).ready(function(){
                         if ($(e).val() == 'Modificar') {
                             sessionStorage.setItem('modIdPro' , $(e).attr('id'));
                             window.location.replace("../vista/modPro.php");
+                        }
+                        else{
+                            if ($(e).val() == 'Continuar') {
+                                proyeccion = {'resultado' : {'idPelicula':sessionStorage.getItem('idPeliMod'),'anio': sessionStorage.getItem('anioPelMod'), 'titulo':sessionStorage.getItem('tituloPelMod'), 'pais':sessionStorage.getItem('paisPelMod'), 'genero':sessionStorage.getItem('generoPelMod'), 'duracion':sessionStorage.getItem('duracionPelMod'), 'fecha_estreno':sessionStorage.getItem('fechaPelMod'), 'calificacion':sessionStorage.getItem('calificacionPelMod'), 'sinopsis':sessionStorage.getItem('sinopsisPelMod'), 'actores':sessionStorage.getItem('actoresPelMod'),'imagen':sessionStorage.getItem('imagenPelMod'), 'mostrar':0}};
+                                $.ajax({
+                                    url: "../controlador/modificarPeli.php",
+                                    type: "POST",
+                                    data: proyeccion
+                                }); 
+                                window.location.replace("../vista/pelicula.php");
+                            }
                         }
                     }
                 }

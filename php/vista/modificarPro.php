@@ -28,7 +28,11 @@
                     </div>
                     <div class="row" id="sala">
                     </div>
-                    
+                    <div class="row">
+                        <div class="col">
+                            <input type="button" value="Continuar" class="btn btn-primary float-right"> 
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
