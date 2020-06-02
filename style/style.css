@@ -80,4 +80,8 @@ input.estr:checked ~ label {
 .elec{
     border-right: 6px solid gray;
 }
-/* Insertar pelicula */
+/* modificar pelicula */
+div.sala {
+    background-color:  rgba(255,255,255,.4);
+    border-radius: 50px;
+}
