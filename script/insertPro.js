@@ -10,9 +10,10 @@ $(document).ready(function(){
     var lfecha = [];
     var lhora = [];
     var listaCont=[];
-    $.post("../controlador/tarifaAdmin.php", function(e){
-        var obj = JSON.parse(e);
+    $.post("../controlador/tarifaAdmin.php", function(r){
+        var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
+            var dia ;
             if (obj[i].semana != null) {
                 var dia = obj[i].semana.split(',');
             }
@@ -45,11 +46,11 @@ $(document).ready(function(){
                 todoTarifa.push(json);
             }
             else {
-                var json = {'nombre': obj[i].nombre ,'dia':dia , 'hO': hO , 'hE': hE, 'rebaja': obj[i].rebaja, 'precio': obj[i].precio, 'idTipo': obj[i].idTipo };
+                var json = {'nombre': obj[i].nombre ,'dia':dia , 'hO': hO , 'hE': hE, 'rebaja': obj[i].rebaja, 'precio': obj[i].precio, 'idTipo': obj[i].idTipo};
                 normal.push(json);
             }
         }
-    });   
+    });
     $.post("../controlador/salaRe.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -57,7 +58,7 @@ $(document).ready(function(){
             $('#idSala').append(option1);
             option1.val(obj[i].idSala);
             option1.text(obj[i].idSala);
-            lidSala.push(obj[i].idSala)
+            lidSala.push(obj[i].idSala);
         }
         $('input').click(function(event){
             var e = event.currentTarget;
@@ -67,92 +68,143 @@ $(document).ready(function(){
             else{
                 if ($(e).val() == 'Insertar sala') {
                     if ($('#fecha').val()!=null  && $('#hora').val()!=null && $('#idSala').val()!=null) {
-                        lfecha.push($('#fecha').attr('id'));
-                        lhora.push($('#hora').attr('id'));
-                        lselect.push($('#idSala').attr('id'));
-                        $.post("../controlador/soloPro.php", function(v){ 
-                            $.post("../controlador/soloPro.php", function(re){
-                                var proyeccion =null;
-                                var obj1 = JSON.parse(v);
-                                var obj = JSON.parse(re);
-                                var insertado = [];
+                        $.post("../controlador/soloPro.php", function(v){
+                            var proyeccion= null;
+                            var obj1 = JSON.parse(v);
+                            // for (let i = 0; i < obj.length; i++) {
                                 for (let j = 0; j < obj1.length; j++) {
-                                    for (let l = 0; l < obj.length; l++) {
-                                        for (let i = 0; i < lselect.length; i++) {
-                                            if (insertado.length < lselect.length){
-                                                var idF = '#' + lfecha[i];
-                                                var idH = '#' + lhora[i];
-                                                var idS = '#' + lselect[i];
-                                                var partes = $(idF).val().split('/');
-                                                var partesHora = $(idH).val().split(':');
-                                                var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
-                                                var string = partes + 'T' + $(idH).val() + 'Z';
-                                                var fechaHora = new Date(string);
-                                                var semana = fechaHora.getDay();
-                                                if (obj[l].idSala != $(idS).val() && partes.toString() != obj[l].fecha && $(idH).val() != obj[l].hora) {
-                                                    for (let p = 0; p < todoTarifa.length; p++) {
-                                                        var dia = todoTarifa[p].dia;
-                                                        var hO = todoTarifa[p].hO;
-                                                        var hE = todoTarifa[p].hE
-                                                        if (todoTarifa[p].idTipo == obj1[j].idTipo) {
-                                                            for (let s = 0; s < dia.length; s++) {
-                                                                if (semana == dia[s]) {
-                                                                    for (let l = 0; l < hO.length; l++) {
-                                                                        if (hE[0] <= h || hE[1] >= h || hO[l]==h) {
-                                                                        
-                                                                            proyeccion = {'resultado' : {'idSala':$(idS).val(), 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj1[j].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};   
-                                                                            $.ajax({
-                                                                                    url: "../controlador/insertProyeccion.php",
-                                                                                    type: "POST",
-                                                                                    data: proyeccion
-                                                                            });
-                                                                            insertado.push(listaCont[i]); 
-                                                                        }
-                                                                    }
+                                    var partesHora = $('#hora').val().split(':');
+                                    var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
+                                    var string = $('#fecha').val() + 'T' + $('#hora').val() + 'Z';
+                                    var fechaHora = new Date(string);
+                                    var semana = fechaHora.getDay();
+                                    if (obj1[j].idSala != $('#idSala').val() && $('#fecha').toString() != obj1[j].fecha && $('#hora').val() != obj1[j].hora) {
+                                        for (let p = 0; p < todoTarifa.length; p++) {
+                                            var dia = todoTarifa[p].dia;
+                                            var hO = todoTarifa[p].hO;
+                                            var hE = todoTarifa[p].hE
+                                            if (proyeccion == null) {
+                                                for (let s = 0; s < dia.length; s++) {
+                                                    if (semana == dia[s]) {
+                                                        for (let l = 0; l < hO.length; l++) {
+                                                            if (hE[0] <= h || hE[1] >= h || hO[l]==h) {
+                                                                if (todoTarifa[p].rebaja == null) {
+                                                                    proyeccion = {'resultado' : {'idSala':$('#idSala').val(), 'idPelicula':obj1[j].idPelicula, 'idTipo':todoTarifa[p].idTipo, 'fecha': $('#fecha').val(), 'hora':$('#hora').val() }};   
+                                                                    $.ajax({
+                                                                            url: "../controlador/insertProyeccion.php",
+                                                                            type: "POST",
+                                                                            data: proyeccion
+                                                                    });
+                                                                     
                                                                 }
-                                                            }  
+                                                            }
                                                         }
-                                                    }
-                                                    if (proyeccion == null) {
-                                                        for (let q = 0; q < normal.length; q++) {
-                                                            proyeccion = {'resultado' : {'idSala':$(idS).val(), 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj1[j].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};   
-                                                                                
-                                                            $.ajax({
-                                                                    url: "../controlador/insertProyeccion.php",
-                                                                    type: "POST",
-                                                                    data: proyeccion
-                                                            });
-                                                            insertado.push(listaCont[i]);       
-                                                        }
-                                                    }
+                                                    }  
                                                 }
-                                                else{
-                                                    alert ('Ya existe');
-                                                }
+                                            }
+                                            
+                                        }
+                                        if (proyeccion == null) {
+                                            for (let q = 0; q < normal.length; q++) {
+                                                proyeccion = {'resultado' : {'idSala':$('#idSala').val(), 'idPelicula':obj1[j].idPelicula, 'idTipo':normal[q].idTipo, 'fecha': $('#fecha').val(), 'hora':$('#hora').val() }};   
+                                                                    
+                                                $.ajax({
+                                                        url: "../controlador/insertProyeccion.php",
+                                                        type: "POST",
+                                                        data: proyeccion
+                                                });
+                                                       
                                             }
                                         }
                                     }
+                                    else{
+                                        $('.mensaje').text('Este dato ya existe');
+                                    }
                                 }
-                                // window.location.replace("../vista/modificarPro.php");
-                            });
+                            // }
+                            alert('Se ha insertado correctamente');
+                            // location.reload();
                         });
+                            // $.post("../controlador/soloPro.php", function(v){ 
+                            //     var insertado = [];
+                                // var proyeccion= null;
+                                // var obj1 = JSON.parse(v);
+                                // for (let i = 0; i < obj.length; i++) {
+                            //         for (let j = 0; j < obj1.length; j++) {
+                            //             for (let i = 0; i < lselect.length; i++) {
+                            //                 if (insertado.length < lselect.length){
+                                                // var idF = '#' + lfecha[i];
+                                                // var idH = '#' + lhora[i];
+                                                // var idS = '#' + lselect[i];
+                                                // var partes = $(idF).val().split('/');
+                                                // var partesHora = $(idH).val().split(':');
+                                                // var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
+                                                // var string = partes + 'T' + $(idH).val() + 'Z';
+                                                // var fechaHora = new Date(string);
+                                                // var semana = fechaHora.getDay();
+                            //                     if (obj1[i].idSala != $(idS).val() && partes.toString() != obj1[i].fecha && $(idH).val() != obj1[i].hora) {
+                                                //     for (let p = 0; p < todoTarifa.length; p++) {
+                                                //         var dia = todoTarifa[p].dia;
+                                                //         var hO = todoTarifa[p].hO;
+                                                //         var hE = todoTarifa[p].hE
+                                                //         for (let s = 0; s < dia.length; s++) {
+                                                //             if (semana == dia[s]) {
+                                                //                 for (let l = 0; l < hO.length; l++) {
+                                                //                     if (hE[0] <= h || hE[1] >= h || hO[l]==h) {
+                                                //                         if (todoTarifa[p].rebaja == null) {
+                                                //                             proyeccion = {'resultado' : {'idSala':$(idS).val(), 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj1[j].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};   
+                                                //                             $.ajax({
+                                                //                                     url: "../controlador/insertProyeccion.php",
+                                                //                                     type: "POST",
+                                                //                                     data: proyeccion
+                                                //                             });
+                                                //                             insertado.push(listaCont[i]); 
+                                                //                         }
+                                                //                     }
+                                                //                 }
+                                                //             }  
+                                                //         }
+                                                //     }
+                                                //     if (proyeccion == null) {
+                                                //         for (let q = 0; q < normal.length; q++) {
+                                                //             proyeccion = {'resultado' : {'idSala':$(idS).val(), 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':obj1[j].idTipo, 'fecha': $(idF).val(), 'hora':$(idH).val() }};   
+                                                                                
+                                                //             $.ajax({
+                                                //                     url: "../controlador/insertProyeccion.php",
+                                                //                     type: "POST",
+                                                //                     data: proyeccion
+                                                //             });
+                                                //             insertado.push(listaCont[i]);       
+                                                //         }
+                                                //     }
+                                                // }
+                                                // else{
+                                                //     $('.mensaje').text('Este dato ya existe');
+                                                // }
+                            //                 }
+                            //             }   
+                            //         }
+                            //     }
+                            // });
+                        
+                        
                         // $.post("../controlador/soloPro.php", function(v){ 
                         //     $.post("../controlador/soloPro.php", function(re){ 
-                        //         var insertado = [];
-                        //         var proyeccion= null;
-                        //         var obj1 = JSON.parse(v);
+                                // var insertado = [];
+                                // var proyeccion= null;
+                                // var obj1 = JSON.parse(v);
                         //         for (let l = 0; l < obj1.length; l++) {
-                        //             if (insertado.length < lselect.length){
-                                        // for (let i = 0; i < lselect.length; i++) {
-                                        //     var idF = '#' + lfecha[i];
-                                        //     var idH = '#' + lhora[i];
-                                        //     var idS = '#' + lselect[i];
-                                        //     var partes = $(idF).val().split('/');
-                                        //     var partesHora = $(idH).val().split(':');
-                                        //     var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
-                                        //     var string = partes + 'T' + $(idH).val() + 'Z';
-                                        //     var fechaHora = new Date(string);
-                                        //     var semana = fechaHora.getDay();
+                                    // if (insertado.length < lselect.length){
+                                    //     for (let i = 0; i < lselect.length; i++) {
+                                            // var idF = '#' + lfecha[i];
+                                            // var idH = '#' + lhora[i];
+                                            // var idS = '#' + lselect[i];
+                                            // var partes = $(idF).val().split('/');
+                                            // var partesHora = $(idH).val().split(':');
+                                            // var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
+                                            // var string = partes + 'T' + $(idH).val() + 'Z';
+                                            // var fechaHora = new Date(string);
+                                            // var semana = fechaHora.getDay();
                                             
                         //                     var obj = JSON.parse(re);
                         //                     if (obj[i].idSala != $(idS).val() && partes.toString() != obj[i].fecha && $(idH).val() != obj[i].hora) {
@@ -207,57 +259,57 @@ $(document).ready(function(){
                     }
                     
                 }
-                else{
-                    if ($(e).val() == 'Añadir') {
-                        cont++;
-                        listaCont.push(cont);
+                // else{
+                //     if ($(e).val() == 'Añadir') {
+                //         cont++;
+                //         listaCont.push(cont);
                         
-                        var f = 'f' + cont ;
-                        var h = 'h' + cont ;
-                        var s = 's' + cont ;
-                        lselect.push(s);
-                        lhora.push(h);
-                        lfecha.push(f);
+                //         var f = 'f' + cont ;
+                //         var h = 'h' + cont ;
+                //         var s = 's' + cont ;
+                //         lselect.push(s);
+                //         lhora.push(h);
+                //         lfecha.push(f);
 
-                        var row = $('<div>');
-                        $('#nuevo').append(row);
-                        row.attr('class', 'row p-2')
+                //         var row = $('<div>');
+                //         $('#nuevo').append(row);
+                //         row.attr('class', 'row p-2')
 
-                        var col2 = $('<div>');
-                        row.append(col2);
-                        col2.attr('class', 'col');
+                //         var col2 = $('<div>');
+                //         row.append(col2);
+                //         col2.attr('class', 'col');
 
-                        var select = $('<select>');
-                        col2.append(select);
-                        select.attr('id', s);
-                        select.attr('class', "form-control");    
-                        for (let i = 0; i < lidSala.length; i++) {
-                            var option1 = $('<option>');
-                            select.append(option1);
-                            option1.val(lidSala[i]);
-                            option1.text(lidSala[i]);
-                        }
-                        var col = $('<div>');
-                        row.append(col);
-                        col.attr('class', 'col');
+                //         var select = $('<select>');
+                //         col2.append(select);
+                //         select.attr('id', s);
+                //         select.attr('class', "form-control");    
+                //         for (let i = 0; i < lidSala.length; i++) {
+                //             var option1 = $('<option>');
+                //             select.append(option1);
+                //             option1.val(lidSala[i]);
+                //             option1.text(lidSala[i]);
+                //         }
+                //         var col = $('<div>');
+                //         row.append(col);
+                //         col.attr('class', 'col');
 
-                        var text1 = $('<input>');
-                        col.append(text1);
-                        text1.attr('class', 'form-control');
-                        text1.attr('type', 'date');
-                        text1.attr('id', f);
+                //         var text1 = $('<input>');
+                //         col.append(text1);
+                //         text1.attr('class', 'form-control');
+                //         text1.attr('type', 'date');
+                //         text1.attr('id', f);
 
-                        var col1 = $('<div>');
-                        row.append(col1);
-                        col1.attr('class', 'col');
+                //         var col1 = $('<div>');
+                //         row.append(col1);
+                //         col1.attr('class', 'col');
 
-                        var text2 = $('<input>');
-                        col1.append(text2);
-                        text2.attr('class', 'form-control');
-                        text2.attr('type', 'time');
-                        text2.attr('id', h);
-                    }
-                }
+                //         var text2 = $('<input>');
+                //         col1.append(text2);
+                //         text2.attr('class', 'form-control');
+                //         text2.attr('type', 'time');
+                //         text2.attr('id', h);
+                //     }
+                // }
             }
         });
     });

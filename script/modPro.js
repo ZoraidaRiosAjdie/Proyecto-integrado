@@ -97,49 +97,53 @@ $(document).ready(function(){
             else{
                 if ($(e).val() == 'Modificar') {
                     if ($('.fecha').val()!=null  && $('.hora').val()!=null) {
-                        var proyeccion= null;
-                        for (let i = 0; i < lista.length; i++) {
-                            var partes = $('.fecha').val().split('/');
+                        $.post("../controlador/soloPro.php", function(v){
+                            var obj = JSON.parse(v);
+                            var proyeccion= null;
                             var partesHora = $('.hora').val().split(':');
                             var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
-                            var string = partes + 'T' + $('.hora').val() + 'Z';
+                            var string = $('.fecha').val() + 'T' + $('.hora').val() + 'Z';
                             var fechaHora = new Date(string);
                             var semana = fechaHora.getDay();
-                            for (let p = 0; p < todoTarifa.length; p++) {
-                                var dia = todoTarifa[p].dia;
-                                var hO = todoTarifa[p].hO;
-                                var hE = todoTarifa[p].hE
-                                for (let s = 0; s < dia.length; s++) {
-                                    if (semana == dia[s]) {
-                                        for (let l = 0; l < hO.length; l++) {
-                                            if (hE[0] <= h || hE[1] >= h || hO[l]==h) {
-                                                if (todoTarifa[p].rebaja == null) {
-                                                    proyeccion = {'resultado' : {'idProyeccion':lista[i].idProyeccion , 'idSala':lista[i].idSala, 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':todoTarifa[p].idTipo, 'fecha': $('.fecha').val(), 'hora':$('.hora').val() }};
-                                                    $.ajax({
-                                                        url: "../controlador/modificarPro.php",
-                                                        type: "POST",
-                                                        data: proyeccion
-                                                    });  
+                            for (let i = 0; i < obj.length; i++) {
+                                if (obj[i].idProyeccion == sessionStorage.getItem('modIdPro')) {
+                                    for (let p = 0; p < todoTarifa.length; p++) {
+                                        var dia = todoTarifa[p].dia;
+                                        var hO = todoTarifa[p].hO;
+                                        var hE = todoTarifa[p].hE
+                                        for (let s = 0; s < dia.length; s++) {
+                                            if (semana == dia[s]) {
+                                                for (let l = 0; l < hO.length; l++) {
+                                                    if (hE[0] <= h || hE[1] >= h || hO[l]==h) {
+                                                        if (todoTarifa[p].rebaja == null) {
+                                                            proyeccion = {'resultado' : {'idProyeccion':sessionStorage.getItem('modIdPro'), 'idSala':obj[i].idSala, 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':todoTarifa[p].idTipo, 'fecha': $('.fecha').val(), 'hora':$('.hora').val()}};
+                                                            $.ajax({
+                                                                url: "../controlador/modificarPro.php",
+                                                                type: "POST",
+                                                                data: proyeccion
+                                                            });  
+                                                        }
+                                                    }
                                                 }
-                                            }
+                                            }  
                                         }
-                                    }  
+                                    }
+                                    if (proyeccion == null) {
+                                        for (let q = 0; q < normal.length; q++) {
+                                            proyeccion = {'resultado' : {'idProyeccion':sessionStorage.getItem('modIdPro') , 'idSala':obj[i].idSala, 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':normal[q].idTipo, 'fecha': $('.fecha').val(), 'hora':$('.hora').val() }};           
+                                            $.ajax({
+                                                    url: "../controlador/modificarPro.php",
+                                                    type: "POST",
+                                                    data: proyeccion
+                                            });
+                                            // insertado.push(listaCont[i]);       
+                                        }
+                                    }
                                 }
                             }
-                            if (proyeccion == null) {
-                                for (let q = 0; q < normal.length; q++) {
-                                    proyeccion = {'resultado' : {'idProyeccion':lista[i].idProyeccion , 'idSala':lista[i].idSala, 'idPelicula':sessionStorage.getItem("idPeliMod"), 'idTipo':todoTarifa[p].idTipo, 'fecha': $('.fecha').val(), 'hora':$('.hora').val() }};
-                                                        
-                                    $.ajax({
-                                            url: "../controlador/insertProyeccion.php",
-                                            type: "POST",
-                                            data: proyeccion
-                                    });
-                                    insertado.push(listaCont[i]);       
-                                }
-                            }
-                            // window.location.replace("../vista/modificarPro.php");
-                        }
+                        });
+                            window.location.replace("../vista/modificarPro.php");
+                        // }
                     }
                     else{
                         alert('Hay campos vacios');

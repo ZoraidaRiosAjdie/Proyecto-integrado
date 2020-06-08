@@ -37,6 +37,51 @@
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                        <label for="definicion">Dia de la semana</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="1" value="1">
+                                        <label class="form-check-label" for="1">Lunes </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="2" value="2">
+                                        <label class="form-check-label" for="2">Martes </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="3" value="3">
+                                        <label class="form-check-label" for="3">Miercoles </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="4" value="4">
+                                        <label class="form-check-label" for="4">Jueves </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="5" value="5">
+                                        <label class="form-check-label" for="5">Viernes </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="6" value="6">
+                                        <label class="form-check-label" for="6">Sabado </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="0" value="0">
+                                        <label class="form-check-label" for="0">domingo </label>
+                                    </div>
+                                </div>
+                                <div class="col hora">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="rebaja">Rebaja</label>
+                                    <input type="number" class="form-control" id="rebaja" min="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row pt-4 pb-4">
                         <div class="col">
                             <input type="button" value="Atras" class="btn btn-primary float-left">

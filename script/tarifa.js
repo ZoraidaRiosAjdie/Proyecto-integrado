@@ -21,13 +21,14 @@ $(document).ready(function(){
             var td4 = $('<td>');
             tr1.append(td4);
             
-            var button1 = $('<input>');
-            td4.append(button1);
-            button1.attr('value','Eliminar');
-            button1.attr('type','button');
-            button1.attr('class','btn btn-primary float-right eliminar ml-3');
-            button1.attr('id', obj[i].idTipo); 
-            
+            if (obj[i].idTipo != 1){
+                var button1 = $('<input>');
+                td4.append(button1);
+                button1.attr('value','Eliminar');
+                button1.attr('type','button');
+                button1.attr('class','btn btn-primary float-right eliminar ml-3');
+                button1.attr('id', obj[i].idTipo); 
+            }
             var button2 = $('<input>');
             td4.append(button2);
             button2.attr('value','Modificar');
@@ -51,18 +52,18 @@ $(document).ready(function(){
                         var obj1 = JSON.parse(p);
                         if ($(e).val() == 'Eliminar') {
                             for (let i = 0; i < obj1.length; i++) {
-                                if ($(e).attr('id') != obj1[i].idTipo) {
+                                if ($(e).attr('id') == obj1[i].idTipo) {
                                     a = obj1[i].idTipo;
                                 }
                             }
-                            if (a != null) {
+                            if (a == null) {
                                 insert = {'resultado' : {'idTipo':$(e).attr('id')}};
                                 $.ajax({
                                     url: "../controlador/borrarTarifa.php",
                                     type: "POST",
                                     data: insert
                                 });
-                                window.location.replace("../vista/tarifaAdmin.php");
+                                // window.location.replace("../vista/tarifaAdmin.php");
                             }
                             else {
                                 alert ('Esta tarifa esta en uso');

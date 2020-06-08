@@ -36,6 +36,58 @@
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="definicion">Dia de la semana</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" value="1">
+                                        <label class="form-check-label" for="autoSizingCheck">Lunes </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" value="2">
+                                        <label class="form-check-label" for="autoSizingCheck">Martes </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="autoSizingCheck" value="3">
+                                        <label class="form-check-label" for="autoSizingCheck">Miercoles </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="autoSizingCheck" value="4">
+                                        <label class="form-check-label" for="autoSizingCheck">Jueves </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" value="5">
+                                        <label class="form-check-label" for="autoSizingCheck">Viernes </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" value="6">
+                                        <label class="form-check-label" for="autoSizingCheck">Sabado </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" value="0">
+                                        <label class="form-check-label" for="autoSizingCheck">domingo </label>
+                                    </div>
+                                </div>
+                                <div class="col hora">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="rebaja">Rebaja</label>
+                                    <input type="number" class="form-control" id="rebaja" min="1">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col">
+                            <label for="definicion">Definicion de tarifa</label>
+                            <textarea name="definicion" id="definicion" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                    </div> -->
                     <div class="row pt-4 pb-4">
                         <div class="col">
                             <input type="button" value="Atras" class="btn btn-primary float-left">

@@ -14,27 +14,40 @@
     <header>
     </header>
     <section class="cuerpo">
-        <div class="row princ">
-            <div class="col-7 m-auto">
-                <h1 class="text-center">Pelicula</h1>
-                <form action="">
-                    <h2>Sala</h2>
-                    <p class="text-danger mensaje"></p>
-                    <div class="row">
-                        <div class="col" id="sala">
-                            
+        <div class="row ">
+            <div class="col-7 m-auto princ">
+                <form action="" method="post">
+                    <h1 class="display-3 text-center">Insertar</h1>
+                    <!-- <div class="row">
+                        <div class="col">
+                            <input type="button" value="Añadir" class="btn btn-primary float-right">
                         </div>
-                        <div class="col" id="proyeccion">
-                            
+                    </div> -->
+                    <div class="row p-2" id="sala">
+                        <div class="col">
+                            <select name="idSala" id="idSala" class="form-control">
+
+                            </select>
                         </div>
+                        <div class="col">
+                            <input type="date" name="fecha" id="fecha" class="form-control">
+                        </div>
+                        <div class="col">
+                            <input type="time" name="hora" id="hora" class="form-control">
+                        </div>
+                        
                     </div>
-                    <div class="row pt-5">
+                    <!-- <div class="row">
+                        <div class="col" id="nuevo">
+
+                        </div>
+                    </div> -->
+                    <div class="row p-5">
                         <div class="col">
                             <input type="button" value="Atras" class="btn btn-primary float-left">
-                            <input type="button" value="Insertar" class="btn btn-primary float-right">
+                            <input type="button" value="Insertar sala" class="btn btn-primary float-right">
                         </div>
                     </div>
-                    
                 </form>
             </div>
         </div>

@@ -16,13 +16,13 @@
     <section class="cuerpo">
         <div class="row ">
             <div class="col-7 m-auto princ">
-                <form action="">
+                <form action="" method="post">
                     <h1 class="display-3 text-center">Insertar</h1>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col">
                             <input type="button" value="Añadir" class="btn btn-primary float-right">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row p-2" id="sala">
                         <div class="col">
                             <select name="idSala" id="idSala" class="form-control">

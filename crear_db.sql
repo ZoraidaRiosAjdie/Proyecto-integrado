@@ -44,8 +44,8 @@ CREATE TABLE tarifa (
     nombre varchar (45) NOT NULL,
     definicion varchar(100000) NOT NULL,
     precio FLOAT NOT NULL,
-    semana varchar (30) ,
-    horario varchar (45),
+    semana varchar (30) NOT NULL,
+    horario varchar (45) NOT NULL,
     rebaja varchar (45),
     CONSTRAINT PK_tarifa PRIMARY KEY (idTipo)
 );
@@ -175,7 +175,7 @@ INSERT INTO sala (idSala, butaca, tipo)
 VALUES ("10", "180", "XD");
 /*Tarifa*/
 INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
-VALUES ("1", "Entrada normal",'', "7,00", '1,2,3,4,5,6,0', null, null);
+VALUES ("1", "Entrada normal",'', "7,00", '1,2,3,4,5,6,0', '00:00-23:59', null);
 INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
 VALUES ("2", "Día espectador",'El miercoles el precio de la entrada bajará de precio durante todo el día', "3,50", '3', '00:00-23:59', null);
 INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
@@ -189,19 +189,19 @@ INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
 VALUES ("1", "5", "1", "4", STR_TO_DATE('19/09/2020', '%d/%m/%Y'), "17:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("2", "3", "3", "4", STR_TO_DATE('22/09/2020', '%d/%m/%Y'), "18:00");
+VALUES ("2", "3", "3", "3", STR_TO_DATE('22/09/2020', '%d/%m/%Y'), "18:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("3", "9", "2", "4", STR_TO_DATE('25/09/2020', '%d/%m/%Y'), "19:00");
+VALUES ("3", "9", "2", "2", STR_TO_DATE('25/09/2020', '%d/%m/%Y'), "19:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("4", "1", "5", "4", STR_TO_DATE('3/10/2020', '%d/%m/%Y'), "20:00");
+VALUES ("4", "1", "5", "1", STR_TO_DATE('3/10/2020', '%d/%m/%Y'), "20:00");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("5", "2", "4", "4", STR_TO_DATE('7/10/2020', '%d/%m/%Y'), "17:30");
+VALUES ("5", "2", "4", "5", STR_TO_DATE('7/10/2020', '%d/%m/%Y'), "17:30");
 
 INSERT INTO proyeccion (idProyeccion, idSala, idPelicula, idTipo, fecha, hora)
-VALUES ("6", "5", "6", "4", STR_TO_DATE('14/2/2020', '%d/%m/%Y'), "17:30");
+VALUES ("6", "5", "6", "3", STR_TO_DATE('14/2/2020', '%d/%m/%Y'), "17:30");
 /*Reserva*/
 INSERT INTO reserva (idReserva, idUsuario, idProyeccion, butaca)
 VALUES ("1", 2, 1, 3);
