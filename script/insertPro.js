@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    // if (sessionStorage.getItem("id") !=1){ 
-    //     window.location.replace("../vista/principal.php");
-    // }
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
+    }
     var cont = 0;
     var lidSala=[];
     var todoTarifa = [];
@@ -95,7 +95,7 @@ $(document).ready(function(){
                                                                             type: "POST",
                                                                             data: proyeccion
                                                                     });
-                                                                     
+                                                                    window.location.replace("../vista/modificarPro.php");
                                                                 }
                                                             }
                                                         }
@@ -113,7 +113,7 @@ $(document).ready(function(){
                                                         type: "POST",
                                                         data: proyeccion
                                                 });
-                                                       
+                                                window.location.replace("../vista/modificarPro.php");       
                                             }
                                         }
                                     }
@@ -259,57 +259,6 @@ $(document).ready(function(){
                     }
                     
                 }
-                // else{
-                //     if ($(e).val() == 'Añadir') {
-                //         cont++;
-                //         listaCont.push(cont);
-                        
-                //         var f = 'f' + cont ;
-                //         var h = 'h' + cont ;
-                //         var s = 's' + cont ;
-                //         lselect.push(s);
-                //         lhora.push(h);
-                //         lfecha.push(f);
-
-                //         var row = $('<div>');
-                //         $('#nuevo').append(row);
-                //         row.attr('class', 'row p-2')
-
-                //         var col2 = $('<div>');
-                //         row.append(col2);
-                //         col2.attr('class', 'col');
-
-                //         var select = $('<select>');
-                //         col2.append(select);
-                //         select.attr('id', s);
-                //         select.attr('class', "form-control");    
-                //         for (let i = 0; i < lidSala.length; i++) {
-                //             var option1 = $('<option>');
-                //             select.append(option1);
-                //             option1.val(lidSala[i]);
-                //             option1.text(lidSala[i]);
-                //         }
-                //         var col = $('<div>');
-                //         row.append(col);
-                //         col.attr('class', 'col');
-
-                //         var text1 = $('<input>');
-                //         col.append(text1);
-                //         text1.attr('class', 'form-control');
-                //         text1.attr('type', 'date');
-                //         text1.attr('id', f);
-
-                //         var col1 = $('<div>');
-                //         row.append(col1);
-                //         col1.attr('class', 'col');
-
-                //         var text2 = $('<input>');
-                //         col1.append(text2);
-                //         text2.attr('class', 'form-control');
-                //         text2.attr('type', 'time');
-                //         text2.attr('id', h);
-                //     }
-                // }
             }
         });
     });

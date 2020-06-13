@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    // if (sessionStorage.getItem("id") !=1){ 
-    //     window.location.replace("../vista/principal.php");
-    // }
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
+    }
     var todoTarifa = [];
     var normal=[];
     var lselect = [];

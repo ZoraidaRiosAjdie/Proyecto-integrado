@@ -86,31 +86,37 @@ $(document).ready(function(){
                 $('small#mensaje').text('Hay algun campo sin rellenar');
             }
             else {
-                if ($('.reserva').val()> butaca) {
+                if ($('.reserva').val()> parseInt(butaca)) {
                     $('small#reserva').attr('class','text-danger');
                     $('small#reserva').text('No quedan butacas');
                 }
-                if (butaca < 0) {
-                    $('small#reserva').attr('class','text-danger');
-                    $('small#reserva').text('Solo quedan:' + butaca);
-                }
-                if (butaca == 0) {
-                    $('small#reserva').attr('class','text-danger');
-                    $('small#reserva').text('No quedan entradas');
-                }
-                else {
-                    if (butaca > 0) {
-                        totalButaca = butaca - parseInt($('.reserva').val());
-                        sessionStorage.setItem('idSala', $(':radio').attr('id'));
-                        sessionStorage.setItem('butaca', totalButaca);
-                        sessionStorage.setItem('tipo', tipoButaca);
-                        sessionStorage.setItem('idProyeccion', proyeccion);
-                        sessionStorage.setItem('butaca1', $('.reserva').val());
-                        sessionStorage.setItem('fechaHora', $(':radio').val());
-                        sessionStorage.setItem('entrada', parseInt($('.reserva').val()));
-                        window.location.replace("../vista/precio.php");
+                else{
+                    if (parseInt(butaca) < 0) {
+                        $('small#reserva').attr('class','text-danger');
+                        $('small#reserva').text('Solo quedan:' + parseInt(butaca));
+                    }
+                    else {
+                        if (parseInt(butaca) == 0) {
+                            $('small#reserva').attr('class','text-danger');
+                            $('small#reserva').text('No quedan entradas');
+                        }
+                        else {
+                            if (parseInt(butaca) > 0) {
+                                totalButaca = butaca - parseInt($('.reserva').val());
+                                sessionStorage.setItem('idSala', $(':radio').attr('id'));
+                                sessionStorage.setItem('butaca', totalButaca);
+                                sessionStorage.setItem('idTipo', tipoButaca);
+                                sessionStorage.setItem('idProyeccion', proyeccion);
+                                sessionStorage.setItem('butaca1', $('.reserva').val());
+                                sessionStorage.setItem('fechaHora', $(':radio').val());
+                                sessionStorage.setItem('entrada', parseInt($('.reserva').val()));
+                                window.location.replace("../vista/precio.php");
+                            }
+                        }
                     }
                 }
+                
+                
             }
             
         }

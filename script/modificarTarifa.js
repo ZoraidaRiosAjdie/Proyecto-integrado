@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
+    }
     listaSemana = [];
     listaHorario = [];
     lista = [];
@@ -11,7 +14,7 @@ $(document).ready(function(){
                 $('#precio').val(obj[i].precio);
                 $('#definicion').val(obj[i].definicion);
                 if (obj[i].semana.length == 1) {
-                    listaSemana.push();
+                    listaSemana.push(obj[i].semana);
                 }
                 else {
                     var parte = obj[i].semana.split(',');
@@ -23,20 +26,25 @@ $(document).ready(function(){
                 for (let j = 0; j < parte.length; j++) {
                     listaHorario.push(parte[j]);
                 }
-                // $('#semana').val(obj[i].definicion);
-                // $('#horario').val(obj[i].definicion);
-                // $('#rebaja').val(obj[i].definicion);
+                if (obj[i].rebaja != null) {
+                    var rebaja = obj[i].rebaja.split('*');
+                    $('#rebaja1').val(rebaja[0]);
+                    $('#rebaja2').val(rebaja[1]);
+                }        
             }
         }
         
         for (let i = 0; i < listaHorario.length; i++) {
             if (listaHorario[i].length > 5) {
+                var parte = listaHorario[i].split('-');
+                for (let j = 0; j < parte.length; j++) {
+                    listaH.push(parte[j]);
+                }
+            }
+            else {
+                listaH.push(listaHorario[i]);
+            }
             
-            }
-            var parte = listaHorario.split('-');
-            for (let j = 0; j < parte.length; j++) {
-                listaH.push(parte[j]);
-            }
         }
         for (let i = 0; i < listaSemana.length; i++) {
             var l = '#'+ listaSemana[i];
@@ -108,14 +116,39 @@ $(document).ready(function(){
             }
             else {
                 if ($(e).val() == "Modificar") {
+                    var listaTH = [];
                     if ($('#nombre').val() != '' && $('#precio').val() != '') {
-                        insert = {'resultado' : {'idTipo':sessionStorage.getItem("idTipoMod"),'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val()}};
-                        $.ajax({
-                            url: "../controlador/modificarTarifa.php",
-                            type: "POST",
-                            data: insert
-                        });
-                        window.location.replace("../vista/tarifaAdmin.php");
+                        for (let i = 0; i < lista.length; i++) {
+                            var d = '#d'+lista[i];
+                            var h = '#h'+lista[i];
+                            var string = $(d).val() + '-' + $(h).val();
+                            listaTH.push(string);
+                        }
+                        if ($('#rebaja1').val() == '' || $('#rebaja2').val() == '') {
+                            insert = {'resultado' : {'idTipo':sessionStorage.getItem("idTipoMod"),'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': listaSemana.toString(), 'horario': listaTH.toString(),'rebaja' : null}};
+                            // console.log(insert);
+                            $.ajax({
+                                url: "../controlador/modificarTarifa.php",
+                                type: "POST",
+                                data: insert
+                            });
+                            alert ('No se va a introducir rebaja');
+                            window.location.replace("../vista/tarifaAdmin.php"); 
+                        }
+                        else{
+                            var rebaja = $('#rebaja1').val() + '*' + $('#rebaja2').val();
+                            insert = {'resultado' : {'idTipo':sessionStorage.getItem("idTipoMod"),'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': listaSemana.toString(), 'horario': listaTH.toString(),'rebaja' : rebaja}};
+                            // console.log(insert);
+                            $.ajax({
+                                url: "../controlador/modificarTarifa.php",
+                                type: "POST",
+                                data: insert
+                            });
+                            window.location.replace("../vista/tarifaAdmin.php"); 
+                        }
+                        // console.log(lista);
+                        
+                        // window.location.replace("../vista/tarifaAdmin.php");
     
                     }
                     else {

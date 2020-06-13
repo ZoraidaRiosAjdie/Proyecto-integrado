@@ -1,8 +1,8 @@
 $(document).ready(function(){
     // location.reload();
-    // if (sessionStorage.getItem("id") !=1){ 
-    //     window.location.replace("../vista/principal.php");
-    // }
+    if (sessionStorage.getItem("id") !=1){ 
+        window.location.replace("../vista/principal.php");
+    }
 
     var listaIdSala = [];
     if (sessionStorage.getItem("idSalaMod").length > 1) {
@@ -23,7 +23,7 @@ $(document).ready(function(){
                     if (listaIdSala[j] == obj[i].idSala) {
                         var col = $('<div>');
                         $('#sala').append(col);
-                        col.attr('class', 'col-9 ml-auto mr-auto sala');
+                        col.attr('class', 'col-9 ml-auto mr-auto sala mb-2');
 
                         var row1 = $('<div>');
                         col.append(row1);
@@ -121,7 +121,7 @@ $(document).ready(function(){
                         }
                         else{
                             if ($(e).val() == 'Continuar') {
-                                proyeccion = {'resultado' : {'idPelicula':sessionStorage.getItem('idPeliMod'),'anio': sessionStorage.getItem('anioPelMod'), 'titulo':sessionStorage.getItem('tituloPelMod'), 'pais':sessionStorage.getItem('paisPelMod'), 'genero':sessionStorage.getItem('generoPelMod'), 'duracion':sessionStorage.getItem('duracionPelMod'), 'fecha_estreno':sessionStorage.getItem('fechaPelMod'), 'calificacion':sessionStorage.getItem('calificacionPelMod'), 'sinopsis':sessionStorage.getItem('sinopsisPelMod'), 'actores':sessionStorage.getItem('actoresPelMod'),'imagen':sessionStorage.getItem('imagenPelMod'), 'mostrar':0}};
+                                proyeccion = {'resultado' : {'idPelicula':sessionStorage.getItem('idPeliMod'),'anio': sessionStorage.getItem('anioPelMod'), 'titulo':sessionStorage.getItem('tituloPelMod'), 'pais':sessionStorage.getItem('paisPelMod'), 'genero':sessionStorage.getItem('generoPelMod'), 'duracion':sessionStorage.getItem('duracionPelMod'), 'fecha_estreno':sessionStorage.getItem('fechaPelMod'), 'calificacion':sessionStorage.getItem('calificacionPelMod'), 'sinopsis':sessionStorage.getItem('sinopsisPelMod'), 'actores':sessionStorage.getItem('actoresPelMod'),'imagen':sessionStorage.getItem('imagenPelMod'), 'mostrar':0,'otros':sessionStorage.getItem('otrosPelMod'),'trailler':sessionStorage.getItem('traillerPelMod')}};
                                 $.ajax({
                                     url: "../controlador/modificarPeli.php",
                                     type: "POST",

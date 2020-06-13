@@ -18,7 +18,7 @@
         <div class="row ">
             <div class="col-7 m-auto princ">
                 <form action="">
-                    <h1 class="display-1 text-center">Sala</b></h1>
+                    <h1 class="display-2 text-center">Sala</b></h1>
                     <p class="text-danger mensaje"></p>
                     <div class="row pb-5 pt-5 ">
                         <div class="col-9 ml-auto mr-auto">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="row" id="sala">
                     </div>
-                    <div class="row">
+                    <div class="row mb-4 mr-2">
                         <div class="col">
                             <input type="button" value="Continuar" class="btn btn-primary float-right"> 
                         </div>

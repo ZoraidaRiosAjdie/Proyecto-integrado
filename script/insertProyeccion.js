@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    // if (sessionStorage.getItem("id") !=1){ 
-    //     window.location.replace("../vista/principal.php");
-    // }
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
+    }
     var cont = 0;
     var lidSala=[];
     var todoTarifa = [];
@@ -69,7 +69,7 @@ $(document).ready(function(){
             else{
                 if ($(e).val() == 'Insertar sala') {
                     if ($('#fecha').val()!=null  && $('#hora').val()!=null && $('#idSala').val()!=null) {
-                        var insertPelicula = {'resultado' : {'anio': sessionStorage.getItem("anioPelicula"), 'titulo': sessionStorage.getItem("tituloPelicula"), 'pais': sessionStorage.getItem("paisPelicula"), 'genero': sessionStorage.getItem("generoPelicula"), 'duracion':sessionStorage.getItem("duracionPelicula"), 'fecha_estreno': sessionStorage.getItem("fechaPelicula"), 'calificacion': sessionStorage.getItem("calificacionPelicula"), 'sinopsis': sessionStorage.getItem("sinopsisPelicula"), 'actores': sessionStorage.getItem("actoresPelicula"), 'imagen' : sessionStorage.getItem("imagenPelicula"), 'mostrar': 0}};
+                        var insertPelicula = {'resultado' : {'anio': sessionStorage.getItem("anioPelicula"), 'titulo': sessionStorage.getItem("tituloPelicula"), 'pais': sessionStorage.getItem("paisPelicula"), 'genero': sessionStorage.getItem("generoPelicula"), 'duracion':sessionStorage.getItem("duracionPelicula"), 'fecha_estreno': sessionStorage.getItem("fechaPelicula"), 'calificacion': sessionStorage.getItem("calificacionPelicula"), 'sinopsis': sessionStorage.getItem("sinopsisPelicula"), 'actores': sessionStorage.getItem("actoresPelicula"), 'imagen' : sessionStorage.getItem("imagenPelicula"), 'mostrar': 0, 'otros' : sessionStorage.getItem("otroPelicula"), 'trailler' : sessionStorage.getItem("trailerPelicula")}};
                         $.ajax({
                             url: "../controlador/insertPelicula.php",
                             type: "POST",
@@ -78,62 +78,63 @@ $(document).ready(function(){
                         $.post("../controlador/maxIdPelicula.php", function(e){
                             var obj = JSON.parse(e);
                             idMax= parseInt(obj.idPelicula) + 1;
-                        });
-                        $.post("../controlador/soloPro.php", function(v){
-                            var proyeccion= null;
-                            var obj1 = JSON.parse(v);
-                            // for (let i = 0; i < obj.length; i++) {
-                                for (let j = 0; j < obj1.length; j++) {
-                                    var partesHora = $('#hora').val().split(':');
-                                    var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
-                                    var string = $('#fecha').val() + 'T' + $('#hora').val() + 'Z';
-                                    var fechaHora = new Date(string);
-                                    var semana = fechaHora.getDay();
-                                    if (obj1[j].idSala != $('#idSala').val() && $('#fecha').toString() != obj1[j].fecha && $('#hora').val() != obj1[j].hora) {
-                                        for (let p = 0; p < todoTarifa.length; p++) {
-                                            var dia = todoTarifa[p].dia;
-                                            var hO = todoTarifa[p].hO;
-                                            var hE = todoTarifa[p].hE
-                                            if (proyeccion == null) {
-                                                for (let s = 0; s < dia.length; s++) {
-                                                    if (semana == dia[s]) {
-                                                        for (let l = 0; l < hO.length; l++) {
-                                                            if (hE[0] <= h || hE[1] >= h || hO[l]==h) {
-                                                                if (todoTarifa[p].rebaja == null) {
-                                                                    proyeccion = {'resultado' : {'idSala':$('#idSala').val(), 'idPelicula':idMax, 'idTipo':todoTarifa[p].idTipo, 'fecha': $('#fecha').val(), 'hora':$('#hora').val() }};   
-                                                                    $.ajax({
-                                                                            url: "../controlador/insertProyeccion.php",
-                                                                            type: "POST",
-                                                                            data: proyeccion
-                                                                    });
-                                                                     
+                            $.post("../controlador/soloPro.php", function(v){
+                                var proyeccion= null;
+                                var obj1 = JSON.parse(v);
+                                // for (let i = 0; i < obj.length; i++) {
+                                    for (let j = 0; j < obj1.length; j++) {
+                                        var partesHora = $('#hora').val().split(':');
+                                        var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
+                                        var string = $('#fecha').val() + 'T' + $('#hora').val() + 'Z';
+                                        var fechaHora = new Date(string);
+                                        var semana = fechaHora.getDay();
+                                        if (obj1[j].idSala != $('#idSala').val() && $('#fecha').toString() != obj1[j].fecha && $('#hora').val() != obj1[j].hora) {
+                                            for (let p = 0; p < todoTarifa.length; p++) {
+                                                var dia = todoTarifa[p].dia;
+                                                var hO = todoTarifa[p].hO;
+                                                var hE = todoTarifa[p].hE
+                                                if (proyeccion == null) {
+                                                    for (let s = 0; s < dia.length; s++) {
+                                                        if (semana == dia[s]) {
+                                                            for (let l = 0; l < hO.length; l++) {
+                                                                if (hE[0] <= h || hE[1] >= h || hO[l]==h) {
+                                                                    if (todoTarifa[p].rebaja == null) {
+                                                                        proyeccion = {'resultado' : {'idSala':$('#idSala').val(), 'idPelicula':idMax, 'idTipo':todoTarifa[p].idTipo, 'fecha': $('#fecha').val(), 'hora':$('#hora').val() }};   
+                                                                        $.ajax({
+                                                                                url: "../controlador/insertProyeccion.php",
+                                                                                type: "POST",
+                                                                                data: proyeccion
+                                                                        });
+                                                                         
+                                                                    }
                                                                 }
                                                             }
-                                                        }
-                                                    }  
+                                                        }  
+                                                    }
+                                                }
+                                                
+                                            }
+                                            if (proyeccion == null) {
+                                                for (let q = 0; q < normal.length; q++) {
+                                                    proyeccion = {'resultado' : {'idSala':$('#idSala').val(), 'idPelicula':idMax, 'idTipo':normal[q].idTipo, 'fecha': $('#fecha').val(), 'hora':$('#hora').val() }};   
+                                                                        
+                                                    $.ajax({
+                                                            url: "../controlador/insertProyeccion.php",
+                                                            type: "POST",
+                                                            data: proyeccion
+                                                    });
+                                                           
                                                 }
                                             }
-                                            
+                                            window.location.replace("../vista/pelicula.php");
                                         }
-                                        if (proyeccion == null) {
-                                            for (let q = 0; q < normal.length; q++) {
-                                                proyeccion = {'resultado' : {'idSala':$('#idSala').val(), 'idPelicula':idMax, 'idTipo':normal[q].idTipo, 'fecha': $('#fecha').val(), 'hora':$('#hora').val() }};   
-                                                                    
-                                                $.ajax({
-                                                        url: "../controlador/insertProyeccion.php",
-                                                        type: "POST",
-                                                        data: proyeccion
-                                                });
-                                                       
-                                            }
+                                        else{
+                                            $('.mensaje').text('Este dato ya existe');
                                         }
                                     }
-                                    else{
-                                        $('.mensaje').text('Este dato ya existe');
-                                    }
-                                }
-                            alert('Se ha insertado correctamente');
-                            window.location.replace("../vista/pelicula.php");
+                                alert('Se ha insertado correctamente');
+                                // window.location.replace("../vista/pelicula.php");
+                            });
                         });
                     }
                     else{

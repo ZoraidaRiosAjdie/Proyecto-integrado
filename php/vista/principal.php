@@ -17,7 +17,7 @@
     <header class="container-fluid cabecera">
         <div class="row">
             <div class="col">
-                <h1 class="col text-center display-1">Cinemania</h1>
+                <h1 class="col text-center display-1" id="cabecera">Cinemania</h1>
             </div>
             <div class="col-1 rounded-circle navbar-collapse usuario" id="imagen">
                     <ul class="navbar-nav">

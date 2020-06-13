@@ -20,7 +20,7 @@
         <article class="row">
             <article class="col-7 cuadro ml-auto mr-auto ">
                 <article class="row ml-auto mr-auto">
-                    <p class="col display-3 text-center">Registro</p>
+                    <p class="col display-3 text-center titulo-login">Registro</p>
                 </article>
                 
                 <p class="mensaje text-danger text-center"></p>
@@ -28,28 +28,28 @@
                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" class="col-7 ml-auto mr-auto">
                         <div class="row">
                             <div class="form-group col">
-                                <label for="nombre" class="pr-2">Nombre: </label></br>
+                                <label for="nombre" class="pr-2 for-login">Nombre: </label></br>
                                 <input type="text" name="nombre" class=" form-control nombre col" require>
                                 <small id="1"></small>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
-                                <label for="email" class="pr-2">Email: </label></br>
+                                <label for="email" class="pr-2 for-login">Email: </label></br>
                                 <input type="text" name="email" class=" form-control email col" require>
                                 <small id="2"></small>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
-                                <label for="pwd" class="pr-2">Contraseña: </label></br>
+                                <label for="pwd" class="pr-2 for-login">Contraseña: </label></br>
                                 <input type="password" name="pwd" class="form-control pwd col" require>
                                 <small id="3"></small>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
-                                <label for="foto" class="pr-2">Foto de perfil: </label></br>
+                                <label for="foto" class="pr-2 for-login">Foto de perfil: </label></br>
                                 <input type="text" name="foto" class="form-control foto col">
                                 <small id="4"></small>
                             </div>

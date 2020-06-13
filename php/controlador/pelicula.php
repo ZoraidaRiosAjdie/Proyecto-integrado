@@ -18,6 +18,8 @@
             "actores"=>$todo['actores'],
             "imagen"=>$todo['imagen'],
             "mostrar"=>$todo['mostrar'],
+            "otros"=>$todo['otros'],
+            "trailler"=>$todo['trailler'],
             "idSala"=>$todo['idSala'],
             "fecha"=>$todo['fecha'],
             "hora"=>$todo['hora']

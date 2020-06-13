@@ -6,6 +6,12 @@ body.index{
 	background-attachment: fixed;
 	background-size: cover;
 }
+#index:hover{
+    
+    animation-name: index;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+}
 /*login y registro*/
 body.login{
     background-image:url("../../Proyecto-integrado/imagenes/login.jpg");
@@ -21,14 +27,35 @@ article.cuadro{
     border-radius: 12px;
     border-width: 6px;
 }
-/*Principal*/
+p.titulo-login {
+    font-family: pacifico;
+    color: #230959;
+}
+label.for-login{
+    font-family: indie;
+    color: #0C042A;
+}
+#entrar-login, #registro-login{
+    background-color: #3452FF;
+    border-style: solid;
+    border-width: 0;
+}
+/* Cabecera */
+h1#cabecera {
+    font-family: pacifico;
+    color: rgba(255, 255, 255, .7);
+    text-shadow: 5px 10px 7px rgba(0, 0, 0, .7);
+}
+/* Circulo usuario */
 div#imagen{
     z-index:3;
 }
 img.imagen {
     border: 5px solid rgba(252, 69, 0, .9);
     border-radius: 5px;
+    box-shadow: 5px 10px 7px rgba(0, 0, 0, .7);
 }
+/*Principal*/
 ul.ventana{
     background-color: rgba(245, 198, 97, .9);
     /* color: white; */
@@ -51,10 +78,24 @@ header.cabecera{
 nav.menu{
     /* background-color:rgba(0, 255, 222, .6); */
     background-color:rgba(252, 69, 0, .9);
+    box-shadow: 5px 10px 7px rgba(0, 0, 0, .7);
 }
 .princ{
-    background-color: rgba(187,183,182,.7);
+    background-color: rgba(187,183,182,.8);
     border-radius: 50px;
+    box-shadow: 5px 10px 7px rgba(0, 0, 0, .7);
+}
+/* Principal, cabecera , mas y pelicula */
+img.princ-img{
+    box-shadow: 5px 10px 7px rgba(0, 0, 0, .7);
+}
+.valoracion {
+    box-shadow: 5px 10px 7px rgba(0, 0, 0, .7);
+}
+.titulo-p{
+    font-family: marker;
+    color: rgba(66, 66, 66, .9);
+    text-shadow: 5px 10px 7px rgba(0, 0, 0, .3);
 }
 /* valoracion */
 label.estr{ 
@@ -84,4 +125,30 @@ input.estr:checked ~ label {
 div.sala {
     background-color:  rgba(255,255,255,.4);
     border-radius: 50px;
+}
+/* Contacto */
+.contacto{
+    font-family: marker;
+}
+/* Animación */
+@keyframes index {
+    font{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg) scale(1.3, 1.3);
+    }
+}
+/* Fuentes */
+@font-face {
+    font-family: 'pacifico';
+    src: url('../fuente/Pacifico/Pacifico-Regular.ttf');
+}
+@font-face {
+    font-family: 'indie';
+    src: url('../fuente/Indie_Flower/IndieFlower-Regular.ttf');
+}
+@font-face {
+    font-family: 'marker';
+    src: url('../fuente/Permanent_Marker/PermanentMarker-Regular.ttf');
 }

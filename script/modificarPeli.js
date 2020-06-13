@@ -1,9 +1,10 @@
 $(document).ready(function(){
-    if (sessionStorage.getItem("id") !=1){ 
-        window.location.replace("../vista/principal.php");
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
     }
     var listaAct = [];
     var listaPap = [];
+    var listaIO = [];
     $.post("../controlador/soloPeli.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -51,7 +52,29 @@ $(document).ready(function(){
                     listaAct.push(id1);
                     listaPap.push(id2);
                 }
-                
+                if (obj[i].otros != null) {
+                    var otros = obj[i].otros.split(',');
+                    for (let j = 0; j < otros.length; j++) {
+                        var idI = 'i' + i;
+                        var text3 = $('<input>');
+                        $('.otros').append(text3);
+                        text3.attr('type','text');
+                        text3.attr('class',"form-control ");
+                        text3.val(otros[j]);
+                        text3.attr('id', idI);
+                        listaIO.push(idI);
+                    }
+                }
+                else {
+                    var idI = 'i' + 0;
+                    var text3 = $('<input>');
+                    $('.otros').append(text3);
+                    text3.attr('type','text');
+                    text3.attr('class',"form-control ");
+                    text3.attr('id', idI);
+                    listaIO.push(idI);
+                } 
+                $('#trailler').val(obj[i].trailler);
             }
         }
                            
@@ -77,8 +100,19 @@ $(document).ready(function(){
                             listaActor.push(act);
                         }
                     }
+                    var listaOtros = [];
+                    for (let i = 0; i < listaIO.length; i++) {
+                        var id = '#'+listaOtros[i];
+                        if ($(id).val() != '') {
+                            listaOtros.push(null);
+                        }
+                        else{
+                            listaOtros.push($(id).val());
+                        }
+                    }
                     duracion = $('#duracion').val() + ' minutos';
                     var todoActor = listaActor.toString();
+
                     sessionStorage.setItem('anioPelMod', $('#anio').val());
                     sessionStorage.setItem('tituloPelMod', $('#titulo').val());
                     sessionStorage.setItem('paisPelMod', $('#pais').val());
@@ -89,6 +123,8 @@ $(document).ready(function(){
                     sessionStorage.setItem('sinopsisPelMod', $('#sinopsis').val());
                     sessionStorage.setItem('actoresPelMod', todoActor);
                     sessionStorage.setItem('imagenPelMod', $('#imagen').val());
+                    sessionStorage.setItem('otrosPelMod', listaOtros.toString());
+                    sessionStorage.setItem('traillerPelMod', $('#trailler').val());
                 }
             } 
             window.location.replace("../vista/modificarPro.php");       

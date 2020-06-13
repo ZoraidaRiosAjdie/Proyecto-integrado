@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
+    }
     var lista = [];
     $(':input').click(function(r){
         var e = r.currentTarget
@@ -36,17 +39,19 @@ $(document).ready(function(){
                             alert ('Hay campos en blanco');
                         }
                     }
-                    if ($('#rebaja').val() == '') {
+                    if ($('#rebaja1').val() == '' || $('#rebaja2').val() == '') {
                         insert = {'resultado' : {'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': lista.toString(), 'horario': horario.toString(), 'rebaja': null}};
                         $.ajax({
                             url: "../controlador/insertTarifa.php",
                             type: "POST",
                             data: insert
                         });
+                        alert ('No se ha insertado ninguna rebaja')
                         window.location.replace("../vista/tarifaAdmin.php");   
                     }
                     else{
-                        insert = {'resultado' : {'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': lista.toString(), 'horario': horario.toString(), 'rebaja': $('#rebaja').val()}};
+                        var rebaja = $('#rebaja1').val() + '*' + $('#rebaja2').val();
+                        insert = {'resultado' : {'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': lista.toString(), 'horario': horario.toString(), 'rebaja': rebaja}};
                         $.ajax({
                             url: "../controlador/insertTarifa.php",
                             type: "POST",
@@ -124,6 +129,7 @@ $(document).ready(function(){
                     $(r2).remove();
                 }
             }
+            
         }    
     });
     function semana (n){

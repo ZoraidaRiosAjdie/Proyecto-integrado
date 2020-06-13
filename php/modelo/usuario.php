@@ -42,7 +42,7 @@
         }
         // Principal y cartelera
         public function mostrar(){
-            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores,imagen, valoracion
+            $consulta ="SELECT p.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores,imagen, valoracion, mostrar, otros , trailler
                         from pelicula p, valoracion v
                         WHERE p.idPelicula = v.idPelicula 
                         and mostrar = 1

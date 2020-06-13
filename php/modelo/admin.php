@@ -14,6 +14,8 @@
         public $actores;
         public $imagen;
         public $mostrar;
+        public $otros;
+        public $trailler;
         public $idProyeccion;
         public $idSala;
         public $idTipo;
@@ -21,7 +23,7 @@
         public $hora;
         public $butaca;
         public $tipo;
-        function __construct($idPelicula="", $anio="", $titulo="", $pais="", $genero="", $duracion="", $fecha_estreno="", $calificacion="", $sinopsis="", $actores="", $imagen="", $mostrar="", $idProyeccion="", $idSala="", $idTipo="", $fecha="", $hora="", $butaca="", $tipo=""){
+        function __construct($idPelicula="", $anio="", $titulo="", $pais="", $genero="", $duracion="", $fecha_estreno="", $calificacion="", $sinopsis="", $actores="", $imagen="", $mostrar="", $otros = "", $trailler="",$idProyeccion="", $idSala="", $idTipo="", $fecha="", $hora="", $butaca="", $tipo=""){
             $this->idPelicula = $idPelicula;
             $this->anio = $anio;
             $this->titulo = $titulo;
@@ -34,6 +36,8 @@
             $this->actores = $actores;
             $this->imagen = $imagen;
             $this->mostrar = $mostrar;
+            $this->otros = $otros;
+            $this->trailler = $trailler;
             $this->idProyeccion = $idProyeccion;
             $this->idSala = $idSala;
             $this->idTipo = $idTipo;
@@ -43,7 +47,7 @@
             $this->tipo = $tipo;
         }
         public function cartelera(){
-            $consulta ="SELECT idProyeccion ,pr.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, idSala, fecha, hora
+            $consulta ="SELECT idProyeccion ,pr.idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, otros, trailler, idSala, fecha, hora
                         from pelicula p, proyeccion pr
                         WHERE p.idPelicula = pr.idPelicula";
             return DataBase::getConsultasPDO($consulta);
@@ -62,20 +66,20 @@
             $consulta ="SELECT MAX(idPelicula) FROM pelicula";
             return DataBase::getConsultasPDO($consulta);
         }
-        public function mostrar(){
-            $consulta ="UPDATE pelicula
-                        SET idPelicula= \"".$this->idPelicula."\",anio=\"".$this->anio."\" ,titulo= \"".$this->titulo."\", pais=\"".$this->pais."\", genero=\"".$this->genero."\" , duracion=\"".$this->duracion."\" , fecha_estreno=\"".$this->fecha_estreno."\" , calificacion=\"".$this->calificacion."\" , sinopsis=\"".$this->sinopsis."\" , actores=\"".$this->actores."\" , imagen=\"".$this->imagen."\" , mostrar=\"".$this->mostrar."\" 
-                        WHERE idPelicula=\"".$this->idPelicula."\"";
-            return DataBase::getConsultasPDO($consulta);
-        }
+        // public function mostrar(){
+        //     $consulta ="UPDATE pelicula
+        //                 SET idPelicula= \"".$this->idPelicula."\",anio=\"".$this->anio."\" ,titulo= \"".$this->titulo."\", pais=\"".$this->pais."\", genero=\"".$this->genero."\" , duracion=\"".$this->duracion."\" , fecha_estreno=\"".$this->fecha_estreno."\" , calificacion=\"".$this->calificacion."\" , sinopsis=\"".$this->sinopsis."\" , actores=\"".$this->actores."\" , imagen=\"".$this->imagen."\" , mostrar=\"".$this->mostrar."\" 
+        //                 WHERE idPelicula=\"".$this->idPelicula."\"";
+        //     return DataBase::getConsultasPDO($consulta);
+        // }
         public function sala(){
             $consulta ="SELECT idSala
                         from sala";
             return DataBase::getConsultasPDO($consulta);
         }
         public function insertPeli(){
-            $insercion = "INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar) 
-                        VALUES (null, \"".$this->anio."\",\"".$this->titulo."\", \"".$this->pais."\", \"".$this->genero."\",\"".$this->duracion."\", \"".$this->fecha_estreno."\", \"".$this->calificacion."\", \"".$this->sinopsis."\", \"".$this->actores."\", \"".$this->imagen."\", 0)";
+            $insercion = "INSERT INTO pelicula (idPelicula, anio, titulo, pais, genero, duracion, fecha_estreno, calificacion, sinopsis, actores, imagen, mostrar, otros, trailler) 
+                        VALUES (null, \"".$this->anio."\",\"".$this->titulo."\", \"".$this->pais."\", \"".$this->genero."\",\"".$this->duracion."\", \"".$this->fecha_estreno."\", \"".$this->calificacion."\", \"".$this->sinopsis."\", \"".$this->actores."\", \"".$this->imagen."\", 0, \"".$this->otros."\", \"".$this->trailler."\")";
             return DataBase::getConsultasPDO($insercion);
         }
         public function insertPro(){
@@ -105,7 +109,9 @@
                             sinopsis=\"".$this->sinopsis."\", 
                             actores=\"".$this->actores."\", 
                             imagen=\"".$this->imagen."\", 
-                            mostrar=\"".$this->mostrar."\"
+                            mostrar=\"".$this->mostrar."\",
+                            otros=\"".$this->otros."\",
+                            trailler=\"".$this->trailler."\"
                         WHERE idPelicula=\"".$this->idPelicula."\"";
             return DataBase::getConsultasPDO($consulta);
         }

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
-    <header class="container-fluid cabecera">
+    <!-- <header class="container-fluid cabecera">
         <div class="row">
             <h1 class="col text-center display-1">Cinemania</h1>
         </div>
@@ -50,7 +50,7 @@
                 </div>
             </nav>
         </div>
-    </header>
+    </header> -->
     <section class="container-sm mt-5">
         <div class="row princ">
             <div class="col-7 mr-auto ml-auto pt-5">

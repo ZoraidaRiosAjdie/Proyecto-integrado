@@ -20,6 +20,8 @@ $(document).ready(function(){
         var lhora = [];
         var lmostrar =[];
         var lidPro =[];
+        var lotros = [];
+        var ltrailler = [];
 
         var id =[];
         var anio = [];
@@ -36,6 +38,8 @@ $(document).ready(function(){
         var fecha = [];
         var hora = [];
         var mostrar=[];
+        var otros = [];
+        var trailler = [];
         for (let index = 0; index < obj.length; index++) {
             lid.push(obj[index].idPelicula);
             lanio.push(obj[index].anio);
@@ -53,6 +57,8 @@ $(document).ready(function(){
             lhora.push(obj[index].hora);
             lmostrar.push(obj[index].mostrar);
             lidPro.push(obj[index].idProyeccion);
+            lotros.push(obj[index].otros);
+            ltrailler.push(obj[index].trailler);
         }
         console.log(lidPro);
         var lrepe = lid.filter(function(item, index, array) {
@@ -72,8 +78,8 @@ $(document).ready(function(){
         fE = null;
         h = null;
         m = null;
-
-        
+        ot = null;
+        tr = null;
         
         for (let i = 0; i < lid.length; i++) {
             for (let j = 0; j < lrepe.length; j++) {
@@ -102,6 +108,8 @@ $(document).ready(function(){
                     fE = lfecha_estreno[j];
                     h = lhora[j];
                     m = lmostrar[j];
+                    ot = lotros [j];
+                    tr = ltrailler [j];
                 }
             }
             
@@ -119,6 +127,8 @@ $(document).ready(function(){
             fecha_estreno.push(fE);
             hora.push(h);
             mostrar.push(m);
+            otros.push(ot);
+            trailler.push(tr);
         }
         
         console.log(todo);
@@ -144,7 +154,7 @@ $(document).ready(function(){
             var img = $("<img>");
             $(div1).append(img);
             img.attr('src',imagen[i]);
-            img.attr('class','img-thumbnail');
+            img.attr('class','img-thumbnail princ-img');
             img.attr('id', lrepe[i]);
             /*Columna titulo*/
             var div2 = $("<div>");
@@ -162,7 +172,7 @@ $(document).ready(function(){
             var p = $("<p>");
             $(div4).append(p);
             p.text(titulo[i]);
-            p.attr('class','display-4');
+            p.attr('class','display-4 titulo-p');
             p.attr('id', lrepe[i]);
             /*Fila de duracion... */
             var div6 = $("<div>");
@@ -358,11 +368,11 @@ $(document).ready(function(){
                     var objeto= null;
                     var lista = null;
                     if ($(evento).val()== 'Mostrar Cartelera'){
-                        var objeto = {'idPelicula': lrepe[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 1}
+                        var objeto = {'idPelicula': lrepe[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 1, 'otros' : otros[i], 'trailler' : trailler[i]}
                         $(evento).attr('value','Ocultar Cartelera');
                     }
                     else{
-                        var objeto = {'idPelicula': lrepe[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 0}
+                        var objeto = {'idPelicula': lrepe[i],'anio': anio[i],'titulo': titulo[i],'pais': pais[i],'genero': genero[i],'duracion': duracion[i],'fecha': fecha_estreno[i],'calificacion': calificacion[i],'sinopsis': sinopsis[i],'actores': actores[i],'imagen': imagen[i],'mostrar': 0, 'otros' : otros[i], 'trailler' : trailler[i]}
                         $(evento).attr('value','Mostrar Cartelera');
                     }
                     lista = {'resultado': objeto};

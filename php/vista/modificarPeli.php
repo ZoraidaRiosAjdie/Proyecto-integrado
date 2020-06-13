@@ -14,87 +14,101 @@
     <header>
     </header>
     <section class="cuerpo">
-        <div class="row princ">
-            <div class="col-7 m-auto">
-                <h1 class="text-center">Pelicula</h1>
+        <div class="row">
+            <div class="col-7 m-auto princ">
+                <h1 class="text-center display-2">Pelicula</h1>
                 <form action="">
-                    <div class="row">
+                    <div class="row p-4">
                         <div class="col">
-                            <label for="titulo">Título</label>
-                            <input type="text" class="form-control" id="titulo">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                            <div class="row">
+                                <div class="col">
+                                    <label for="titulo">Título</label>
+                                    <input type="text" class="form-control" id="titulo">
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="anio">Año de estreno</label>
+                                    <input type="number" class="form-control" id="anio" min="1860">
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                </div>
+                                <div class="col">
+                                    <label for="duracion">Duracion</label>
+                                    <input type="number" class="form-control" id="duracion" min="1" max="900">
+                                </div>
+                                <div class="col">
+                                    <label for="calificacion">Calificacion</label>
+                                    <select name="calificacion" id="calificacion" class="form-control">
+                                        <option value="Todas las edades">Todas las edades</option>
+                                        <option value="+7">+7</option>
+                                        <option value="+12">+12</option>
+                                        <option value="+16">+16</option>
+                                        <option value="+18">+18</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="fecha">Fecha de estreno</label>
+                                    <input type="text" class="form-control" id="fecha">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="genero">Género</label>
+                                    <input type="text" class="form-control" id="genero">
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                </div>
+                                <div class="col">
+                                    <label for="pais">País</label>
+                                    <input type="text" class="form-control" id="pais">
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="imagen">Imagen principal</label>
+                                    <input type="text" class="form-control" id="imagen">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col otros">
+                                    <label for="otros">Album de imagenes</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="trailler">Trailer</label>
+                                    <input type="text" class="form-control" id="trailler">
+                                </div>
+                            </div>
+                            <div class="row actores">
+                                <div class="col actor">
+                                    <label for="actor">Actor</label>
+                                    <!-- <input type="text" class="form-control" id="actor"> -->
+                                </div>
+                                <div class="col papel">
+                                    <label for="papel">Papel</label>
+                                    <!-- <input type="text" class="form-control" id="papel"> -->
+                                </div>
+                                <!-- <div class="col-2 pt-4">
+                                    <input type="button" value="+" class="btn btn-primary" id="maxA">
+                                    <input type="button" value="-" class="btn btn-primary" id="minA">
+                                </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="sinopsis">Sinopsis</label>
+                                    <textarea name="sinopsis" id="sinopsis" cols="30" rows="10" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="row pt-5">
+                                <div class="col">
+                                    <input type="button" value="Atras" class="btn btn-primary float-left">
+                                    <input type="button" value="Siguiente" class="btn btn-primary float-right">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="anio">Año de estreno</label>
-                            <input type="number" class="form-control" id="anio" min="1860">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                        </div>
-                        <div class="col">
-                            <label for="duracion">Duracion</label>
-                            <input type="number" class="form-control" id="duracion" min="1" max="900">
-                        </div>
-                        <div class="col">
-                            <label for="calificacion">Calificacion</label>
-                            <select name="calificacion" id="calificacion" class="form-control">
-                                <option value="Todas las edades">Todas las edades</option>
-                                <option value="+7">+7</option>
-                                <option value="+12">+12</option>
-                                <option value="+16">+16</option>
-                                <option value="+18">+18</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <label for="fecha">Fecha de estreno</label>
-                            <input type="text" class="form-control" id="fecha">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="genero">Género</label>
-                            <input type="text" class="form-control" id="genero">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                        </div>
-                        <div class="col">
-                            <label for="pais">País</label>
-                            <input type="text" class="form-control" id="pais">
-                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="imagen">Imagen principal</label>
-                            <input type="text" class="form-control" id="imagen">
-                        </div>
-                    </div>
-                    <div class="row actores">
-                        <div class="col actor">
-                            <label for="actor">Actor</label>
-                            <!-- <input type="text" class="form-control" id="actor"> -->
-                        </div>
-                        <div class="col papel">
-                            <label for="papel">Papel</label>
-                            <!-- <input type="text" class="form-control" id="papel"> -->
-                        </div>
-                        <!-- <div class="col-2 pt-4">
-                            <input type="button" value="+" class="btn btn-primary" id="maxA">
-                            <input type="button" value="-" class="btn btn-primary" id="minA">
-                        </div> -->
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="sinopsis">Sinopsis</label>
-                            <textarea name="sinopsis" id="sinopsis" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="row pt-5">
-                        <div class="col">
-                            <input type="button" value="Atras" class="btn btn-primary float-left">
-                            <input type="button" value="Siguiente" class="btn btn-primary float-right">
-                        </div>
-                    </div>
-                    
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    if (sessionStorage.getItem("id") !=1){ 
-        window.location.replace("../vista/principal.php");
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
     }
     var proyecccion = null ;
     var cont = 5;
@@ -8,10 +8,8 @@ $(document).ready(function(){
     var lista1 = [];
     var lista = [];
     var lista2 = [];
-    var listaHora =[];
-    var listaFecha =[];
-    var listaSala =[];
-    var listaPelicula = [];
+    var listaI1 = [];
+    var listaI = [];
     var max = 0;
     $(':button').click(function(r){
         var evento = r.currentTarget;
@@ -58,7 +56,7 @@ $(document).ready(function(){
                 else{
                     if ($(evento).attr('id')=='minA') {
                         cont1 =  6 - lista1.length
-                        var eli = 'input#' + lista1[0]
+                        var eli = 'row#' + lista1[0]
                         var el = 'input#' + lista[0]
                         var e = 'input#' + lista2[0]
                         $(eli).remove();
@@ -72,8 +70,10 @@ $(document).ready(function(){
                         var listaActor = [];
                         var duracion;
                         var insertPelicula=null;
+                        var listaOtro = [];
                         if ($(evento).val()=='Siguiente') {
-                            if ($('#actor').val()!= '' && $('#papel').val()!= '' && $('#titulo').val()!= '' && $('#anio').val()!= '' && $('#duracion').val()!= '' && $('#genero').val()!= '' && $('#calificacion').val()!= '' && $('#pais').val()!= '' && $('#fecha').val()!= '' && $('#imagen').val()!= '' && $('#sinopsis').val()!= '') {
+                            // listaI.push($('#otros').val());
+                            if ($('#actor').val()!= '' && $('#papel').val()!= '' && $('#titulo').val()!= '' && $('#anio').val()!= '' && $('#duracion').val()!= '' && $('#genero').val()!= '' && $('#calificacion').val()!= '' && $('#pais').val()!= '' && $('#fecha').val()!= '' && $('#imagen').val()!= '' && $('#sinopsis').val()!= '' && $('#trailer').val()!= '') {
                                 var ac = $('#actor').val() + ' (' + $('#papel').val() + ')';
                                 listaActor.unshift(ac);
                                 for (let i = 0; i < lista.length; i++) {
@@ -84,10 +84,15 @@ $(document).ready(function(){
                                         listaActor.push(act);
                                     } 
                                 }
+                                for (let i = 0; i < listaI.length; i++) {
+                                    var i = 'input#' + listaI[i]
+                                    listaOtro.push ($(i).val());
+                                }
+                                listaOtro.push($('#otros').val());
                                 duracion = $('#duracion').val() + ' minutos';
                                 var todoActor = listaActor.toString();  
                                 var min = $('#duracion').val() + ' minutos'
-                                
+                                //var stringI = listaOtro.toString();
                                 sessionStorage.setItem('anioPelicula', $('#anio').val());
                                 sessionStorage.setItem('tituloPelicula', $('#titulo').val());
                                 sessionStorage.setItem('paisPelicula', $('#pais').val());
@@ -98,6 +103,8 @@ $(document).ready(function(){
                                 sessionStorage.setItem('sinopsisPelicula', $('#sinopsis').val());
                                 sessionStorage.setItem('actoresPelicula', todoActor);
                                 sessionStorage.setItem('imagenPelicula', $('#imagen').val());
+                                sessionStorage.setItem('otroPelicula', listaOtro.toString());
+                                sessionStorage.setItem('trailerPelicula', $('#trailer').val())
                             
                                 window.location.replace("../vista/insertTodaPelicula.php");
                                 
@@ -105,6 +112,44 @@ $(document).ready(function(){
                             }
                             else{
                                 alert('Has dejado algun campo en blanco');
+                            }
+                        }
+                        else {
+                            if ($(evento).attr('id')=='maxI') {
+                                if (cont > 0){
+                                    var id1 = 'r'+ cont;
+                                    var id = 'ri'+ cont;
+
+                                    var row1 = $('<div>');
+                                    $('.newImagen').after(row1);
+                                    row1.attr('class',"row");
+                                    row1.attr('id', id1);
+                
+                                    var col1 = $('<div>');
+                                    row1.append(col1);
+                                    col1.attr('class',"col");
+                        
+                                    var text = $('<input>');
+                                    col1.append(text);
+                                    text.attr('type','text');
+                                    text.attr('id', id);
+                                    text.attr('class',"form-control actor");
+                        
+                                    listaI1.push(id1);
+                                    listaI.push(id);
+                                    cont --;
+                                }
+                            }
+                            else {
+                                if ($(evento).attr('id')=='minI') {
+                                    cont =  6 - listaI1.length
+                                    var eli = 'row#' + listaI1[0]
+                                    var el = 'input#' + listaI[0]
+                                    $(eli).remove();
+                                    $(el).remove();
+                                    listaI1.splice(0,1);
+                                    listaI.splice(0,1);
+                                }
                             }
                         }
                     }

@@ -77,7 +77,8 @@ $(document).ready(function(){
                                 $('#precio').val(suma);
                             }
                             else {
-                                if (todo[i].rebaja %2 == 0){
+                                var rebaja = todo[i].rebaja.split('*');
+                                if (rebaja[0]%2 == 0){
                                     var n =parseInt(sessionStorage.getItem("entrada"));
                                     if (n < 2) {
                                         var suma = (parseInt(todo[i].precio) * sessionStorage.getItem("entrada"));
@@ -90,31 +91,18 @@ $(document).ready(function(){
                                                 par = par + 2
                                                 n--;
                                             }
-                                            var suma = ((parseInt(todo[i].precio)*par)/todo[i].rebaja)+7;
+                                            var suma = (((parseInt(todo[i].precio)*par)/rebaja[0])+7)*rebaja[1];
                                             $('#precio').val(suma);
                                         }
                                         else{
-                                            var suma = (parseInt(todo[i].precio) * sessionStorage.getItem("entrada")) / todo[i].rebaja;
+                                            var suma = ((parseInt(todo[i].precio) * sessionStorage.getItem("entrada")) / rebaja[0])*rebaja[1];
                                             $('#precio').val(suma);
                                         }
                                     }
                                 }
                                 else {
-                                    var n =parseInt(sessionStorage.getItem("entrada"));
-                                    var par =0;
-                                    if (n%3!=0){
-                                        while (n > par){
-                                            par = par + 1
-                                            n--;
-                                        }
-                                        var suma = ((parseInt(todo[i].precio)*par)/todo[i].rebaja)+7;
-                                        $('#precio').val(suma);
-                                    }
-                                    else{
-                                        var suma = (parseInt(todo[i].precio) * sessionStorage.getItem("entrada")) / todo[i].rebaja;
-                                        $('#precio').val(suma);
-                                    }
-                                    
+                                    var suma = ((parseInt(todo[i].precio) * sessionStorage.getItem("entrada")) / rebaja[0])*rebaja[1];
+                                    $('#precio').val(suma);
                                 }
                             }
                         }
@@ -156,6 +144,7 @@ $(document).ready(function(){
                 type: "POST",
                 data: insertReserva
             });
+            window.location.replace("../vista/principal.php");
     });
     
     if (sessionStorage.getItem("id") != 0 && sessionStorage.getItem("id") != 1){

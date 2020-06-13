@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    if (sessionStorage.getItem("id") !=1 ){ 
+        window.history.back();
+    }
     $.post("../controlador/tarifaAdmin.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -14,9 +17,14 @@ $(document).ready(function(){
             tr1.append(td2);
             td2.text(obj[i].definicion);
 
+
             var td3 = $('<td>');
             tr1.append(td3);
             td3.text(obj[i].precio);
+
+            // var td5 = $('<td>');
+            // tr1.append(td5);
+            // td5.text(obj[i].rebaja);
 
             var td4 = $('<td>');
             tr1.append(td4);

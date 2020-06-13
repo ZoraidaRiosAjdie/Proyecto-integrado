@@ -20,23 +20,23 @@
     </header>
     <section class="cuadro container-sm ml-auto mr-auto mt-5">
         <article class="row">
-            <article class="col-7 cuadro ml-auto mr-auto pb-5">
+            <article class="col-7 cuadro ml-auto mr-auto pb-5 pt-2">
                 <article class="row ml-auto mr-auto">
-                    <p class="col display-3 text-center">Iniciar sesión</p>
+                    <p class="col display-3 text-center titulo-login">Iniciar sesión</p>
                 </article>
                 <p class="mensaje text-danger text-center"></p>
                 <article class="row ">
                     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" class="col-7 ml-auto mr-auto">
                         <div class="pt-4">
-                            <label for="nombre">Nombre: </label>
-                            <input type="text" name="nombre" require class='col nombre'> 
+                            <label class="for-login" for="nombre">Nombre: </label>
+                            <input type="text" name="nombre" require class='form-control col nombre'> 
                         </div>
                         <div class="pt-2 pb-3">
-                            <label for="contraseña">Contraseña: </label>
-                            <input type="password" name="pwd" require class='col pwd'>
+                            <label class="for-login" for="contraseña">Contraseña: </label>
+                            <input type="password" name="pwd" require class='form-control col pwd'>
                         </div> 
-                        <input type="button" name="entrar" value="Entrar" class="btn btn-primary float-left entrar">
-                        <input type="button" name="registro" value="Registrarse" class="btn btn-primary float-right registro">
+                        <input type="button" name="entrar" value="Entrar" class="btn btn-primary float-left entrar" id="entrar-login">
+                        <input type="button" name="registro" value="Registrarse" class="btn btn-primary float-right registro" id="registro-login">
                     </form>
                 </article> 
             </article>            

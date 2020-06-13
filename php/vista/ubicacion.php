@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../../script/menu.js"></script>
     <script src="../../script/usuario.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
@@ -15,7 +16,7 @@
     <header class="container-fluid cabecera">
         <div class="row">
             <div class="col">
-                <h1 class="col text-center display-1">Cinemania</h1>
+                <h1 class="col text-center display-1" id="cabecera">Cinemania</h1>
             </div>
             <div class="col-1 rounded-circle navbar-collapse usuario" id="imagen">
                     <ul class="navbar-nav">
@@ -69,17 +70,17 @@
         </div>
     </header>
     <section class="container-sm mt-5">
-        <article class="row princ">
-            <div class="col">
-                <div class="row">
+        <article class="row ">
+            <div class="col princ">
+                <div class="row m-5">
                     <div class="col">
-                        <p class="display-4">
+                        <p class="display-4 titulo-p text-center">
                             Aquí se encuentra el cine:
                         </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col text-center p-5">
+                    <div class="col text-center p-3">
                         <iframe  class="" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101456.49951554825!2d-6.033207275045862!3d37.377636917040455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126ebcd570713f%3A0x3f22388ba24031ae!2sCinesur!5e0!3m2!1ses!2ses!4v1588180588910!5m2!1ses!2ses" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>
