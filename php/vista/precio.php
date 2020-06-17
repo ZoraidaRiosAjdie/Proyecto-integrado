@@ -12,45 +12,6 @@
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">
-    <!-- <header class="container-fluid cabecera">
-        <div class="row">
-            <h1 class="col text-center display-1">Cinemania</h1>
-        </div>
-        <div class="row">
-            <nav class="navbar navbar-expand-sm navbar-dark  col menu">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="menu">
-                    <ul class="navbar-nav mr-auto ml-auto lista">
-                        <li class="nav-item active">
-                            <a href="principal.php" class="nav-link">Inicio</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Peliculas</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="cartelera.php">Cartelera</a>
-                                <a class="dropdown-item" href="mas.php">Más información</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Tarifas</a>
-                            <div class="dropdown-menu tarifa">
-                                <a class="dropdown-item" href="../controlador/tarifa.php">Todas</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Contacto</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="ubicacion.php">¿Dónde estamos?</a>
-                                <a class="dropdown-item" href="contacto.php">Servicio al cliente</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header> -->
     <section class="container-sm mt-5">
         <div class="row princ">
             <div class="col-7 mr-auto ml-auto pt-5">
@@ -88,6 +49,7 @@
                         <div class="col">
                             <input type="button" value="Atras" class="btn btn-primary">
                             <input type="submit" value="Pagar" class="btn btn-primary float-right">
+                            <input type="button" value="Salir" class="btn btn-primary float-right mr-4">
                         </div>
                     </div>
                 </form>

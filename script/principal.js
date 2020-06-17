@@ -1,13 +1,14 @@
 $(document).ready(function(){
-    $('.reserva').hide();
     $('.usuario').hide();
+    // Mostrar el usuario
     if (sessionStorage.getItem("id")== 0 || sessionStorage.getItem("id")== 1){
-        $('.reserva').show();
         $('.usuario').show();
     }
+    // Para que el usuario se pueda arratrar por cualquier parte de la página
     $( function() {
         $( "#imagen" ).draggable();
     } );
+    // Para que no se repita la pelicula
     $.post("../controlador/cartelera.php", function(r){
         var obj = JSON.parse(r);
         var lmostrar = [];
@@ -60,6 +61,7 @@ $(document).ready(function(){
             lotros.push(obj[i].otros);
             ltrailler.push(obj[i].trailler);
         }
+        // eliminar repetidos
         var lrepe = id.filter(function(item, index, array) {
             return array.indexOf(item) === index;
         })        
@@ -321,14 +323,17 @@ $(document).ready(function(){
                     input1.attr('id',lrepe[i]);
                     $(div17).append(input1);
                 }
-                var input2 = $("<input>");
-                input2.attr('type','button');
-                input2.attr('class','btn btn-info ml-5');
-                input2.attr('value','Reservar entrada');
-                input2.attr('id',lrepe[i]);
-                $(div17).append(input2);
+                if (sessionStorage.getItem('id') == 1 || sessionStorage.getItem('id') == 0){
+                    var input2 = $("<input>");
+                    input2.attr('type','button');
+                    input2.attr('class','btn btn-info ml-5');
+                    input2.attr('value','Reservar entrada');
+                    input2.attr('id',lrepe[i]);
+                    $(div17).append(input2);
+                }
             }
         } 
+
         $(':button').click(function(r){
             var evento = r.currentTarget;
             if ($(evento).val()=='Reservar entrada') {
@@ -343,6 +348,7 @@ $(document).ready(function(){
             }
         });
     });
+    // Redondear a dos decimales
     function round(num, decimales = 2) {
         var signo = (num >= 0 ? 1 : -1);
         num = num * signo;

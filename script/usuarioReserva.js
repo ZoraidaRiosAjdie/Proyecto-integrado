@@ -8,6 +8,9 @@ $(document).ready(function(){
     var idPelicula = [];
     var titulo = [];
     var idReserva = [];
+    // Coge algunos datos de la reserva 
+    // Nota : esto lo he hecho para que el codigo quedará mas simple 
+    // de forma visual
     $.post("../controlador/reserva.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -17,6 +20,7 @@ $(document).ready(function(){
                 idReserva.push(obj[i].idReserva);
             }
         }
+        // Recoge todas las proyecciones que tenga el usuario
         $.post("../controlador/soloPro.php", function(t){
             var obj1 = JSON.parse(t);
             for (let i = 0; i < obj1.length; i++) {
@@ -30,6 +34,7 @@ $(document).ready(function(){
                     }                
                 }
             }
+            // Recoge el titulo de la pelicula
             $.post("../controlador/soloPeli.php", function(s){
                 var obj2 = JSON.parse(s);
                 for (let i = 0; i < obj2.length; i++) {
@@ -39,6 +44,7 @@ $(document).ready(function(){
                         }                
                     }
                 }
+                // Empieza a crear la parte visual de las reservas de este usuario
                 var cont = 1;
                 for (let i = 0; i < butaca.length; i++) {
                     var row1 = $('<div>');
@@ -115,12 +121,6 @@ $(document).ready(function(){
                     row4.append(col6);
                     col6.attr('class', 'col mb-3');
 
-                    var button1 = $('<input>');
-                    col6.append(button1);
-                    button1.attr('class', 'btn btn-primary float-left');
-                    button1.attr('type', 'button');
-                    button1.val('Atras');
-
                     var button2 = $('<input>');
                     col6.append(button2);
                     button2.attr('class', 'btn btn-primary float-right');
@@ -135,6 +135,8 @@ $(document).ready(function(){
                     if ($(e).val() == 'Atras') {
                         window.history.back();
                     }
+                    //  Si quiero canselar una pelicula tiene que ser con un dia de antelación 
+                    // en caso contrario no lo permitirá
                     if ($(e).val() == 'Cancelar reserva') {
                         var hoy = new Date ();
                         var diaHoy = hoy.getDate() - 1;
@@ -144,9 +146,10 @@ $(document).ready(function(){
                         var ayer = new Date (string);
                         var cont = null;
                         for (let i = 0; i < idReserva.length; i++) {
-                            if ($(e).attr('id')== fecha[i]) {
+                            if ($(e).attr('id') == fecha[i]) {
                                 var f = new Date(fecha[i]);
                                 if (ayer >= f) {
+                                    // Cuando se cansela una reserva se elimina de la bd
                                     var borrar = {'resultado':{'idReserva': idReserva[i]}};      
                                     $.ajax({
                                         url: "../controlador/borrarReserva.php",

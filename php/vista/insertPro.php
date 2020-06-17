@@ -17,22 +17,20 @@
         <div class="row ">
             <div class="col-7 m-auto princ">
                 <form action="" method="post">
-                    <h1 class="display-3 text-center">Insertar</h1>
-                    <!-- <div class="row">
-                        <div class="col">
-                            <input type="button" value="Añadir" class="btn btn-primary float-right">
-                        </div>
-                    </div> -->
+                    <h1 class="display-3 text-center pb-3">Insertar sala</h1>
                     <div class="row p-2" id="sala">
                         <div class="col">
+                            <label for="">Sala</label>
                             <select name="idSala" id="idSala" class="form-control">
 
                             </select>
                         </div>
                         <div class="col">
+                            <label for="">Fecha</label>
                             <input type="date" name="fecha" id="fecha" class="form-control">
                         </div>
                         <div class="col">
+                            <label for="">Hora</label>
                             <input type="time" name="hora" id="hora" class="form-control">
                         </div>
                         

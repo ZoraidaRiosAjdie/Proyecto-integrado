@@ -17,6 +17,7 @@ $(document).ready(function(){
             window.location.replace("../vista/pelicula.php");
         }
         else {
+            // Para crear o eliminar nuevos input
             if ($(evento).attr('id')=='maxA') {
                 if (cont1 > 0){
                         var id1 = 'a'+ cont1;                
@@ -72,7 +73,7 @@ $(document).ready(function(){
                         var insertPelicula=null;
                         var listaOtro = [];
                         if ($(evento).val()=='Siguiente') {
-                            // listaI.push($('#otros').val());
+                            // Recoge los datos y los pone de forma correcta para la siguiente página
                             if ($('#actor').val()!= '' && $('#papel').val()!= '' && $('#titulo').val()!= '' && $('#anio').val()!= '' && $('#duracion').val()!= '' && $('#genero').val()!= '' && $('#calificacion').val()!= '' && $('#pais').val()!= '' && $('#fecha').val()!= '' && $('#imagen').val()!= '' && $('#sinopsis').val()!= '' && $('#trailer').val()!= '') {
                                 var ac = $('#actor').val() + ' (' + $('#papel').val() + ')';
                                 listaActor.unshift(ac);
@@ -85,14 +86,13 @@ $(document).ready(function(){
                                     } 
                                 }
                                 for (let i = 0; i < listaI.length; i++) {
-                                    var i = 'input#' + listaI[i]
-                                    listaOtro.push ($(i).val());
+                                    var l = 'input#' + listaI[i]
+                                    listaOtro.push ($(l).val());
                                 }
                                 listaOtro.push($('#otros').val());
                                 duracion = $('#duracion').val() + ' minutos';
                                 var todoActor = listaActor.toString();  
-                                var min = $('#duracion').val() + ' minutos'
-                                //var stringI = listaOtro.toString();
+                                var min = $('#duracion').val() + ' minutos';
                                 sessionStorage.setItem('anioPelicula', $('#anio').val());
                                 sessionStorage.setItem('tituloPelicula', $('#titulo').val());
                                 sessionStorage.setItem('paisPelicula', $('#pais').val());
@@ -115,6 +115,7 @@ $(document).ready(function(){
                             }
                         }
                         else {
+                            // Crea y elimina input
                             if ($(evento).attr('id')=='maxI') {
                                 if (cont > 0){
                                     var id1 = 'r'+ cont;

@@ -3,12 +3,12 @@ $(document).ready(function(){
         var obj = JSON.parse(r);
         var existe = null;
         var id = null;
+        // Comprobar si el usuario esta registrado , y que pueda acceder a la pagina
         $('.entrar').click(function(){
             for (let i = 0; i < obj.length; i++) {
                 if ($('.nombre').val()== obj[i].nombre && $('.pwd').val()== obj[i].pwd){
                         existe = obj[i].admin;
                         id = obj[i].idUsuario;
-
                 }
             }
             if (existe == null){
@@ -20,28 +20,9 @@ $(document).ready(function(){
             sessionStorage.setItem("id", existe);
             sessionStorage.setItem("idUsuario", id);
         }); 
+        // Para registrarse
         $('.registro').click(function(){
             window.location.replace("../vista/registro.php");
         }); 
     });
-    // $('.entrar').click(function(){
-
-    // });
-
-    // $.post("../controlador/login.php", function(r){
-    //     // $('.entrar').click(function(){
-    //         var obj = JSON.parse(r);
-    //         if(obj.resultado != "noo existe"){
-    //             $.ajax({
-    //                 url: "../controlador/admin.php",
-    //                 type: "POST",
-    //                 data: obj
-    //             });
-    //             // window.location.replace("../vista/principal.php");
-    //         }
-    //         else{
-    //             $('.mensaje').text("Error en contraseña o usuario");
-    //         }
-    //     // });
-    // });
 });

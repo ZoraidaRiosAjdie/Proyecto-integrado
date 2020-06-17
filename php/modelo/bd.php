@@ -4,8 +4,8 @@
  * DataBase
  */
 abstract class DataBase {
-	//private static $server = 'localhost';
-    	private static $server = 'ec2-100-26-53-254.compute-1.amazonaws.com';
+	private static $server = 'localhost';
+	//private static $server = 'ec2-100-26-53-254.compute-1.amazonaws.com';
 	private static $db = 'cine';
 	private static $user = 'cine';
 	private static $password = 'abc123.';

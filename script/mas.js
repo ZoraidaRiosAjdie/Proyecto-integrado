@@ -1,13 +1,12 @@
 $(document).ready(function(){
-    $('.reserva').hide();
     $('.usuario').hide();
     if (sessionStorage.getItem("id")== 0 || sessionStorage.getItem("id")== 1){
-        $('.reserva').show();
         $('.usuario').show();
     }
     $( function() {
         $( "#imagen" ).draggable();
     } );
+    // Para que no se repita la pelicula
     $.post("../controlador/cartelera.php", function(r){
         var obj = JSON.parse(r);
         var lmostrar = [];
@@ -59,6 +58,7 @@ $(document).ready(function(){
             lmostrar.push(obj[i].mostrar);
             lotros.push(obj[i].otros);
             ltrailler.push(obj[i].trailler);
+            lfecha.push(obj[i].fecha)
         }
         var lrepe = id.filter(function(item, index, array) {
             return array.indexOf(item) === index;
@@ -76,6 +76,7 @@ $(document).ready(function(){
         mo = null;
         ot = null;
         tr = null;
+        fe = null;
         for (let i = 0; i < lrepe.length; i++) {
             for (let j = 0; j < id.length; j++) {
                 if (id[j]==lrepe[i]) {
@@ -92,6 +93,7 @@ $(document).ready(function(){
                     mo = lmostrar[j];
                     ot = lotros[j];
                     tr= ltrailler[j];
+                    fe = lfecha[j];
                     cont++;
                 }
             }
@@ -107,6 +109,7 @@ $(document).ready(function(){
             mostrar.push(mo);
             otros.push(ot);
             trailler.push(tr);
+            fecha.push(fe);
             media = total / cont;
             media = round(media);
             objeto= {'num_repe': cont , 'media': media};
@@ -165,7 +168,7 @@ $(document).ready(function(){
                 $(div5).append(div25);
                 // Segunda columna valoracion 
                 var div26 = $("<div>");
-                // div26.attr('class','col-6 bg-info rounded-circle');
+                // Colores del circulo de valoración
                 if (valoracion < 5 ){
                     div26.attr('class','col-6 bg-danger rounded-circle valoracion');
                 }
@@ -294,7 +297,7 @@ $(document).ready(function(){
                 input.attr('class','btn btn-info float-right');
                 input.attr('value','Trailer');
                 $(a).append(input);
-
+                // Si no hay fotos que no aparezca
                 if (otros[i] != null){
                     var input1 = $("<input>");
                     input1.attr('type','button');
@@ -303,12 +306,15 @@ $(document).ready(function(){
                     input1.attr('id',lrepe[i]);
                     $(div17).append(input1);
                 }
-                var input2 = $("<input>");
-                input2.attr('type','button');
-                input2.attr('class','btn btn-info ml-5');
-                input2.attr('value','Reservar entrada');
-                input2.attr('id',lrepe[i]);
-                $(div17).append(input2);
+                // No puedan acceder los que no son usuarios
+                if (sessionStorage.getItem('id') == 1 || sessionStorage.getItem('id') == 0){
+                    var input2 = $("<input>");
+                    input2.attr('type','button');
+                    input2.attr('class','btn btn-info ml-5');
+                    input2.attr('value','Reservar entrada');
+                    input2.attr('id',lrepe[i]);
+                    $(div17).append(input2);
+                }
             }
         } 
         $(':button').click(function(r){
@@ -325,7 +331,7 @@ $(document).ready(function(){
             }
         });
     });
-    
+    // Redondear a dos decimales, usado para la valoracion
     function round(num, decimales = 2) {
         var signo = (num >= 0 ? 1 : -1);
         num = num * signo;

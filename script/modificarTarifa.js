@@ -7,6 +7,8 @@ $(document).ready(function(){
     lista = [];
     var listaH = [];
     $.post("../controlador/tarifaAdmin.php", function(r){
+        // Recojo los datos de la tarifa seleccionada y las pongo en los 
+        // campos correspondientes
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
             if (obj[i].idTipo == sessionStorage.getItem("idTipoMod")) {
@@ -46,6 +48,7 @@ $(document).ready(function(){
             }
             
         }
+        // Para ver los semana y que nos salga luego el input con las fechas
         for (let i = 0; i < listaSemana.length; i++) {
             var l = '#'+ listaSemana[i];
             $(l).attr('checked',true);
@@ -126,7 +129,7 @@ $(document).ready(function(){
                         }
                         if ($('#rebaja1').val() == '' || $('#rebaja2').val() == '') {
                             insert = {'resultado' : {'idTipo':sessionStorage.getItem("idTipoMod"),'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': listaSemana.toString(), 'horario': listaTH.toString(),'rebaja' : null}};
-                            // console.log(insert);
+                            
                             $.ajax({
                                 url: "../controlador/modificarTarifa.php",
                                 type: "POST",
@@ -138,7 +141,6 @@ $(document).ready(function(){
                         else{
                             var rebaja = $('#rebaja1').val() + '*' + $('#rebaja2').val();
                             insert = {'resultado' : {'idTipo':sessionStorage.getItem("idTipoMod"),'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': listaSemana.toString(), 'horario': listaTH.toString(),'rebaja' : rebaja}};
-                            // console.log(insert);
                             $.ajax({
                                 url: "../controlador/modificarTarifa.php",
                                 type: "POST",
@@ -146,10 +148,6 @@ $(document).ready(function(){
                             });
                             window.location.replace("../vista/tarifaAdmin.php"); 
                         }
-                        // console.log(lista);
-                        
-                        // window.location.replace("../vista/tarifaAdmin.php");
-    
                     }
                     else {
                         alert ('Hay campos en blanco');
@@ -157,6 +155,7 @@ $(document).ready(function(){
                     
                 }
                 else {
+                    // Para los nuevos ckeck de las semanas
                     if ($(e).is(':checked')) {
                         var d = 'd'+ $(e).val();
                         var h =  'h'+ $(e).val();
@@ -224,8 +223,7 @@ $(document).ready(function(){
             
         });
     });
-    
-   
+
     function semana (n){
         var day;
         switch (parseInt(n)){
@@ -252,6 +250,7 @@ $(document).ready(function(){
         }
         return day;
     }
+    // Eliminar de un array un item concreto
     function removeItemFromArr ( arr, item ) {
         var i = arr.indexOf( item );
         if ( i !== -1 ) {

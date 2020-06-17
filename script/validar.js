@@ -10,12 +10,13 @@ $(document).ready(function(){
             var usuario;
             var email1;
             var imagen = null;
-            // var pwd = [];
+
             for (let index = 0; index < obj.length; index++) {
                 nombre.push(obj[index].nombre);
                 email.push(obj[index].email);
                 imagen = obj[index].imagen;
             }
+            // Validación del nombre
             $('.nombre').blur(function(){
                 if ($('.nombre').val()== ""){
                     jsonNombre = null;
@@ -26,12 +27,10 @@ $(document).ready(function(){
                 }
                 else {
                     for (let index = 0; index < nombre.length; index++) {
-                        
+                        // Comprovación de que el nombre no exita ya
                         if(nombre[index] != $('.nombre').val()){
                             jsonNombre = {'nombre': $('.nombre').val()};
                             $('#1').text('');
-                            // $('.barra').attr('style','width:33%');
-                            // $('.barra').attr('aria-valuenow','33');
                             $('.nombre').css('border-style','solid');
                             $('.nombre').css('border-color','green');
                         }
@@ -48,6 +47,7 @@ $(document).ready(function(){
                     }
                 }
             });
+            // Validacion del email
             $('.email').blur(function(){
                 if ($('.email').val()== ""){
                     jsonEmail = null;
@@ -81,6 +81,7 @@ $(document).ready(function(){
                     }
                 }
             });
+            // Validación de la contraseña
             $('.pwd').blur(function(){
                 if ($('.pwd').val()== ""){
                     $('#3').attr('class','text-danger');
@@ -96,6 +97,7 @@ $(document).ready(function(){
                     }
                 }
             });
+            // Insersión de un nuevo usuario
             $('.aceptar').click(function(){
                 if ($('.foto').val() != '' ){
                     imagen = $('.foto').val();
@@ -116,6 +118,7 @@ $(document).ready(function(){
             
 
     });
+    // Valida que el formato email sea el correspondiente
     function validarEmail(valor) {
         var patron = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         if (patron.test(valor)){
@@ -128,6 +131,7 @@ $(document).ready(function(){
             $('#2').text("La dirección de email es incorrecta.");
         }
     }
+    // Valida que la contraseña sea adecuada y segura
     function validarPWD(valor) {
         var patron = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,26}$/;
         if (patron.test(valor)){

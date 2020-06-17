@@ -181,7 +181,7 @@ VALUES ("1", "Entrada normal",'', "7,00", '1,2,3,4,5,6,0', '00:00-23:59', null);
 INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
 VALUES ("2", "Día espectador",'El miercoles el precio de la entrada bajará de precio durante todo el día', "3,50", '3', '00:00-23:59', null);
 INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
-VALUES ("3", "Día pareja",'Ven con un acompañante y pagais la entrada de solo uno, esta tarifa se  realiza los jueves' , 7, '4', '00:00-23:59', '2*');
+VALUES ("3", "Día pareja",'Ven con un acompañante y pagais la entrada de solo uno, esta tarifa se  realiza los jueves' , 7, '4', '00:00-23:59', '2*1');
 INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)
 VALUES ("4", "Matinal", 'El sabado y domingo a las 12:00, se realizará una rebaja en el precio de la entrada',5, '6,0', '12:00,12:00', null);
 INSERT INTO tarifa (idTipo, nombre , definicion, precio, semana, horario, rebaja)

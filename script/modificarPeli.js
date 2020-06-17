@@ -8,6 +8,7 @@ $(document).ready(function(){
     $.post("../controlador/soloPeli.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
+            // Recoge los datos y los pone de forma adecuada en los campos correspondientes
             if (obj[i].idPelicula == sessionStorage.getItem("idPeliMod")) {
                 $('#titulo').val(obj[i].titulo);
                 $('#anio').val(obj[i].anio);
@@ -130,13 +131,4 @@ $(document).ready(function(){
             window.location.replace("../vista/modificarPro.php");       
         }
     });
-    // function mes (nombre) {
-    //     var mes = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
-    //     var numero = [1,2,3,4,5,6,7,8,9,10,11,12];
-    //     for (let i = 0; i < mes.length; i++) {
-    //         if (nombre == mes[i]) {
-    //             return numero[i];
-    //         }
-    //     }
-    // }
 });

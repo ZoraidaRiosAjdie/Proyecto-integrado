@@ -8,6 +8,7 @@ $(document).ready(function(){
             };
         }
     });
+    // Coge los datos y los mete en los input correspondientes
     var parte = sessionStorage.getItem("fechaHora").split('/');
     var fecha = parte[1] + ' ' + parte[0];
     $('#hf').val(fecha);
@@ -21,6 +22,7 @@ $(document).ready(function(){
     var h = parseFloat(minH[0] + '.' + minH[1]);
     var todo = [];
     var normal = [];
+    // Esto nos sirve para coger el tipo de tarifa y el precio
     $.post("../controlador/tarifaAdmin.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -118,9 +120,18 @@ $(document).ready(function(){
             }
         }
     });
-    $(':button').click(function(){
-        window.location.replace("../vista/reserva.php");
+    $(':button').click(function(event){
+        var e = event.currentTarget;
+        if ($(e).val() == "Atras") {
+            window.location.replace("../vista/reserva.php");
+        }
+        else {
+            if ($(e).val() == "Salir") {
+                window.location.replace("../vista/principal.php");
+            }
+        }
     });
+    // Colorcar el email del usuario
     $.post("../controlador/login.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -130,6 +141,7 @@ $(document).ready(function(){
             }
         } 
     });
+    // Actualizar las butacas e insertar la reserva
     $(':submit').click(function(){
             var updateSala = {'resultado':{'idSala': sessionStorage.getItem("idSala"), 'butaca':sessionStorage.getItem("butaca"), 'tipo':sessionStorage.getItem("tipo")}};
             var insertReserva = {'resultado':{'idUsuario':sessionStorage.getItem("idUsuario"),'idProyeccion':sessionStorage.getItem("idProyeccion"),'butaca':sessionStorage.getItem("butaca1")}};      
@@ -144,9 +156,9 @@ $(document).ready(function(){
                 type: "POST",
                 data: insertReserva
             });
-            window.location.replace("../vista/principal.php");
+            alert("Se ha realizado la reserva");
     });
-    
+    // Si no es usuario no puede acceder
     if (sessionStorage.getItem("id") != 0 && sessionStorage.getItem("id") != 1){
         window.location.replace("../vista/mas.php");
     }

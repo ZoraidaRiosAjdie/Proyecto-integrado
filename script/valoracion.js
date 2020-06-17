@@ -2,9 +2,10 @@ $(document).ready(function(){
     $.post("../controlador/valoracion.php", function(r){
         var obj = JSON.parse(r);
         var idPelicula = null;
+        // Esto nos resvira si hemos seleccionado pelicula en la valoración
         $('#pelicula').click(function(){
             $('select').remove();
-           var select =$('<select>');
+           var select = $('<select>');
            $('.select').prepend(select);
            select.attr('class', 'form-control');
            for (let i = 0; i < obj.length; i++) {
@@ -14,11 +15,14 @@ $(document).ready(function(){
                 option.text(obj[i].titulo);
                 idPelicula= obj[i].idPelicula;
            }
+        //    Pondra el titulo de la pelicula seleccionada
            $('select').click(function(){
                 $('.titulo').html('<strong>Titulo: </strong>'+$('select').val());
            });
+        //  Si es un usuario el que hace la valoración lo llevará a la bd, si no 
+        // ha entrado como usuario no lo hará
            $('.btn').click(function(){
-               if (sessionStorage.getItem("idUsuario"!=null)){
+               if (sessionStorage.getItem("idUsuario") != null){
                     var listaObj = {'idUsuario':sessionStorage.getItem("idUsuario"),'idPelicula': idPelicula, 'valoracion': $('.estr').val()};
                     var objeto = {'valoracion':listaObj}
                     $.ajax({
@@ -40,28 +44,4 @@ $(document).ready(function(){
             $('select').remove();
         });
     });
-    // if (sessionStorage.getItem("id")==1){
-    //     var li = $('<li>');
-    //     $('.lista').append(li);
-    //     var a =$('<a>');
-    //     a.attr('class','nav-link dropdown-toggle');
-    //     a.attr('data-toggle','dropdown');
-    //     var texto = "Administrador";
-    //     $(li).append(a);
-    //     $(li).attr('class','nav-item dropdown')
-    //     $(a).text(texto);
-    //     var div = $('<div>');
-    //     $(li).append(div);
-    //     var a1 = $('<a>');
-    //     var a2 = $('<a>');
-    //     var texto1 = "Pelicula";
-    //     var texto2 = "Tarifa";
-    //     $(a1).text(texto1);
-    //     $(a2).text(texto2);
-    //     $(div).append(a1);
-    //     $(div).append(a2);
-    //     $(a1).attr('class','dropdown-item');
-    //     $(a2).attr('class','dropdown-item');
-    //     $(div).attr('class','dropdown-menu');
-    // }
 });

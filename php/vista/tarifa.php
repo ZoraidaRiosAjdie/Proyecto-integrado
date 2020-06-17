@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="../../script/menuT.js"></script>
     <script src="../../script/usuario.js"></script>
+    <script src="../../script/movimiento.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
 </head>
 <body class="cartelera">

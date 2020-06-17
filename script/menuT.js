@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    // Para que cuando se conecte el administrador le aparezca su 
+    // parte del menu , en el apartado de tarifas
     $.post("../controlador/menu.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {

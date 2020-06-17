@@ -8,6 +8,7 @@ $(document).ready(function(){
     var lfecha = [];
     var lhora = [];
     var listaCont=[];
+    // Esto nos sirve para coger el tipo de tarifa
     $.post("../controlador/tarifaAdmin.php", function(e){
         var obj = JSON.parse(e);
         for (let i = 0; i < obj.length; i++) {
@@ -49,6 +50,7 @@ $(document).ready(function(){
         }
     });   
     var lista = [];
+    // Luego hago que aparezcan los datos a modificar
     $.post("../controlador/soloPro.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -107,6 +109,7 @@ $(document).ready(function(){
                             var semana = fechaHora.getDay();
                             for (let i = 0; i < obj.length; i++) {
                                 if (obj[i].idProyeccion == sessionStorage.getItem('modIdPro')) {
+                                    // Esta parte es la que va a poner el tipo de tarifa
                                     for (let p = 0; p < todoTarifa.length; p++) {
                                         var dia = todoTarifa[p].dia;
                                         var hO = todoTarifa[p].hO;
@@ -143,7 +146,6 @@ $(document).ready(function(){
                             }
                         });
                             window.location.replace("../vista/modificarPro.php");
-                        // }
                     }
                     else{
                         alert('Hay campos vacios');

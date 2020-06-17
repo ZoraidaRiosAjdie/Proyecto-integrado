@@ -21,7 +21,6 @@ $(document).ready(function(){
                         var d2 = parseFloat(d1[0] + '.' + d1[1]);
                         var h1 = $(h).val().split(':');
                         var h2 = parseFloat(h1[0] + '.' + h1[1]);
-                        // Recordar mñn igualar la hora 
                         if ($(c).val() != '' && $(d).val() != '' && $(h).val() != '') {
                             if (d2 <= h2 ) {
                                 if (d2 == h2) {
@@ -39,6 +38,7 @@ $(document).ready(function(){
                             alert ('Hay campos en blanco');
                         }
                     }
+                    // Por si rebaja es nula o no 
                     if ($('#rebaja1').val() == '' || $('#rebaja2').val() == '') {
                         insert = {'resultado' : {'nombre': $('#nombre').val(), 'precio': $('#precio').val(), 'definicion': $('#definicion').val(), 'semana': lista.toString(), 'horario': horario.toString(), 'rebaja': null}};
                         $.ajax({
@@ -66,6 +66,7 @@ $(document).ready(function(){
                 
             }
             else{
+                // Para los check de dia y hora, recogida de estos
                 if ($(e).is(':checked')) {
                     var d = 'd'+ $(e).val();
                     var h =  'h'+ $(e).val();
@@ -158,6 +159,7 @@ $(document).ready(function(){
         }
         return day;
     }
+    // Eliminar item en concreto de un array
     function removeItemFromArr ( arr, item ) {
         var i = arr.indexOf( item );
         if ( i !== -1 ) {

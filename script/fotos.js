@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $.post("../controlador/cartelera.php", function(r){
         var obj = JSON.parse(r);
+        // Coge el id de la pelicula para que me de el album de fotos
         for (let i = 0; i < obj.length; i++) {
             if (sessionStorage.getItem('idFoto') == obj[i].idPelicula) {
                 var parte = obj[i].otros.split(',');

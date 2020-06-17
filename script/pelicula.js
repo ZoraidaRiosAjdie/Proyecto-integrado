@@ -2,6 +2,8 @@ $(document).ready(function(){
     todo = null;
     jsonId = [];
     $.post("../controlador/pelicula.php", function(r){
+        // Todo esto nos servirá para que la pelicula no se repita, y meta las salas
+        // dentro de la misma caja de la pelicula correspondiente.
         var sala = [];
         var obj = JSON.parse(r);
         var lid =[];
@@ -361,6 +363,10 @@ $(document).ready(function(){
             button2.attr('class','btn btn-primary float-right mostrar');
             button2.attr('id', lrepe[i]);
         };
+        // Aqui acaba de la caja de pelicula, y empiezan los eventos a botones
+        
+        // Esto nos servira para que la pelicula se muetre y oculte
+        // Según este mostrada o oculta la pelicula cambiará el texto del boton
         $('.mostrar').click(function(event){
             var evento = event.currentTarget;
             for (let i = 0; i < lrepe.length; i++) {
@@ -390,7 +396,6 @@ $(document).ready(function(){
         $('.modificar').click(function(event){
             var e = event.currentTarget;
             var a = [];
-            // alert (a);
             sessionStorage.setItem("idPeliMod", $(e).attr('id'));
             for (let i = 0; i < jsonId.length; i++) {
                 if ($(e).attr('id') == jsonId[i].idPelicula) {
@@ -418,7 +423,6 @@ $(document).ready(function(){
                     });
                 }
             }
-            alert ('Regarge la pagina');
             window.location.replace("../vista/pelicula.php");
         });
     });

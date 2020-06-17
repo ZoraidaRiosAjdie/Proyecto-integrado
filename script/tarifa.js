@@ -1,7 +1,9 @@
 $(document).ready(function(){
+    //  si no es administrardor no puede entrar
     if (sessionStorage.getItem("id") !=1 ){ 
         window.history.back();
     }
+    // Crea la tabla de tarifas con sus datos
     $.post("../controlador/tarifaAdmin.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -22,13 +24,9 @@ $(document).ready(function(){
             tr1.append(td3);
             td3.text(obj[i].precio);
 
-            // var td5 = $('<td>');
-            // tr1.append(td5);
-            // td5.text(obj[i].rebaja);
-
             var td4 = $('<td>');
             tr1.append(td4);
-            
+            //  Si la entrada es normal no tiene boton eliminar
             if (obj[i].idTipo != 1){
                 var button1 = $('<input>');
                 td4.append(button1);
@@ -56,6 +54,8 @@ $(document).ready(function(){
                 }
                 else {
                     var a = null; 
+                    // Lo he realizado de este modo para que no se haga más de una 
+                    // vez la eliminación
                     $.post("../controlador/soloPro.php", function(p){
                         var obj1 = JSON.parse(p);
                         if ($(e).val() == 'Eliminar') {
@@ -71,7 +71,6 @@ $(document).ready(function(){
                                     type: "POST",
                                     data: insert
                                 });
-                                // window.location.replace("../vista/tarifaAdmin.php");
                             }
                             else {
                                 alert ('Esta tarifa esta en uso');

@@ -11,6 +11,7 @@ $(document).ready(function(){
     var lhora = [];
     var listaCont=[];
     var idMax = null;
+    // Para que me guarde la información de la tarifa de una forma concreta
     $.post("../controlador/tarifaAdmin.php", function(r){
         var obj = JSON.parse(r);
         for (let i = 0; i < obj.length; i++) {
@@ -81,7 +82,6 @@ $(document).ready(function(){
                             $.post("../controlador/soloPro.php", function(v){
                                 var proyeccion= null;
                                 var obj1 = JSON.parse(v);
-                                // for (let i = 0; i < obj.length; i++) {
                                     for (let j = 0; j < obj1.length; j++) {
                                         var partesHora = $('#hora').val().split(':');
                                         var h = parseFloat(partesHora[0] + '.' + partesHora[1]);
@@ -89,6 +89,7 @@ $(document).ready(function(){
                                         var fechaHora = new Date(string);
                                         var semana = fechaHora.getDay();
                                         if (obj1[j].idSala != $('#idSala').val() && $('#fecha').toString() != obj1[j].fecha && $('#hora').val() != obj1[j].hora) {
+                                            // Para meter el tipo de tarifa segun la hora y fecha
                                             for (let p = 0; p < todoTarifa.length; p++) {
                                                 var dia = todoTarifa[p].dia;
                                                 var hO = todoTarifa[p].hO;
@@ -133,7 +134,6 @@ $(document).ready(function(){
                                         }
                                     }
                                 alert('Se ha insertado correctamente');
-                                // window.location.replace("../vista/pelicula.php");
                             });
                         });
                     }

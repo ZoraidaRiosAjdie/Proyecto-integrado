@@ -11,6 +11,4 @@
                 ];
         array_push($lista1,$usuario);
     }
-    // $lista = ['registro'=>$lista1];
-    // var_dump($lista);
     echo json_encode($lista1);

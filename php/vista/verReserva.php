@@ -16,6 +16,11 @@
             <div class="col-8 reserva m-auto">
                 <h1 class="display-4 text-center">Reservas</h1>
             </div>
+            <div class="row">
+                <div class="col">
+                    <input type="button" value="Atras" class="btn btn-primary float-left m-5">
+                </div>
+            </div>
         </article>
     </section>
 </body>

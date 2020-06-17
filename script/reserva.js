@@ -8,6 +8,8 @@ $(document).ready(function(){
         var milHoy = fechaHoy.getTime();
         for (let i = 0; i < obj.length; i++) {
             if (sessionStorage.getItem("idPelicula") == obj[i].idPelicula){
+                // Esto nos sirve para la fecha, en concreto para saber en que 
+                // dia de la semana se proyecta
                 var string = obj[i].fecha+'T'+obj[i].hora+'Z';
                 proyeccion = obj[i].idProyeccion;
                 var fecha = new Date (string);
@@ -36,6 +38,7 @@ $(document).ready(function(){
                         case 6:
                           day = "Sabado";
                     }
+                    // Mete los datos en html
                     var td = $('<td>');
                     $('.fecha').append(td);
                     td.append(day);
@@ -101,6 +104,7 @@ $(document).ready(function(){
                             $('small#reserva').text('No quedan entradas');
                         }
                         else {
+                            // Los he metido en sessiones para que los datos puedan pasar a una página diferente
                             if (parseInt(butaca) > 0) {
                                 totalButaca = butaca - parseInt($('.reserva').val());
                                 sessionStorage.setItem('idSala', $(':radio').attr('id'));
@@ -121,6 +125,7 @@ $(document).ready(function(){
             
         }
     });
+    //  si no es usuario no puede hacer una reserva
     if (sessionStorage.getItem("id") != 0 && sessionStorage.getItem("id") != 1){
         window.history.back();
     }
